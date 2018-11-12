@@ -19,6 +19,7 @@ public class Delfinen {
         int x = 0;
         String h = "hej";
         String nogen = "hat";
+        int k = 1;
     }
     
 }
