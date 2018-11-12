@@ -16,6 +16,7 @@ public class Delfinen {
      */
     public static void main(String[] args) {
         int i = 1;
+        String h = "hej";
     }
     
 }
