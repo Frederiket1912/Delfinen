@@ -16,9 +16,13 @@ public class Delfinen {
      */
     public static void main(String[] args) {
         int i = 1;
+        int b = 6;
         int x = 0;
         String h = "hej";
         String nogen = "hat";
+        String sur = "en";
+        String aldrigmere = "nejtak";
+        
         int k = 1;
     }
     
