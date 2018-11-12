@@ -24,6 +24,7 @@ public class Delfinen {
         String aldrigmere = "nejtak";
         
         int k = 1;
+        
     }
     
 }
