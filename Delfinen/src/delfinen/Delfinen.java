@@ -21,7 +21,7 @@ public class Delfinen {
         String h = "hej";
         String nogen = "hat";
         String sur = "en";
-        String test;
+        
         int k = 1;
     }
     
