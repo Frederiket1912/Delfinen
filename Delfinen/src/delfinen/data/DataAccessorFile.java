@@ -107,4 +107,26 @@ public class DataAccessorFile {
             }
         }
     }
+    
+    public Medlem søgMedlem(String name){
+        ObjectInputStream in = null;
+        try {
+            File file = new File(FILENAME);
+            in = new ObjectInputStream(new FileInputStream(file));
+            Point p = (Point) in.readObject();
+            System.out.println(p);
+        } catch (FileNotFoundException ex) {
+            if(DEBUG) ex.printStackTrace();
+        } catch (IOException ex) {
+            if(DEBUG) ex.printStackTrace();
+        } catch (ClassNotFoundException ex) {
+            if(DEBUG) ex.printStackTrace();
+        } finally {
+            try {
+                in.close();
+            } catch (IOException ex) {
+                if(DEBUG) ex.printStackTrace();
+            }
+        }
+    }
 }
