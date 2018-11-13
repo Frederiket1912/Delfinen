@@ -49,7 +49,7 @@ public class DataAccessorFile {
         }
     }
     
-    public ArrayList getMedlemmer(){
+    public ArrayList<Medlem> getMedlemmer(){
         ObjectInputStream in = null;
         try {
             boolean cont = true;
@@ -63,7 +63,6 @@ public class DataAccessorFile {
             else{
                 cont = false;
             }
-            return alleMedlemmer;
             }
         } catch (FileNotFoundException ex) {
             if(DEBUG) ex.printStackTrace();
@@ -74,6 +73,35 @@ public class DataAccessorFile {
         } finally {
             try {
                 in.close();
+            } catch (IOException ex) {
+                if(DEBUG) ex.printStackTrace();
+            }
+        }
+            return alleMedlemmer;
+    }
+    
+    public void sletMedlem(Medlem medlem){
+        ObjectOutputStream out = null;
+        try {            
+            File file = new File(FILENAME);
+            out = new ObjectOutputStream(new FileOutputStream(file));
+            for (Medlem m : getMedlemmer()) {
+                if (m.getCprnr() == medlem.getCprnr()){
+                    getMedlemmer().remove(m);
+                    out.flush();
+                }
+            }
+            for (Medlem m : getMedlemmer()) {
+                out.writeObject(m);
+                out.flush();
+            }
+        } catch (FileNotFoundException ex) {
+            if(DEBUG) ex.printStackTrace();
+        } catch (IOException ex) {
+            if(DEBUG) ex.printStackTrace();
+        } finally {
+            try {
+                out.close();
             } catch (IOException ex) {
                 if(DEBUG) ex.printStackTrace();
             }
