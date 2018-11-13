@@ -1,4 +1,3 @@
-
 package delfinen.data;
 
 import java.awt.Point;
@@ -12,81 +11,84 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import static jdk.nashorn.internal.runtime.Context.DEBUG;
 
-
 public class DataAccessorFile {
-    private String FILENAME = "C:\\Users\\frede\\OneDrive\\Documents\\NetBeansProjects\\Delfinen\\Medlemmer.txt";   
+
+    private String FILENAME = "C:\\Users\\frede\\OneDrive\\Documents\\NetBeansProjects\\Delfinen\\Medlemmer.txt";
     private ArrayList<Medlem> alleMedlemmer = new ArrayList<>();
-    
-    public void opretMedlem(){
+
+    //husk at vi også skal bruge en Betaling når vi opretter et medlem, når vi har lavet Betalings klassen
+    public void opretMedlem(String name, int cprnr, boolean medlemskabsstatus, String mail) {
         ObjectOutputStream out = null;
         try {
-//            String name = jtextfieldName.getText();
-//            int cprnr = Integer.parseInt(jtextfieldCprnr.getText());
-//            String mail = jtextfieldMail.getText();
-//        if (jradiobuttonAktiv.isSelected()){
-//            medlemskabsstatus = true;
-//        }
-//        else{
-//            medlemskabsstatus = false;
-//        }
-        Medlem m = new Medlem("Frederik",1912891867,true,"frederiket@gmail.com");
-        Medlem m1 = new Medlem("Frederik",1912891867,true,"frederiket@gmail.com");
+            Medlem m = new Medlem(name, cprnr, medlemskabsstatus, mail);
             File file = new File(FILENAME);
             out = new ObjectOutputStream(new FileOutputStream(file));
             out.writeObject(m);
-            out.writeObject(m1);
             out.flush();
         } catch (FileNotFoundException ex) {
-            if(DEBUG) ex.printStackTrace();
+            if (DEBUG) {
+                ex.printStackTrace();
+            }
         } catch (IOException ex) {
-            if(DEBUG) ex.printStackTrace();
+            if (DEBUG) {
+                ex.printStackTrace();
+            }
         } finally {
             try {
                 out.close();
             } catch (IOException ex) {
-                if(DEBUG) ex.printStackTrace();
+                if (DEBUG) {
+                    ex.printStackTrace();
+                }
             }
         }
     }
-    
-    public ArrayList<Medlem> getMedlemmer(){
+
+    public ArrayList<Medlem> getMedlemmer() {
         ObjectInputStream in = null;
         try {
             boolean cont = true;
             File file = new File(FILENAME);
             in = new ObjectInputStream(new FileInputStream(file));
-            while(cont){
-            Medlem m = (Medlem) in.readObject();
-            if (m != null){
-                alleMedlemmer.add(m);
-            }
-            else{
-                cont = false;
-            }
+            while (cont) {
+                Medlem m = (Medlem) in.readObject();
+                if (m != null) {
+                    alleMedlemmer.add(m);
+                } else {
+                    cont = false;
+                }
             }
         } catch (FileNotFoundException ex) {
-            if(DEBUG) ex.printStackTrace();
+            if (DEBUG) {
+                ex.printStackTrace();
+            }
         } catch (IOException ex) {
-            if(DEBUG) ex.printStackTrace();
+            if (DEBUG) {
+                ex.printStackTrace();
+            }
         } catch (ClassNotFoundException ex) {
-            if(DEBUG) ex.printStackTrace();
+            if (DEBUG) {
+                ex.printStackTrace();
+            }
         } finally {
             try {
                 in.close();
             } catch (IOException ex) {
-                if(DEBUG) ex.printStackTrace();
+                if (DEBUG) {
+                    ex.printStackTrace();
+                }
             }
         }
-            return alleMedlemmer;
+        return alleMedlemmer;
     }
-    
-    public void sletMedlem(Medlem medlem){
+
+    public void sletMedlem(Medlem medlem) {
         ObjectOutputStream out = null;
-        try {            
+        try {
             File file = new File(FILENAME);
             out = new ObjectOutputStream(new FileOutputStream(file));
             for (Medlem m : getMedlemmer()) {
-                if (m.getCprnr() == medlem.getCprnr()){
+                if (m.getCprnr() == medlem.getCprnr()) {
                     getMedlemmer().remove(m);
                     out.flush();
                 }
@@ -96,36 +98,148 @@ public class DataAccessorFile {
                 out.flush();
             }
         } catch (FileNotFoundException ex) {
-            if(DEBUG) ex.printStackTrace();
+            if (DEBUG) {
+                ex.printStackTrace();
+            }
         } catch (IOException ex) {
-            if(DEBUG) ex.printStackTrace();
+            if (DEBUG) {
+                ex.printStackTrace();
+            }
         } finally {
             try {
                 out.close();
             } catch (IOException ex) {
-                if(DEBUG) ex.printStackTrace();
+                if (DEBUG) {
+                    ex.printStackTrace();
+                }
             }
         }
     }
-    
-    public Medlem søgMedlem(String name){
+
+    public ArrayList søgMedlemPåNavn(String name) {
         ObjectInputStream in = null;
+        ArrayList<Medlem> medlemmerMedNavn = new ArrayList();
         try {
             File file = new File(FILENAME);
             in = new ObjectInputStream(new FileInputStream(file));
-            Point p = (Point) in.readObject();
-            System.out.println(p);
+            for (Medlem m : getMedlemmer()) {
+                if (m.getName().contains(name)) {
+                    medlemmerMedNavn.add(m);
+                }
+            }
         } catch (FileNotFoundException ex) {
-            if(DEBUG) ex.printStackTrace();
+            if (DEBUG) {
+                ex.printStackTrace();
+            }
         } catch (IOException ex) {
-            if(DEBUG) ex.printStackTrace();
-        } catch (ClassNotFoundException ex) {
-            if(DEBUG) ex.printStackTrace();
+            if (DEBUG) {
+                ex.printStackTrace();
+            }
         } finally {
             try {
                 in.close();
             } catch (IOException ex) {
-                if(DEBUG) ex.printStackTrace();
+                if (DEBUG) {
+                    ex.printStackTrace();
+                }
+            }
+        }
+        return medlemmerMedNavn;
+    }
+
+    public ArrayList søgMedlemPåCprnr(int cprnr) {
+        ObjectInputStream in = null;
+        ArrayList<Medlem> medlemmerMedCprnr = new ArrayList();
+        try {
+            File file = new File(FILENAME);
+            in = new ObjectInputStream(new FileInputStream(file));
+            for (Medlem m : getMedlemmer()) {
+                if (m.getCprnr() == cprnr) {
+                    medlemmerMedCprnr.add(m);
+                }
+            }
+        } catch (FileNotFoundException ex) {
+            if (DEBUG) {
+                ex.printStackTrace();
+            }
+        } catch (IOException ex) {
+            if (DEBUG) {
+                ex.printStackTrace();
+            }
+        } finally {
+            try {
+                in.close();
+            } catch (IOException ex) {
+                if (DEBUG) {
+                    ex.printStackTrace();
+                }
+            }
+        }
+        return medlemmerMedCprnr;
+    }
+
+    public ArrayList søgMedlemPåMail(String mail) {
+        ObjectInputStream in = null;
+        ArrayList<Medlem> medlemmerMedCprnr = new ArrayList();
+        try {
+            File file = new File(FILENAME);
+            in = new ObjectInputStream(new FileInputStream(file));
+            for (Medlem m : getMedlemmer()) {
+                if (m.getMail().equalsIgnoreCase(mail)) {
+                    medlemmerMedCprnr.add(m);
+                }
+            }
+        } catch (FileNotFoundException ex) {
+            if (DEBUG) {
+                ex.printStackTrace();
+            }
+        } catch (IOException ex) {
+            if (DEBUG) {
+                ex.printStackTrace();
+            }
+        } finally {
+            try {
+                in.close();
+            } catch (IOException ex) {
+                if (DEBUG) {
+                    ex.printStackTrace();
+                }
+            }
+        }
+        return medlemmerMedCprnr;
+    }
+
+    //jeg ved ikke om man kan gøre det på en smartere måde så man replacer i stedet for at remove og så adde bagefter
+    public void redigerMedlem(Medlem medlem, String newName, int newCprnr, boolean NewMedlemskabsstatus, String newMail) {
+        ObjectOutputStream out = null;
+        try {
+            File file = new File(FILENAME);
+            out = new ObjectOutputStream(new FileOutputStream(file));
+            getMedlemmer().remove(medlem);
+            medlem.setName(newName);
+            medlem.setCprnr(newCprnr);
+            medlem.setMedlemskabsstatus(NewMedlemskabsstatus);
+            medlem.setMail(newMail);
+            getMedlemmer().add(medlem);
+            for (Medlem m : getMedlemmer()) {
+                out.writeObject(m);
+                out.flush();
+            }
+        } catch (FileNotFoundException ex) {
+            if (DEBUG) {
+                ex.printStackTrace();
+            }
+        } catch (IOException ex) {
+            if (DEBUG) {
+                ex.printStackTrace();
+            }
+        } finally {
+            try {
+                out.close();
+            } catch (IOException ex) {
+                if (DEBUG) {
+                    ex.printStackTrace();
+                }
             }
         }
     }
