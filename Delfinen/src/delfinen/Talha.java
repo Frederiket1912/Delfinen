@@ -5,12 +5,17 @@
  */
 package delfinen;
 
+import javax.swing.JFrame;
+
 /**
  *
  * @author Dhono
  */
 public class Talha {
-    // Hej Frederik, kan du se om jeg har ændret noget?
-    // Hello everybody
-    //Does this work at all?
+     public static void main(String[] args) {
+        
+         JFrame kontingent = new JFrame();
+         kontingent.setAlwaysOnTop(true);
+         
+    }
 }
