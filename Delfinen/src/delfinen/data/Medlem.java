@@ -25,33 +25,33 @@ public class Medlem implements Serializable {
         //this.betaling = betaling;
     }
     
-    public void visMedlem(Medlem medlem){
-        jtextfieldName.setText(medlem.getName());
-        jtextfieldCprnr.setText(medlem.getCprnr());
-        jtextfieldMail.setText(medlem.getMail());
-        if (medlemskabsstatus){
-            jradiobuttonAktiv.doClick();
-        }
-        else {
-            jradibuttonPassiv.doClick();
-        }      
-    }
-    
-    public void gemÆndringer(Medlem medlem){
-        String name = jtextfieldName.getText();
-        int cprnr = Integer.parseInt(jtextfieldCprnr.getText());
-        String mail = jtextfieldMail.getText();
-        if (jradiobuttonAktiv.isSelected()){
-            medlemskabsstatus = true;
-        }
-        else{
-            medlemskabsstatus = false;
-        }
-        medlem.setName(name);
-        medlem.setCprnr(cprnr);
-        medlem.setMail(mail);
-        medlem.setMedlemskabsstatus(medlemskabsstatus);
-    }
+//    public void visMedlem(Medlem medlem){
+//        jtextfieldName.setText(medlem.getName());
+//        jtextfieldCprnr.setText(medlem.getCprnr());
+//        jtextfieldMail.setText(medlem.getMail());
+//        if (medlemskabsstatus){
+//            jradiobuttonAktiv.doClick();
+//        }
+//        else {
+//            jradibuttonPassiv.doClick();
+//        }      
+//    }
+//    
+//    public void gemÆndringer(Medlem medlem){
+//        String name = jtextfieldName.getText();
+//        int cprnr = Integer.parseInt(jtextfieldCprnr.getText());
+//        String mail = jtextfieldMail.getText();
+//        if (jradiobuttonAktiv.isSelected()){
+//            medlemskabsstatus = true;
+//        }
+//        else{
+//            medlemskabsstatus = false;
+//        }
+//        medlem.setName(name);
+//        medlem.setCprnr(cprnr);
+//        medlem.setMail(mail);
+//        medlem.setMedlemskabsstatus(medlemskabsstatus);
+//    }
     
     
     
