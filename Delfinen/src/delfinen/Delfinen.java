@@ -18,11 +18,11 @@ public class Delfinen {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+   /* public static void main(String[] args) {
         DataAccessorFile dao = new DataAccessorFile();
         dao.opretMedlem();
         dao.getMedlemmer();
         
-    }
+    }*/
     
 }
