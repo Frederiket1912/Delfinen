@@ -13,7 +13,7 @@ import static jdk.nashorn.internal.runtime.Context.DEBUG;
 
 public class DataAccessorFile {
 
-    private String FILENAME = "C:\\Users\\frede\\OneDrive\\Documents\\NetBeansProjects\\Delfinen\\Medlemmer.txt";
+    private String FILENAME = "C:\\Users\\frede\\Documents\\NetBeansProjects\\Delfinen\\Medlemmer.txt";
     private ArrayList<Medlem> alleMedlemmer = new ArrayList<>();
 
     //husk at vi også skal bruge en Betaling når vi opretter et medlem, når vi har lavet Betalings klassen
@@ -146,7 +146,8 @@ public class DataAccessorFile {
         }
         return medlemmerMedNavn;
     }
-
+    //kunne godt laves om til bare at returne et medlem i stedet for en arraylist,
+    //ved ikke om det er letest bare at have alle vores søg metoder til at returne det samme.
     public ArrayList søgMedlemPåCprnr(int cprnr) {
         ObjectInputStream in = null;
         ArrayList<Medlem> medlemmerMedCprnr = new ArrayList();
