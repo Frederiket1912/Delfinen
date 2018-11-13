@@ -5,6 +5,10 @@
  */
 package delfinen;
 
+import delfinen.data.DataAccessorFile;
+import delfinen.data.Medlem;
+import java.util.ArrayList;
+
 /**
  *
  * @author frede
@@ -15,15 +19,9 @@ public class Delfinen {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        int i = 1;
-        int b = 6;
-        int x = 0;
-        String h = "hej";
-        String nogen = "hat";
-        String sur = "en";
-        String aldrigmere = "nejtak";
-        
-        int k = 1;
+        DataAccessorFile dao = new DataAccessorFile();
+        dao.opretMedlem();
+        dao.getMedlemmer();
         
     }
     
