@@ -244,4 +244,73 @@ public class DataAccessorFile {
             }
         }
     }
+    //jeg har lavet metoder til at søge medlemmer på cprnr og mail hvor man får
+    //et medlem ud i stedet for en arraylist med et medlem
+    public Medlem søgMedlemPåCprnr2(int cprnr) {
+        ObjectInputStream in = null;
+        Medlem result = null;
+        try {
+            File file = new File(FILENAME);
+            in = new ObjectInputStream(new FileInputStream(file));
+            for (Medlem m : getMedlemmer()) {
+                if (m.getCprnr() == cprnr) {
+                    result = m;
+                    return result;
+                }
+                
+            }
+        } catch (FileNotFoundException ex) {
+            if (DEBUG) {
+                ex.printStackTrace();
+            }
+        } catch (IOException ex) {
+            if (DEBUG) {
+                ex.printStackTrace();
+            }
+        } finally {
+            try {
+                in.close();
+            } catch (IOException ex) {
+                if (DEBUG) {
+                    ex.printStackTrace();
+                }
+            }
+        }
+        return result;
+    }
+    
+    
+    public Medlem søgMedlemPåMail2(String mail) {
+        ObjectInputStream in = null;
+        Medlem result = null;
+        try {
+            File file = new File(FILENAME);
+            in = new ObjectInputStream(new FileInputStream(file));
+            for (Medlem m : getMedlemmer()) {
+                if (m.getMail().equalsIgnoreCase(mail)) {
+                    result = m;
+                    return result;
+                }
+            }
+        } catch (FileNotFoundException ex) {
+            if (DEBUG) {
+                ex.printStackTrace();
+            }
+        } catch (IOException ex) {
+            if (DEBUG) {
+                ex.printStackTrace();
+            }
+        } finally {
+            try {
+                in.close();
+            } catch (IOException ex) {
+                if (DEBUG) {
+                    ex.printStackTrace();
+                }
+            }
+        }
+        return result;
+    }
 }
+
+
