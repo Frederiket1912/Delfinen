@@ -49,7 +49,7 @@ public class DataAccessorFile {
         }
     }
     
-    public void getMedlemmer(){
+    public ArrayList getMedlemmer(){
         ObjectInputStream in = null;
         try {
             boolean cont = true;
@@ -63,7 +63,7 @@ public class DataAccessorFile {
             else{
                 cont = false;
             }
-            System.out.println(alleMedlemmer);
+            return alleMedlemmer;
             }
         } catch (FileNotFoundException ex) {
             if(DEBUG) ex.printStackTrace();
