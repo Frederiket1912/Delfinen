@@ -90,11 +90,13 @@ public class DataAccessorFileTest {
         System.out.println("s\u00f8gMedlemP\u00e5Navn");
         String name = "";
         DataAccessorFile instance = new DataAccessorFile();
-        ArrayList expResult = null;
+        ArrayList expResult = new ArrayList();
+        Medlem m = new Medlem("Frederik", 1912891867, true, "frederiket@gmail.com");
+        expResult.add(m);
         ArrayList result = instance.søgMedlemPåNavn(name);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        System.out.println(result);
+        assertEquals(expResult.size(), result.size());
+        
     }
 
     /**
@@ -150,13 +152,13 @@ public class DataAccessorFileTest {
     @Test
     public void testSøgMedlemPåCprnr2() {
         System.out.println("s\u00f8gMedlemP\u00e5Cprnr2");
-        int cprnr = 0;
+        int cprnr = 100200;
         DataAccessorFile instance = new DataAccessorFile();
-        Medlem expResult = null;
-        Medlem result = instance.søgMedlemPåCprnr2(cprnr);
+        int expResult = 100200;
+        Medlem m = instance.søgMedlemPåCprnr2(cprnr);
+        System.out.println(m);
+        int result = m.getCprnr();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
