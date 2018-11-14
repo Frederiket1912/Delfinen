@@ -10,10 +10,10 @@ package delfinen.data;
  * @author Talha Noory
  */
 public class Kontingent {
-    private int passivPris;
-    private int juniorPris;
-    private int voksenPris;
-    private int seniorPris;
+    private int passivPris = 500;
+    private int juniorPris = 1000;
+    private int voksenPris = 1600;
+    private int seniorPris = 1200;
 
     public Kontingent(int passivPris, int juniorPris, int voksenPris, int seniorPris) {
         this.passivPris = passivPris;
