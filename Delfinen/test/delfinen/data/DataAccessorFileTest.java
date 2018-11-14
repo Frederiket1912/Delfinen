@@ -47,8 +47,7 @@ public class DataAccessorFileTest {
     public void testOpretMedlem() {
         System.out.println("opretMedlem");
         File file = new File(FILENAME);
-        long fileBefore = file.length();
-        
+        long fileBefore = file.length();        
         String name = "";
         int cprnr = 0;
         int fødselsdato = 0;
@@ -56,22 +55,24 @@ public class DataAccessorFileTest {
         String mail = "";
         DataAccessorFile instance = new DataAccessorFile();
         instance.opretMedlem(name, cprnr, fødselsdato, medlemskabsstatus, mail);
-        assert
-        fail("The test case is a prototype.");
+        long fileAfter = file.length();
+        //vi tjekker om filen er blevet større efter at der er oprettet et medlem
+        assertNotEquals(fileBefore, fileAfter);
     }
 
     /**
      * Test of getMedlemmer method, of class DataAccessorFile.
      */
     @Test
-    public void testGetMedlemmer() {
+    public void testGet2Medlemmer() {
         System.out.println("getMedlemmer");
         DataAccessorFile instance = new DataAccessorFile();
-        ArrayList<Medlem> expResult = null;
+        ArrayList<Medlem> expResult = new ArrayList();
+        expResult.add(new Medlem("Frederik", 1912891867, 19121989,true,"frederiket@gmail.com"));
+        expResult.add(new Medlem("Thomas", 1504891953, 17283849, false, "noget@andet.dk"));
         ArrayList<Medlem> result = instance.getMedlemmer();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //vi tjekker om der er to medlemmer i begge arrays
+        assertEquals(expResult.size(), result.size());
     }
 
     /**
@@ -80,11 +81,13 @@ public class DataAccessorFileTest {
     @Test
     public void testSletMedlem() {
         System.out.println("sletMedlem");
-        Medlem medlem = null;
+        Medlem medlem = new Medlem("Frederik", 1912891867, 19121989,true,"frederiket@gmail.com");
         DataAccessorFile instance = new DataAccessorFile();
+        File file = new File(FILENAME);
+        long fileBefore = file.length();
         instance.sletMedlem(medlem);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        long fileAfter = file.length();
+        assertNotEquals(fileBefore, fileAfter);
     }
 
     /**

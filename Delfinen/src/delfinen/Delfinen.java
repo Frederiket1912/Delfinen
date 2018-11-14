@@ -20,10 +20,9 @@ public class Delfinen {
      */
     public static void main(String[] args) {
         DataAccessorFile dao = new DataAccessorFile();
-        dao.opretMedlem("Frederik", 1989, 1912891967, true, "frederiket@gmail.com");
+        dao.opretMedlem("Frederik", 1912891867, 19121989, true, "frederiket@gmail.com");
         dao.opretMedlem("Thomas", 1968, 100200, true, "noget@andet.dk");
-        System.out.println(dao.getMedlemmer());
-        
+        System.out.println(dao.getMedlemmer());  
     }
     
 }
