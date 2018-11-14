@@ -1,6 +1,7 @@
 package delfinen.logic;
 
 import delfinen.data.Medlem;
+import delfinen.data.Kontingent;
 
 public class Betaling {
 
@@ -13,18 +14,18 @@ public class Betaling {
     public int udregnBetaling(Medlem medlem, int year) {
         int age;
         age = medlem.getFødselsdato() - year;
-
+        Kontingent k = new Kontingent(1,1,1,1);
         if (medlem.isMedlemskabsstatus()) {
             if (age < 18) {
-                return 1000;
+                return k.getJuniorPris();
             }
             if (age >= 18) {
-                return 1600;
+                return k.getSeniorPris();
             }
             if (age >= 60) {
-                return 1200;
+                return k.getVoksenPris();
             }
         }
-        return 500;
+        return k.getPassivPris();
     }
 }

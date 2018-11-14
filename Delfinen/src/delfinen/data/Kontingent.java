@@ -16,11 +16,7 @@ public class Kontingent {
     private int seniorPris = 1200;
 
 
-    public Kontingent(int passivPris, int juniorPris, int voksenPris, int seniorPris) {
-        this.passivPris = passivPris;
-        this.juniorPris = juniorPris;
-        this.voksenPris = voksenPris;
-        this.seniorPris = seniorPris;
+    public Kontingent() {
     }
     
     public int getPassivPris() {
