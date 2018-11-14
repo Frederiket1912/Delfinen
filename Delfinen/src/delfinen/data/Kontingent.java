@@ -15,6 +15,7 @@ public class Kontingent {
     private int voksenPris = 1600;
     private int seniorPris = 1200;
 
+
     public Kontingent(int passivPris, int juniorPris, int voksenPris, int seniorPris) {
         this.passivPris = passivPris;
         this.juniorPris = juniorPris;
@@ -54,5 +55,9 @@ public class Kontingent {
         this.seniorPris = seniorPris;
     }
 
+    @Override
+    public String toString() {
+        return "Kontingent{" + "passivPris " + passivPris + ", juniorPris " + juniorPris + ", voksenPris " + voksenPris + ", seniorPris " + seniorPris + '}';
+    }
     
 }
