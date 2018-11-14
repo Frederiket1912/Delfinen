@@ -44,7 +44,7 @@ public class BetalingTest {
     @Test
     public void testUdregnBetaling() {
         System.out.println("udregnBetaling");
-        Medlem medlem = new Medlem("Medina", 251088, 1988, true, "mail.com");
+        Medlem medlem = new Medlem("Medina", 251095, 1978, true, "mail@.com");
         int year = 2008;
         Betaling instance = new Betaling();
         int expResult = 1600;
