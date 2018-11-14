@@ -11,17 +11,19 @@ public class Medlem implements Serializable {
     private boolean medlemskabsstatus;
     private String mail;
     private Betaling betaling;
+    private int fødselsdato;
 
     @Override
     public String toString() {
         return "Medlem{" + "name=" + name + ", cprnr=" + cprnr + ", medlemskabsstatus=" + medlemskabsstatus + ", mail=" + mail + ", betaling=" + betaling + '}';
     }
 
-    public Medlem(String name, int cprnr, boolean medlemskabsstatus, String mail) {
+    public Medlem(String name, int cprnr, int fødselsdato, boolean medlemskabsstatus, String mail) {
         this.name = name;
         this.cprnr = cprnr;
         this.medlemskabsstatus = medlemskabsstatus;
         this.mail = mail;
+        this.fødselsdato = fødselsdato;
         //this.betaling = betaling;
     }
     
