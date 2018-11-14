@@ -51,7 +51,7 @@ public class DataAccessorFile {
             boolean cont = true;
             File file = new File(FILENAME);
             in = new ObjectInputStream(new FileInputStream(file));
-                alleMedlemmer = (ArrayList<Medlem>) in.readObject();
+            alleMedlemmer = (ArrayList<Medlem>) in.readObject();
 //            while (cont) {
 //                if (m != null) {
 //                    alleMedlemmer.add(m);
@@ -94,9 +94,8 @@ public class DataAccessorFile {
                     out.flush();
                 }
             }
-                out.writeObject(getMedlemmer());
-                out.flush();
-            
+            out.writeObject(alleMedlemmer);
+            out.flush();
         } catch (FileNotFoundException ex) {
             if (DEBUG) {
                 ex.printStackTrace();
@@ -146,6 +145,7 @@ public class DataAccessorFile {
         }
         return medlemmerMedNavn;
     }
+
     //kunne godt laves om til bare at returne et medlem i stedet for en arraylist,
     //ved ikke om det er letest bare at have alle vores søg metoder til at returne det samme.
     public ArrayList søgMedlemPåCprnr(int cprnr) {
@@ -219,14 +219,13 @@ public class DataAccessorFile {
             getMedlemmer().remove(medlem);
             medlem.setName(newName);
             medlem.setCprnr(newCprnr);
-            
+            medlem.setFødselsdato(newFødselsdato);
             medlem.setMedlemskabsstatus(NewMedlemskabsstatus);
             medlem.setMail(newMail);
             getMedlemmer().add(medlem);
-            for (Medlem m : getMedlemmer()) {
-                out.writeObject(m);
-                out.flush();
-            }
+            out.writeObject(alleMedlemmer);
+            out.flush();
+
         } catch (FileNotFoundException ex) {
             if (DEBUG) {
                 ex.printStackTrace();
@@ -245,6 +244,7 @@ public class DataAccessorFile {
             }
         }
     }
+
     //jeg har lavet metoder til at søge medlemmer på cprnr og mail hvor man får
     //et medlem ud i stedet for en arraylist med et medlem
     public Medlem søgMedlemPåCprnr2(int cprnr) {
@@ -258,7 +258,7 @@ public class DataAccessorFile {
                     result = m;
                     return result;
                 }
-                
+
             }
         } catch (FileNotFoundException ex) {
             if (DEBUG) {
@@ -279,8 +279,7 @@ public class DataAccessorFile {
         }
         return result;
     }
-    
-    
+
     public Medlem søgMedlemPåMail2(String mail) {
         ObjectInputStream in = null;
         Medlem result = null;
@@ -313,5 +312,3 @@ public class DataAccessorFile {
         return result;
     }
 }
-
-
