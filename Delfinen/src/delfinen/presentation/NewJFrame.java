@@ -26,43 +26,46 @@ public class NewJFrame extends javax.swing.JFrame {
 
     public void editUser() {
         DataAccessorFile dao = new DataAccessorFile();
-        
+
         Object[] message = {
             "Navn:", jTextField4,
-            "CPR:", jTextField5,
-            "Email:", jTextField6,
+            "Aktiv eller Passiv A/P:", jTextField5,
+            "Email:", jTextField6, 
             //"Aktiv/Passiv:", jTextField7,
             //"Motionist/Koncurrence:", jTextField8
-                
         };
 
         int option = JOptionPane.showConfirmDialog(null, message, "Edit User", JOptionPane.OK_CANCEL_OPTION);
         if (option == JOptionPane.OK_OPTION) {
-            try{
-            createTable().setValueAt(jTextField4.getText(), this.jTable1.getSelectedRow(), 0);
-            createTable().setValueAt(jTextField5.getText(), this.jTable1.getSelectedRow(), 1);
-            createTable().setValueAt(jTextField6.getText(), this.jTable1.getSelectedRow(), 2);
-            //createTable().setValueAt(jTextField7, this.jTable1.getSelectedRow(), 3);
-            //createTable().setValueAt(jTextField8, this.jTable1.getSelectedRow(), 4);
-            //Medlem tempMedlem = dao.søgMedlemPåCprnr(Integer.parseInt(jTextField5.getText()));
-            //dao.redigerMedlem(TempMedlem, jTextField4.getText(), Integer.parseInt(jTextField5.getText()), true, jTextField6.getText());
-            }catch(Exception ex){
-                
+            boolean aktivitetsform = true;
+            try {
+                createTable().setValueAt(jTextField4.getText(), this.jTable1.getSelectedRow(), 0);
+                if (jTextField5.getText().equalsIgnoreCase("a")) {
+                    aktivitetsform = true;
+                } else {
+                    aktivitetsform = false;
+                }
+                createTable().setValueAt(jTextField6.getText(), this.jTable1.getSelectedRow(), 2);
+                Medlem tempMedlem = dao.søgMedlemPåCprnr2(Integer.parseInt(this.jTable1.getValueAt(this.jTable1.getSelectedRow(), 1).toString()));
+                dao.redigerMedlem(tempMedlem, jTextField4.getText(), tempMedlem.getCprnr(), 15, aktivitetsform, jTextField6.getText());
+
+            } catch (Exception ex) {
+
             }
         }
     }
-    
-    public DefaultTableModel createTable(){
-        DefaultTableModel model = (DefaultTableModel) this.jTable1.getModel();
-                int rowCount = model.getRowCount();
-                int ColumnCount = model.getColumnCount();
-                this.jTable1.isCellEditable(rowCount, ColumnCount - 1);
 
-                /*
+    public DefaultTableModel createTable() {
+        DefaultTableModel model = (DefaultTableModel) this.jTable1.getModel();
+        int rowCount = model.getRowCount();
+        int ColumnCount = model.getColumnCount();
+        this.jTable1.isCellEditable(rowCount, ColumnCount - 1);
+
+        /*
                 for (int i = rowCount - 1; i >= 0; i--) {
                     model.removeRow(i);
                 }*/
-                return model;
+        return model;
     }
 
     /**
@@ -193,17 +196,20 @@ public class NewJFrame extends javax.swing.JFrame {
                 tempCPR = Integer.parseInt(this.jTextField1.getText());
 
             } catch (Exception ex) {
-
             }
-            if (m.getCprnr() == tempCPR || m.getMail().equals(this.jTextField2.getText()) || m.getName().equals(this.jTextField3.getText())) {
-                Object rowData[] = new Object[3];
+            if (m.getCprnr() == tempCPR || m.getMail().toLowerCase().equals(this.jTextField2.getText().toLowerCase()) || m.getName().toLowerCase().equals(this.jTextField3.getText().toLowerCase())) {
+                Object rowData[] = new Object[5];
                 rowData[0] = m.getName();
                 rowData[1] = m.getCprnr();
                 rowData[2] = m.getMail();
+                rowData[3] = m.getFødselsdato();
+                //rowData[4] = m.getBetaling();
+
                 createTable().addRow(rowData);
+                System.out.println("vi nåede hertil");
 
             }
-            System.out.println("vi nåede hertil");
+
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -242,8 +248,12 @@ public class NewJFrame extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 DataAccessorFile dao = new DataAccessorFile();
-                dao.opretMedlem("Frederik", 100200, true, "noget@noget.dk");
-                dao.opretMedlem("Thomas", 100200, true, "andet@noget.dk");
+                dao.opretMedlem("Frederik", 100200, 15, true, "noget@noget.dk");
+
+                Medlem m = dao.søgMedlemPåCprnr2(100200);
+                System.out.println(m);
+                dao.opretMedlem("Thomas", 100200, 15, true, "andet@noget.dk");
+                dao.redigerMedlem(m, "Thomas", 10, 15, true, "noget@andet.dk");
                 System.out.println(dao.getMedlemmer());
                 new NewJFrame().setVisible(true);
 
