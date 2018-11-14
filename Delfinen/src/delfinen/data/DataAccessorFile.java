@@ -13,7 +13,7 @@ import static jdk.nashorn.internal.runtime.Context.DEBUG;
 
 public class DataAccessorFile {
 
-    private String FILENAME = "C:\\Users\\frede\\OneDrive\\Documents\\NetBeansProjects\\Delfinen\\Delfinen\\Medlemmer.txt";
+    private String FILENAME = "C:\\Users\\Talha Noory\\Documents\\GitHub\\Delfinen\\Medlemmer.txt";
     private ArrayList<Medlem> alleMedlemmer = new ArrayList<>();
     
     //husk at vi også skal bruge en Betaling når vi opretter et medlem, når vi har lavet Betalings klassen
@@ -22,7 +22,6 @@ public class DataAccessorFile {
         try {
             Medlem m = new Medlem(name, cprnr, fødselsdato, medlemskabsstatus, mail);
             File file = new File(FILENAME);
-            
             out = new ObjectOutputStream(new FileOutputStream(file));
             getMedlemmer().add(m);
             out.writeObject(getMedlemmer());

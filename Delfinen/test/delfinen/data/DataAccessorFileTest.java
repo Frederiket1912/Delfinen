@@ -5,6 +5,7 @@
  */
 package delfinen.data;
 
+import java.io.File;
 import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -18,6 +19,7 @@ import static org.junit.Assert.*;
  * @author frede
  */
 public class DataAccessorFileTest {
+    private String FILENAME = "Medlemmer.txt";
     
     public DataAccessorFileTest() {
     }
@@ -44,6 +46,9 @@ public class DataAccessorFileTest {
     @Test
     public void testOpretMedlem() {
         System.out.println("opretMedlem");
+        File file = new File(FILENAME);
+        long fileBefore = file.length();
+        
         String name = "";
         int cprnr = 0;
         int fødselsdato = 0;
@@ -51,7 +56,7 @@ public class DataAccessorFileTest {
         String mail = "";
         DataAccessorFile instance = new DataAccessorFile();
         instance.opretMedlem(name, cprnr, fødselsdato, medlemskabsstatus, mail);
-        // TODO review the generated test code and remove the default call to fail.
+        assert
         fail("The test case is a prototype.");
     }
 
