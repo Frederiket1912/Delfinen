@@ -60,11 +60,8 @@ public class RedigereMedlemmer extends javax.swing.JFrame {
         int rowCount = model.getRowCount();
         int ColumnCount = model.getColumnCount();
         this.jTable1.isCellEditable(rowCount, ColumnCount - 1);
-
-        /*
-                for (int i = rowCount - 1; i >= 0; i--) {
-                    model.removeRow(i);
-                }*/
+        model.getDataVector().removeAllElements();
+        model.fireTableDataChanged();
         return model;
     }
 
@@ -85,9 +82,9 @@ public class RedigereMedlemmer extends javax.swing.JFrame {
         jTextField6 = new javax.swing.JTextField();
         jTextField7 = new javax.swing.JTextField();
         jTextField8 = new javax.swing.JTextField();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        CPRfield = new javax.swing.JTextField();
+        MailField = new javax.swing.JTextField();
+        NameField = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
@@ -109,9 +106,9 @@ public class RedigereMedlemmer extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        CPRfield.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                CPRfieldActionPerformed(evt);
             }
         });
 
@@ -165,9 +162,9 @@ public class RedigereMedlemmer extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.TRAILING))
+                                    .addComponent(NameField, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(MailField, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(CPRfield, javax.swing.GroupLayout.Alignment.TRAILING))
                                 .addGap(56, 56, 56))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jButton2)
@@ -190,15 +187,15 @@ public class RedigereMedlemmer extends javax.swing.JFrame {
                 .addGap(16, 16, 16)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(CPRfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2)
                 .addGap(2, 2, 2)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(MailField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(11, 11, 11)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(NameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
                 .addComponent(jButton1)
                 .addGap(27, 27, 27)
@@ -215,20 +212,21 @@ public class RedigereMedlemmer extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void CPRfieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CPRfieldActionPerformed
 
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_CPRfieldActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         DataAccessorFile dao = new DataAccessorFile();
+        DefaultTableModel model = createTable();
         int tempCPR = 0;
         for (Medlem m : dao.getMedlemmer()) {
             try {
-                tempCPR = Integer.parseInt(this.jTextField1.getText());
+                tempCPR = Integer.parseInt(this.CPRfield.getText());
 
             } catch (Exception ex) {
             }
-            if (m.getCprnr() == tempCPR || m.getMail().toLowerCase().equals(this.jTextField2.getText().toLowerCase()) || m.getName().toLowerCase().equals(this.jTextField3.getText().toLowerCase())) {
+            if (m.getCprnr() == tempCPR || m.getMail().toLowerCase().equals(this.MailField.getText().toLowerCase()) || m.getName().toLowerCase().equals(this.NameField.getText().toLowerCase())) {
                 Object rowData[] = new Object[5];
                 rowData[0] = m.getName();
                 rowData[1] = m.getCprnr();
@@ -236,7 +234,7 @@ public class RedigereMedlemmer extends javax.swing.JFrame {
                 rowData[3] = m.getFødselsdato();
                 //rowData[4] = m.getBetaling();
 
-                createTable().addRow(rowData);
+                model.addRow(rowData);
                 
 
             }
@@ -249,12 +247,13 @@ public class RedigereMedlemmer extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-//       DataAccessorFile dao = new DataAccessorFile();
-//        for(Medlem m : dao.getMedlemmer()){
-//           if(this.jTable1.getValueAt(this.jTable1.getSelectedRow(), 1).toString() == m.getCprnr()){
-//               
-//           }
-//       }
+       DataAccessorFile dao = new DataAccessorFile();
+        for(Medlem m : dao.getMedlemmer()){
+           if(Integer.parseInt(this.jTable1.getValueAt(this.jTable1.getSelectedRow(), 1).toString()) == m.getCprnr()){
+               dao.sletMedlem(m);
+               break;
+           }
+       }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
@@ -296,6 +295,8 @@ public class RedigereMedlemmer extends javax.swing.JFrame {
                 dao.opretMedlem("Thomas", 100200, 15, true, "andet@noget.dk");
                 dao.redigerMedlem(m, "Thomas", 10, 15, true, "noget@andet.dk");
                 System.out.println(dao.getMedlemmer());
+                //dao.sletMedlem(m);
+               // System.out.println(dao.getMedlemmer());
                 new RedigereMedlemmer().setVisible(true);
 
             }
@@ -303,6 +304,9 @@ public class RedigereMedlemmer extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField CPRfield;
+    private javax.swing.JTextField MailField;
+    private javax.swing.JTextField NameField;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -314,9 +318,6 @@ public class RedigereMedlemmer extends javax.swing.JFrame {
     private javax.swing.JOptionPane jOptionPane2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
