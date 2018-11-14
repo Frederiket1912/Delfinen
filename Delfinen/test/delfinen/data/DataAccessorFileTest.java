@@ -56,7 +56,7 @@ public class DataAccessorFileTest {
         DataAccessorFile instance = new DataAccessorFile();
         instance.opretMedlem(name, cprnr, fødselsdato, medlemskabsstatus, mail);
         long fileAfter = file.length();
-        //vi tjekker om filen er blevet større efter at der er oprettet et medlem
+        //vi tjekker om filen har ændret størrelse efter at der er oprettet et medlem
         assertNotEquals(fileBefore, fileAfter);
     }
 
@@ -73,7 +73,7 @@ public class DataAccessorFileTest {
         expResult.add(new Medlem("Frederik", 1912891867, 19121989,true,"frederiket@gmail.com"));
         expResult.add(new Medlem("Thomas", 1504891953, 17283849, false, "noget@andet.dk"));
         ArrayList<Medlem> result = instance.getMedlemmer();
-        //vi tjekker om der er to medlemmer i begge arrays
+        //vi tjekker om der er det samme antal medlemmer i begge arrays
         assertEquals(expResult.size(), result.size());
     }
 
@@ -89,6 +89,7 @@ public class DataAccessorFileTest {
         long fileBefore = file.length();
         instance.sletMedlem(medlem);
         long fileAfter = file.length();
+        //vi tjekker om filen har ændret størrelse efter vi sletter et medlem
         assertNotEquals(fileBefore, fileAfter);
     }
 
@@ -104,13 +105,14 @@ public class DataAccessorFileTest {
         ArrayList expResult = new ArrayList();
         expResult.add(new Medlem("Frederik", 1912891867, 19121989,true,"frederiket@gmail.com"));
         ArrayList result = instance.søgMedlemPåNavn(name);
+        //vi tjekker om de to arrays har samme størrelse
         assertEquals(expResult.size(), result.size());
     }
 
     /**
      * Test of søgMedlemPåCprnr method, of class DataAccessorFile.
      */
-    @Test
+    @Test //nok ikke en metode vi kommer til at bruge
     public void testSøgMedlemPåCprnr() {
         System.out.println("s\u00f8gMedlemP\u00e5Cprnr");
         int cprnr = 1912891867;
@@ -125,7 +127,7 @@ public class DataAccessorFileTest {
     /**
      * Test of søgMedlemPåMail method, of class DataAccessorFile.
      */
-    @Test
+    @Test //nok ikke en metode vi kommer til at bruge
     public void testSøgMedlemPåMail() {
         System.out.println("s\u00f8gMedlemP\u00e5Mail");
         String mail = "frederiket@gmail.com";
@@ -141,10 +143,9 @@ public class DataAccessorFileTest {
      * Test of redigerMedlem method, of class DataAccessorFile.
      */
     @Test
-    public void testRedigerMedlem2() {
+    public void testRedigerMedlem3() {
         System.out.println("redigerMedlem");
         DataAccessorFile instance = new DataAccessorFile();
-        instance.opretMedlem("Frederik", 1912891867, 19121989,true,"frederiket@gmail.com");
         Medlem m = instance.søgMedlemPåCprnr2(1912891867);
         String newName = "Hans";
         int newCprnr = 100200;
@@ -152,6 +153,7 @@ public class DataAccessorFileTest {
         boolean NewMedlemskabsstatus = false;
         String newMail = "hans@gmail.com";
         instance.redigerMedlem2(m, newName, newCprnr, newFødselsdato, NewMedlemskabsstatus, newMail);
+        //vi tjekker om der nu er et medlem med navnet Hans, m hed original Frederik
         assertEquals("Hans", instance.søgMedlemPåCprnr2(100200).getName());
     }
 
@@ -166,6 +168,7 @@ public class DataAccessorFileTest {
         instance.opretMedlem("Frederik", 1912891867, 19121989,true,"frederiket@gmail.com");
         Medlem expResult = new Medlem("Frederik", 1912891867, 19121989,true,"frederiket@gmail.com");
         Medlem result = instance.søgMedlemPåCprnr2(cprnr);
+        //vi tjekker om vi får den rigtigt mail når vi søger på cpr nr.
         assertEquals(expResult.getMail(), result.getMail());
     }
 
@@ -180,6 +183,7 @@ public class DataAccessorFileTest {
         instance.opretMedlem("Frederik", 1912891867, 19121989,true,"frederiket@gmail.com");
         Medlem expResult = new Medlem("Frederik", 1912891867, 19121989,true,"frederiket@gmail.com");
         Medlem result = instance.søgMedlemPåMail2(mail);
+        //vi tjekker om vi får det rigtige cprnr når vi søger på mail
         assertEquals(expResult.getCprnr(), result.getCprnr());
     }
     
