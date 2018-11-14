@@ -204,7 +204,9 @@ public class DataAccessorFile {
         return medlemmerMedCprnr;
     }
 
-    //jeg ved ikke om man kan gøre det på en smartere måde så man replacer i stedet for at remove og så adde bagefter
+    //Det oprindelige medlem bliver ikke fjernet for some reason..
+    //fungere i Frederik Juels version, gemmer metoden for at sammenligne.
+    //har lavet en redigerMedlem2 i bunden af siden som måske skal tages i brug i stedet.
     public void redigerMedlem(Medlem medlem, String newName, int newCprnr, int newFødselsdato, boolean NewMedlemskabsstatus, String newMail) {
         ObjectOutputStream out = null;
         try {
@@ -304,5 +306,32 @@ public class DataAccessorFile {
             }
         }
         return result;
+    }
+    //redigerMedlem der fungere, kan være det er den vi skal bruge fremover
+    public void redigerMedlem2(Medlem medlem, String newName, int newCprnr, int newFødselsdato, boolean NewMedlemskabsstatus, String newMail) {
+        ObjectOutputStream out = null;
+        try {
+            File file = new File(FILENAME);
+            out = new ObjectOutputStream(new FileOutputStream(file));
+            sletMedlem(medlem);
+            opretMedlem(newName, newCprnr, newFødselsdato, NewMedlemskabsstatus, newMail);
+            out.flush();
+        } catch (FileNotFoundException ex) {
+            if (DEBUG) {
+                ex.printStackTrace();
+            }
+        } catch (IOException ex) {
+            if (DEBUG) {
+                ex.printStackTrace();
+            }
+        } finally {
+            try {
+                out.close();
+            } catch (IOException ex) {
+                if (DEBUG) {
+                    ex.printStackTrace();
+                }
+            }
+        }
     }
 }
