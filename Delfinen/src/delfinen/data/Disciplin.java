@@ -9,11 +9,7 @@ package delfinen.data;
  *
  * @author Talha Noory
  */
-public class Disciplin {
+public enum Disciplin {
     
-    public enum resultat {
-        
-        CRAWL, RYGCRAWL, BUTTERFLY, BRYSTSVØMNING
-    }
-    
+    CRAWL, RYGCRAWL, BUTTERFLY, BRYSTSVØMNING
 }
