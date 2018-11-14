@@ -29,24 +29,24 @@
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
                           <Component id="jTextField1" max="32767" attributes="0"/>
-                          <Component id="jButton1" pref="127" max="32767" attributes="0"/>
+                          <Component id="jButtonIndkomst" pref="127" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jTextField2" pref="191" max="32767" attributes="0"/>
                   </Group>
-                  <Component id="jTextField3" pref="0" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" max="32767" attributes="0"/>
               </Group>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="jButton3" pref="450" max="32767" attributes="0"/>
+                          <Component id="jButtonRestance" pref="450" max="32767" attributes="0"/>
                           <Component id="scrollPane1" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="jButton2" min="-2" pref="138" max="-2" attributes="0"/>
+                      <Component id="jButtonHovedemenu" min="-2" pref="138" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -56,11 +56,11 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <Component id="jButton3" min="-2" max="-2" attributes="0"/>
+              <Component id="jButtonRestance" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jScrollPane1" max="32767" attributes="0"/>
                   <Component id="scrollPane1" pref="221" max="32767" attributes="0"/>
-                  <Component id="jTextField3" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
@@ -70,9 +70,9 @@
                           <Component id="jTextField2" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-                      <Component id="jButton1" min="-2" pref="40" max="-2" attributes="0"/>
+                      <Component id="jButtonIndkomst" min="-2" pref="40" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="jButton2" min="-2" pref="64" max="-2" attributes="0"/>
+                  <Component id="jButtonHovedemenu" min="-2" pref="64" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -80,12 +80,12 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JButton" name="jButton1">
+    <Component class="javax.swing.JButton" name="jButtonIndkomst">
       <Properties>
         <Property name="text" type="java.lang.String" value="Se indkomst"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonIndkomstActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextField1">
@@ -98,32 +98,41 @@
         <Property name="text" type="java.lang.String" value="Forventet indkomst fra &#xe5;r xxxx"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton2">
+    <Component class="javax.swing.JButton" name="jButtonHovedemenu">
       <Properties>
         <Property name="text" type="java.lang.String" value="Hovedemenu"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonHovedemenuActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton3">
+    <Component class="javax.swing.JButton" name="jButtonRestance">
       <Properties>
         <Property name="text" type="java.lang.String" value="Se medlemmer i restance"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton3ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonRestanceActionPerformed"/>
       </Events>
     </Component>
     <Container class="java.awt.ScrollPane" name="scrollPane1">
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.ScrollPaneSupportLayout"/>
     </Container>
-    <Component class="javax.swing.JTextField" name="jTextField3">
-      <Properties>
-        <Property name="horizontalAlignment" type="int" value="11"/>
-        <Property name="text" type="java.lang.String" value="&#xa;&#x9;Passivt medlemskab:&#x9;500 kr. &#xe5;rligt&#xa;&#xa;&#x9;Alder&#xa;&#xa;&#x9;0 - 17 :&#x9;&#x9;1000 kr. &#xe5;rligt&#xa;&#xa;&#x9;18 - 60 :&#x9;&#x9;1600 kr. &#xe5;rligt&#xa;&#xa;&#x9;60 eller over :&#x9;&#x9;1200 kr. &#xe5;rligt"/>
-        <Property name="toolTipText" type="java.lang.String" value=""/>
-      </Properties>
-    </Component>
+    <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+      <AuxValues>
+        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+      </AuxValues>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <SubComponents>
+        <Component class="javax.swing.JTextArea" name="jTextArea1">
+          <Properties>
+            <Property name="columns" type="int" value="20"/>
+            <Property name="rows" type="int" value="5"/>
+            <Property name="text" type="java.lang.String" value="&#xa;Passivt medlemskab:&#x9;500 kr. &#xe5;rligt,&#xa;&#xa;Alder&#xa;&#xa;0 - 17 :&#x9;&#x9;1000 kr. &#xe5;rligt,&#xa;&#xa;18 - 60 :&#x9;&#x9;1600 kr. &#xe5;rligt,&#xa;&#xa;60 eller over :&#x9;&#x9;1200 kr. &#xe5;rligt"/>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
   </SubComponents>
 </Form>
