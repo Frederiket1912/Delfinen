@@ -85,15 +85,18 @@ public class DataAccessorFile {
 
     public void sletMedlem(Medlem medlem) {
         ObjectOutputStream out = null;
+        ArrayList<Medlem> fjernes = new ArrayList();
         try {
             File file = new File(FILENAME);
             out = new ObjectOutputStream(new FileOutputStream(file));
             for (Medlem m : getMedlemmer()) {
                 if (m.getCprnr() == medlem.getCprnr()) {
-                    alleMedlemmer.remove(m);
+                    System.out.println("Vi kom her til!");
+                    fjernes.add(m);
                     out.flush();
                 }
             }
+            alleMedlemmer.removeAll(fjernes);
             out.writeObject(alleMedlemmer);
             out.flush();
         } catch (FileNotFoundException ex) {
