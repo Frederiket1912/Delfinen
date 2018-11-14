@@ -9,7 +9,7 @@ public class Betaling {
     public Betaling() {
 
     }
-
+        // hent priser fra kontingent når de er lavet, istedet for at hardcode.
     public int udregnBetaling(Medlem medlem, int year) {
         int age;
         age = medlem.getFødselsdato() - year;
