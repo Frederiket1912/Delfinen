@@ -15,13 +15,14 @@ public class DataAccessorFile {
 
     private String FILENAME = "C:\\Users\\frede\\OneDrive\\Documents\\NetBeansProjects\\Delfinen\\Delfinen\\Medlemmer.txt";
     private ArrayList<Medlem> alleMedlemmer = new ArrayList<>();
-
+    
     //husk at vi også skal bruge en Betaling når vi opretter et medlem, når vi har lavet Betalings klassen
     public void opretMedlem(String name, int cprnr, int fødselsdato, boolean medlemskabsstatus, String mail) {
         ObjectOutputStream out = null;
         try {
             Medlem m = new Medlem(name, cprnr, fødselsdato, medlemskabsstatus, mail);
             File file = new File(FILENAME);
+            
             out = new ObjectOutputStream(new FileOutputStream(file));
             getMedlemmer().add(m);
             out.writeObject(getMedlemmer());

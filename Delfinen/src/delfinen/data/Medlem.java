@@ -15,8 +15,10 @@ public class Medlem implements Serializable {
 
     @Override
     public String toString() {
-        return "Medlem{" + "name=" + name + ", cprnr=" + cprnr + ", medlemskabsstatus=" + medlemskabsstatus + ", mail=" + mail + ", betaling=" + betaling + '}';
+        return "Medlem{" + "name=" + name + ", cprnr=" + cprnr + ", medlemskabsstatus=" + medlemskabsstatus + ", mail=" + mail + ", betaling=" + betaling + ", f\u00f8dselsdato=" + fødselsdato + '}';
     }
+
+    
 
     public Medlem(String name, int cprnr, int fødselsdato, boolean medlemskabsstatus, String mail) {
         this.name = name;
