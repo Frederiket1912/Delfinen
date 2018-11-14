@@ -20,10 +20,10 @@ public class Betaling {
                 return k.getJuniorPris();
             }
             if (age >= 18) {
-                return k.getSeniorPris();
+                return k.getVoksenPris();
             }
             if (age >= 60) {
-                return k.getVoksenPris();
+                return k.getSeniorPris();
             }
         }
         return k.getPassivPris();
