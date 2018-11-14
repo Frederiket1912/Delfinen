@@ -90,7 +90,7 @@ public class DataAccessorFile {
             out = new ObjectOutputStream(new FileOutputStream(file));
             for (Medlem m : getMedlemmer()) {
                 if (m.getCprnr() == medlem.getCprnr()) {
-                    getMedlemmer().remove(m);
+                    alleMedlemmer.remove(m);
                     out.flush();
                 }
             }
