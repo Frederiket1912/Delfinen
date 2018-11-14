@@ -24,7 +24,7 @@ public class DataAccessorFile {
             File file = new File(FILENAME);
             out = new ObjectOutputStream(new FileOutputStream(file));
             getMedlemmer().add(m);
-            out.writeObject(getMedlemmer());
+            out.writeObject(alleMedlemmer);
             out.flush();
         } catch (FileNotFoundException ex) {
             if (DEBUG) {
@@ -48,17 +48,9 @@ public class DataAccessorFile {
     public ArrayList<Medlem> getMedlemmer() {
         ObjectInputStream in = null;
         try {
-            boolean cont = true;
             File file = new File(FILENAME);
             in = new ObjectInputStream(new FileInputStream(file));
             alleMedlemmer = (ArrayList<Medlem>) in.readObject();
-//            while (cont) {
-//                if (m != null) {
-//                    alleMedlemmer.add(m);
-//                } else {
-//                    cont = false;
-//                }
-//            }
         } catch (FileNotFoundException ex) {
             if (DEBUG) {
                 ex.printStackTrace();
