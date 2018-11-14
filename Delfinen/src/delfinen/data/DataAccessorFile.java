@@ -22,7 +22,6 @@ public class DataAccessorFile {
         try {
             Medlem m = new Medlem(name, cprnr, fødselsdato, medlemskabsstatus, mail);
             File file = new File(FILENAME);
-            
             out = new ObjectOutputStream(new FileOutputStream(file));
             getMedlemmer().add(m);
             out.writeObject(getMedlemmer());
