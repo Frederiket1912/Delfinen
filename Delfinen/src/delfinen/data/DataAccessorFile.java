@@ -140,8 +140,7 @@ public class DataAccessorFile {
         return medlemmerMedNavn;
     }
 
-    //kunne godt laves om til bare at returne et medlem i stedet for en arraylist,
-    //ved ikke om det er letest bare at have alle vores søg metoder til at returne det samme.
+    //nok ikke en metode vi skal bruge, brug søgMedlemPåCprnr2
     public ArrayList søgMedlemPåCprnr(int cprnr) {
         ObjectInputStream in = null;
         ArrayList<Medlem> medlemmerMedCprnr = new ArrayList();
@@ -172,7 +171,7 @@ public class DataAccessorFile {
         }
         return medlemmerMedCprnr;
     }
-
+    //nok ikke en metode vi skal bruge, brug søgMedlemPåMail2
     public ArrayList søgMedlemPåMail(String mail) {
         ObjectInputStream in = null;
         ArrayList<Medlem> medlemmerMedCprnr = new ArrayList();
@@ -204,9 +203,7 @@ public class DataAccessorFile {
         return medlemmerMedCprnr;
     }
 
-    //Det oprindelige medlem bliver ikke fjernet for some reason..
-    //fungere i Frederik Juels version, gemmer metoden for at sammenligne.
-    //har lavet en redigerMedlem2 i bunden af siden som måske skal tages i brug i stedet.
+    //ikke en metode vi skal bruge, brug redigerMedlem3
     public void redigerMedlem(Medlem medlem, String newName, int newCprnr, int newFødselsdato, boolean NewMedlemskabsstatus, String newMail) {
         ObjectOutputStream out = null;
         try {
@@ -241,8 +238,7 @@ public class DataAccessorFile {
         }
     }
 
-    //jeg har lavet metoder til at søge medlemmer på cprnr og mail hvor man får
-    //et medlem ud i stedet for en arraylist med et medlem
+
     public Medlem søgMedlemPåCprnr2(int cprnr) {
         ObjectInputStream in = null;
         Medlem result = null;
@@ -308,7 +304,7 @@ public class DataAccessorFile {
         return result;
     }
 
-    //redigerMedlem der fungere, kan være det er den vi skal bruge fremover
+    //Ikke en metode vi skal bruge, brug redigerMedlem3
     public void redigerMedlem2(Medlem medlem, String newName, int newCprnr, int newFødselsdato, boolean NewMedlemskabsstatus, String newMail) {
         ObjectOutputStream out = null;
         try {
