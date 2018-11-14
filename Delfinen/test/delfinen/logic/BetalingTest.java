@@ -11,6 +11,7 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import static org.junit.Assert.*;
 
 /**
  *
@@ -43,12 +44,13 @@ public class BetalingTest {
     @Test
     public void testUdregnBetaling() {
         System.out.println("udregnBetaling");
-        Medlem medlem = null;
-        int year = 0;
+        Medlem medlem = new Medlem("Medina", 251088, 1988, true, "mail.com");
+        int year = 2008;
         Betaling instance = new Betaling();
-        int expResult = 0;
+        int expResult = 1600;
         int result = instance.udregnBetaling(medlem, year);
         assertEquals(expResult, result);
+        
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
