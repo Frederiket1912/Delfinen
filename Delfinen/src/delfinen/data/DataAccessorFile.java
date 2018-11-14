@@ -91,7 +91,6 @@ public class DataAccessorFile {
             out = new ObjectOutputStream(new FileOutputStream(file));
             for (Medlem m : getMedlemmer()) {
                 if (m.getCprnr() == medlem.getCprnr()) {
-                    System.out.println("Vi kom her til!");
                     fjernes.add(m);
                     out.flush();
                 }
