@@ -29,9 +29,10 @@ public class Delfinen {
         //dao.sletMedlem(m);
         System.out.println(dao.getMedlemmer().size());
         System.out.println(dao.søgMedlemPåMail("frederiket@gmail.com"));
-        dao.redigerMedlem2(m, "Kalle", 100200, 100200, false, "kalle@gmail.com");
+        dao.redigerMedlem3(m, "Kalle", 100200, 100200, false, "kalle@gmail.com");
         System.out.println(dao.getMedlemmer().size());
         System.out.println(dao.søgMedlemPåNavn("Kalle"));
+        System.out.println(dao.søgMedlemPåNavn("Hans"));
     }
     
 }
