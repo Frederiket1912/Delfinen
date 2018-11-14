@@ -13,7 +13,7 @@ import static jdk.nashorn.internal.runtime.Context.DEBUG;
 
 public class DataAccessorFile {
 
-    private String FILENAME = "C:\\Users\\frede\\Documents\\NetBeansProjects\\Delfinen\\Medlemmer.txt";
+    private String FILENAME = "C:\\Users\\frede\\OneDrive\\Documents\\NetBeansProjects\\Delfinen\\Delfinen\\Medlemmer.txt";
     private ArrayList<Medlem> alleMedlemmer = new ArrayList<>();
 
     //husk at vi også skal bruge en Betaling når vi opretter et medlem, når vi har lavet Betalings klassen
@@ -23,7 +23,8 @@ public class DataAccessorFile {
             Medlem m = new Medlem(name, cprnr, medlemskabsstatus, mail);
             File file = new File(FILENAME);
             out = new ObjectOutputStream(new FileOutputStream(file));
-            out.writeObject(m);
+            getMedlemmer().add(m);
+            out.writeObject(getMedlemmer());
             out.flush();
         } catch (FileNotFoundException ex) {
             if (DEBUG) {
@@ -50,14 +51,14 @@ public class DataAccessorFile {
             boolean cont = true;
             File file = new File(FILENAME);
             in = new ObjectInputStream(new FileInputStream(file));
-            while (cont) {
-                Medlem m = (Medlem) in.readObject();
-                if (m != null) {
-                    alleMedlemmer.add(m);
-                } else {
-                    cont = false;
-                }
-            }
+                alleMedlemmer = (ArrayList<Medlem>) in.readObject();
+//            while (cont) {
+//                if (m != null) {
+//                    alleMedlemmer.add(m);
+//                } else {
+//                    cont = false;
+//                }
+//            }
         } catch (FileNotFoundException ex) {
             if (DEBUG) {
                 ex.printStackTrace();
