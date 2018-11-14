@@ -26,6 +26,10 @@ public class Medlem implements Serializable {
         this.fødselsdato = fødselsdato;
         //this.betaling = betaling;
     }
+
+    public void setFødselsdato(int fødselsdato) {
+        this.fødselsdato = fødselsdato;
+    }
     
 //    public void visMedlem(Medlem medlem){
 //        jtextfieldName.setText(medlem.getName());
@@ -54,6 +58,10 @@ public class Medlem implements Serializable {
 //        medlem.setMail(mail);
 //        medlem.setMedlemskabsstatus(medlemskabsstatus);
 //    }
+
+    public int getFødselsdato() {
+        return fødselsdato;
+    }
     
     
     
