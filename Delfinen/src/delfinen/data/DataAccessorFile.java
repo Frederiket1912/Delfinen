@@ -17,10 +17,10 @@ public class DataAccessorFile {
     private ArrayList<Medlem> alleMedlemmer = new ArrayList<>();
 
     //husk at vi også skal bruge en Betaling når vi opretter et medlem, når vi har lavet Betalings klassen
-    public void opretMedlem(String name, int cprnr, boolean medlemskabsstatus, String mail) {
+    public void opretMedlem(String name, int cprnr, int fødselsdato, boolean medlemskabsstatus, String mail) {
         ObjectOutputStream out = null;
         try {
-            Medlem m = new Medlem(name, cprnr, medlemskabsstatus, mail);
+            Medlem m = new Medlem(name, cprnr, fødselsdato, medlemskabsstatus, mail);
             File file = new File(FILENAME);
             out = new ObjectOutputStream(new FileOutputStream(file));
             getMedlemmer().add(m);
@@ -94,10 +94,9 @@ public class DataAccessorFile {
                     out.flush();
                 }
             }
-            for (Medlem m : getMedlemmer()) {
-                out.writeObject(m);
+                out.writeObject(getMedlemmer());
                 out.flush();
-            }
+            
         } catch (FileNotFoundException ex) {
             if (DEBUG) {
                 ex.printStackTrace();
@@ -212,7 +211,7 @@ public class DataAccessorFile {
     }
 
     //jeg ved ikke om man kan gøre det på en smartere måde så man replacer i stedet for at remove og så adde bagefter
-    public void redigerMedlem(Medlem medlem, String newName, int newCprnr, boolean NewMedlemskabsstatus, String newMail) {
+    public void redigerMedlem(Medlem medlem, String newName, int newCprnr, int newFødselsdato, boolean NewMedlemskabsstatus, String newMail) {
         ObjectOutputStream out = null;
         try {
             File file = new File(FILENAME);
@@ -220,6 +219,7 @@ public class DataAccessorFile {
             getMedlemmer().remove(medlem);
             medlem.setName(newName);
             medlem.setCprnr(newCprnr);
+            
             medlem.setMedlemskabsstatus(NewMedlemskabsstatus);
             medlem.setMail(newMail);
             getMedlemmer().add(medlem);
