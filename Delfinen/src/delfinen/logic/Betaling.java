@@ -4,10 +4,10 @@ import delfinen.data.Medlem;
 
 
 public class Betaling {
-    final private int passivPris = 500;
-    final private int juniorPris = 1000;
-    final private int voksenPris = 1600;
-    final private int seniorPris = 1200;
+    final static int PASSIVPRIS = 500;
+    final static int JUNIORPRIS = 1000;
+    final static int VOKSENPRIS = 1600;
+    final static int SENIORPRIS = 1200;
     private int year;
 
     public Betaling() {
