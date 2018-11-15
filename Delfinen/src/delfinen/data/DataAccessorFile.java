@@ -15,7 +15,7 @@ public class DataAccessorFile {
 
     private String FILENAME = "Medlemmer.txt";
     private ArrayList<Medlem> alleMedlemmer = new ArrayList<>();
-    
+
     //husk at vi også skal bruge en Betaling når vi opretter et medlem, når vi har lavet Betalings klassen
     public void opretMedlem(String name, int cprnr, int fødselsdato, boolean medlemskabsstatus, String mail) {
         ObjectOutputStream out = null;
@@ -24,7 +24,7 @@ public class DataAccessorFile {
             File file = new File(FILENAME);
             out = new ObjectOutputStream(new FileOutputStream(file));
             getMedlemmer().add(m);
-            out.writeObject(getMedlemmer());
+            out.writeObject(alleMedlemmer);
             out.flush();
         } catch (FileNotFoundException ex) {
             if (DEBUG) {
@@ -48,17 +48,9 @@ public class DataAccessorFile {
     public ArrayList<Medlem> getMedlemmer() {
         ObjectInputStream in = null;
         try {
-            boolean cont = true;
             File file = new File(FILENAME);
             in = new ObjectInputStream(new FileInputStream(file));
             alleMedlemmer = (ArrayList<Medlem>) in.readObject();
-//            while (cont) {
-//                if (m != null) {
-//                    alleMedlemmer.add(m);
-//                } else {
-//                    cont = false;
-//                }
-//            }
         } catch (FileNotFoundException ex) {
             if (DEBUG) {
                 ex.printStackTrace();
@@ -91,7 +83,6 @@ public class DataAccessorFile {
             out = new ObjectOutputStream(new FileOutputStream(file));
             for (Medlem m : getMedlemmer()) {
                 if (m.getCprnr() == medlem.getCprnr()) {
-                    System.out.println("Vi kom her til!");
                     fjernes.add(m);
                     out.flush();
                 }
@@ -149,8 +140,7 @@ public class DataAccessorFile {
         return medlemmerMedNavn;
     }
 
-    //kunne godt laves om til bare at returne et medlem i stedet for en arraylist,
-    //ved ikke om det er letest bare at have alle vores søg metoder til at returne det samme.
+    //nok ikke en metode vi skal bruge, brug søgMedlemPåCprnr2
     public ArrayList søgMedlemPåCprnr(int cprnr) {
         ObjectInputStream in = null;
         ArrayList<Medlem> medlemmerMedCprnr = new ArrayList();
@@ -181,7 +171,7 @@ public class DataAccessorFile {
         }
         return medlemmerMedCprnr;
     }
-
+    //nok ikke en metode vi skal bruge, brug søgMedlemPåMail2
     public ArrayList søgMedlemPåMail(String mail) {
         ObjectInputStream in = null;
         ArrayList<Medlem> medlemmerMedCprnr = new ArrayList();
@@ -213,7 +203,7 @@ public class DataAccessorFile {
         return medlemmerMedCprnr;
     }
 
-    //jeg ved ikke om man kan gøre det på en smartere måde så man replacer i stedet for at remove og så adde bagefter
+    //ikke en metode vi skal bruge, brug redigerMedlem3
     public void redigerMedlem(Medlem medlem, String newName, int newCprnr, int newFødselsdato, boolean NewMedlemskabsstatus, String newMail) {
         ObjectOutputStream out = null;
         try {
@@ -248,8 +238,7 @@ public class DataAccessorFile {
         }
     }
 
-    //jeg har lavet metoder til at søge medlemmer på cprnr og mail hvor man får
-    //et medlem ud i stedet for en arraylist med et medlem
+
     public Medlem søgMedlemPåCprnr2(int cprnr) {
         ObjectInputStream in = null;
         Medlem result = null;
@@ -313,5 +302,69 @@ public class DataAccessorFile {
             }
         }
         return result;
+    }
+
+    //Ikke en metode vi skal bruge, brug redigerMedlem3
+    public void redigerMedlem2(Medlem medlem, String newName, int newCprnr, int newFødselsdato, boolean NewMedlemskabsstatus, String newMail) {
+        ObjectOutputStream out = null;
+        try {
+            File file = new File(FILENAME);
+            out = new ObjectOutputStream(new FileOutputStream(file));
+            sletMedlem(medlem);
+            opretMedlem(newName, newCprnr, newFødselsdato, NewMedlemskabsstatus, newMail);
+            out.flush();
+        } catch (FileNotFoundException ex) {
+            if (DEBUG) {
+                ex.printStackTrace();
+            }
+        } catch (IOException ex) {
+            if (DEBUG) {
+                ex.printStackTrace();
+            }
+        } finally {
+            try {
+                out.close();
+            } catch (IOException ex) {
+                if (DEBUG) {
+                    ex.printStackTrace();
+                }
+            }
+        }
+    }
+
+    public void redigerMedlem3(Medlem medlem, String newName, int newCprnr, int newFødselsdato, boolean NewMedlemskabsstatus, String newMail) {
+        ObjectOutputStream out = null;
+        try {
+            File file = new File(FILENAME);
+            out = new ObjectOutputStream(new FileOutputStream(file));
+            for (Medlem m : getMedlemmer()) {
+                if (m.getCprnr() == medlem.getCprnr()) {
+                    m.setName(newName);
+                    m.setCprnr(newCprnr);
+                    m.setFødselsdato(newFødselsdato);
+                    m.setMedlemskabsstatus(NewMedlemskabsstatus);
+                    m.setMail(newMail);
+                }
+            }
+            out.writeObject(alleMedlemmer);
+            out.flush();
+
+        } catch (FileNotFoundException ex) {
+            if (DEBUG) {
+                ex.printStackTrace();
+            }
+        } catch (IOException ex) {
+            if (DEBUG) {
+                ex.printStackTrace();
+            }
+        } finally {
+            try {
+                out.close();
+            } catch (IOException ex) {
+                if (DEBUG) {
+                    ex.printStackTrace();
+                }
+            }
+        }
     }
 }
