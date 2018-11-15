@@ -9,8 +9,12 @@ public class Betaling {
     final static int VOKSENPRIS = 1600;
     final static int SENIORPRIS = 1200;
     private int year;
+    private int betalingssum;
+    private int betalingsyear;
 
-    public Betaling() {
+    public Betaling(Medlem medlem, int betalingsyear) {
+        this.betalingssum = udregnBetaling(medlem, betalingsyear);
+        this.betalingsyear = betalingsyear;
 
     }
         // hent priser fra kontingent når de er lavet, istedet for at hardcode.
