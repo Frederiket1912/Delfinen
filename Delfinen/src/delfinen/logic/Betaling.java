@@ -19,15 +19,15 @@ public class Betaling {
         age = year - medlem.getFødselsdato();
         if (medlem.isMedlemskabsstatus()) {
             if (age < 18) {
-                return juniorPris;
+                return JUNIORPRIS;
             }
             if (age >= 18 && age < 60) {
-                return voksenPris;
+                return VOKSENPRIS;
             }
             if (age >= 60) {
-                return seniorPris;
+                return SENIORPRIS;
             }
         }
-        return passivPris;
+        return PASSIVPRIS;
     }
 }
