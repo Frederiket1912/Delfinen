@@ -46,7 +46,7 @@ public class BetalingTest {
         System.out.println("udregnVoksen");
         Medlem medlem = new Medlem("Bob", 251078, 1978, true, "mail@.com");
         int year = 2008;
-        Betaling instance = new Betaling(medlem, 2007);
+        Betaling instance = new Betaling(medlem, year);
         int expResult = 1600;
         int result = instance.udregnBetaling(medlem, year);
         assertEquals(expResult, result);
