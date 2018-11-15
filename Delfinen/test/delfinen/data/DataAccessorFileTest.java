@@ -67,11 +67,11 @@ public class DataAccessorFileTest {
     public void testGet2Medlemmer() {
         System.out.println("getMedlemmer");
         DataAccessorFile instance = new DataAccessorFile();
-        ArrayList<Medlem> expResult = new ArrayList();
+        ArrayList<Motionist> expResult = new ArrayList();
         instance.opretMedlem("Frederik", 1912891867, 19121989,true,"frederiket@gmail.com");
         instance.opretMedlem("Thomas", 1504891953, 17283849, false, "noget@andet.dk");
-        expResult.add(new Medlem("Frederik", 1912891867, 19121989,true,"frederiket@gmail.com"));
-        expResult.add(new Medlem("Thomas", 1504891953, 17283849, false, "noget@andet.dk"));
+        expResult.add(new Motionist("Frederik", 1912891867, 19121989,true,"frederiket@gmail.com"));
+        expResult.add(new Motionist("Thomas", 1504891953, 17283849, false, "noget@andet.dk"));
         ArrayList<Motionist> result = instance.getMedlemmer();
         //vi tjekker om der er det samme antal medlemmer i begge arrays
         assertEquals(expResult.size(), result.size());
@@ -103,7 +103,7 @@ public class DataAccessorFileTest {
         DataAccessorFile instance = new DataAccessorFile();
         instance.opretMedlem("Frederik", 1912891867, 19121989,true,"frederiket@gmail.com");
         ArrayList expResult = new ArrayList();
-        expResult.add(new Medlem("Frederik", 1912891867, 19121989,true,"frederiket@gmail.com"));
+        expResult.add(new Motionist("Frederik", 1912891867, 19121989,true,"frederiket@gmail.com"));
         ArrayList result = instance.søgMedlemPåNavn(name);
         //vi tjekker om de to arrays har samme størrelse
         assertEquals(expResult.size(), result.size());
@@ -119,7 +119,7 @@ public class DataAccessorFileTest {
         DataAccessorFile instance = new DataAccessorFile();
         instance.opretMedlem("Frederik", 1912891867, 19121989,true,"frederiket@gmail.com");
         ArrayList expResult = new ArrayList();
-        expResult.add(new Medlem("Frederik", 1912891867, 19121989,true,"frederiket@gmail.com"));
+        expResult.add(new Motionist("Frederik", 1912891867, 19121989,true,"frederiket@gmail.com"));
         ArrayList result = instance.søgMedlemPåCprnr(cprnr);
         assertEquals(expResult.size(), result.size());
     }
@@ -134,7 +134,7 @@ public class DataAccessorFileTest {
         DataAccessorFile instance = new DataAccessorFile();
         instance.opretMedlem("Frederik", 1912891867, 19121989,true,"frederiket@gmail.com");
         ArrayList expResult = new ArrayList();
-        expResult.add(new Medlem("Frederik", 1912891867, 19121989,true,"frederiket@gmail.com"));
+        expResult.add(new Motionist("Frederik", 1912891867, 19121989,true,"frederiket@gmail.com"));
         ArrayList result = instance.søgMedlemPåMail(mail);
         assertEquals(expResult.size(), result.size());
     }
