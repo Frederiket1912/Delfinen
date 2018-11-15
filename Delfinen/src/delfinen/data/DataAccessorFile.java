@@ -14,13 +14,13 @@ import static jdk.nashorn.internal.runtime.Context.DEBUG;
 public class DataAccessorFile {
 
     private String FILENAME = "Medlemmer.txt";
-    private ArrayList<Medlem> alleMedlemmer = new ArrayList<>();
+    private ArrayList<Motionist> alleMedlemmer = new ArrayList<>();
 
     //husk at vi også skal bruge en Betaling når vi opretter et medlem, når vi har lavet Betalings klassen
     public void opretMedlem(String name, int cprnr, int fødselsdato, boolean medlemskabsstatus, String mail) {
         ObjectOutputStream out = null;
         try {
-            Medlem m = new Medlem(name, cprnr, fødselsdato, medlemskabsstatus, mail);
+            Motionist m = new Motionist(name, cprnr, fødselsdato, medlemskabsstatus, mail);
             File file = new File(FILENAME);
             out = new ObjectOutputStream(new FileOutputStream(file));
             getMedlemmer().add(m);
@@ -45,12 +45,12 @@ public class DataAccessorFile {
         }
     }
 
-    public ArrayList<Medlem> getMedlemmer() {
+    public ArrayList<Motionist> getMedlemmer() {
         ObjectInputStream in = null;
         try {
             File file = new File(FILENAME);
             in = new ObjectInputStream(new FileInputStream(file));
-            alleMedlemmer = (ArrayList<Medlem>) in.readObject();
+            alleMedlemmer = (ArrayList<Motionist>) in.readObject();
         } catch (FileNotFoundException ex) {
             if (DEBUG) {
                 ex.printStackTrace();
@@ -75,13 +75,13 @@ public class DataAccessorFile {
         return alleMedlemmer;
     }
 
-    public void sletMedlem(Medlem medlem) {
+    public void sletMedlem(Motionist medlem) {
         ObjectOutputStream out = null;
-        ArrayList<Medlem> fjernes = new ArrayList();
+        ArrayList<Motionist> fjernes = new ArrayList();
         try {
             File file = new File(FILENAME);
             out = new ObjectOutputStream(new FileOutputStream(file));
-            for (Medlem m : getMedlemmer()) {
+            for (Motionist m : getMedlemmer()) {
                 if (m.getCprnr() == medlem.getCprnr()) {
                     fjernes.add(m);
                     out.flush();
@@ -111,11 +111,11 @@ public class DataAccessorFile {
 
     public ArrayList søgMedlemPåNavn(String name) {
         ObjectInputStream in = null;
-        ArrayList<Medlem> medlemmerMedNavn = new ArrayList();
+        ArrayList<Motionist> medlemmerMedNavn = new ArrayList();
         try {
             File file = new File(FILENAME);
             in = new ObjectInputStream(new FileInputStream(file));
-            for (Medlem m : getMedlemmer()) {
+            for (Motionist m : getMedlemmer()) {
                 if (m.getName().contains(name)) {
                     medlemmerMedNavn.add(m);
                 }
@@ -143,11 +143,11 @@ public class DataAccessorFile {
     //nok ikke en metode vi skal bruge, brug søgMedlemPåCprnr2
     public ArrayList søgMedlemPåCprnr(int cprnr) {
         ObjectInputStream in = null;
-        ArrayList<Medlem> medlemmerMedCprnr = new ArrayList();
+        ArrayList<Motionist> medlemmerMedCprnr = new ArrayList();
         try {
             File file = new File(FILENAME);
             in = new ObjectInputStream(new FileInputStream(file));
-            for (Medlem m : getMedlemmer()) {
+            for (Motionist m : getMedlemmer()) {
                 if (m.getCprnr() == cprnr) {
                     medlemmerMedCprnr.add(m);
                 }
@@ -174,11 +174,11 @@ public class DataAccessorFile {
     //nok ikke en metode vi skal bruge, brug søgMedlemPåMail2
     public ArrayList søgMedlemPåMail(String mail) {
         ObjectInputStream in = null;
-        ArrayList<Medlem> medlemmerMedCprnr = new ArrayList();
+        ArrayList<Motionist> medlemmerMedCprnr = new ArrayList();
         try {
             File file = new File(FILENAME);
             in = new ObjectInputStream(new FileInputStream(file));
-            for (Medlem m : getMedlemmer()) {
+            for (Motionist m : getMedlemmer()) {
                 if (m.getMail().equalsIgnoreCase(mail)) {
                     medlemmerMedCprnr.add(m);
                 }
@@ -204,7 +204,7 @@ public class DataAccessorFile {
     }
 
     //ikke en metode vi skal bruge, brug redigerMedlem3
-    public void redigerMedlem(Medlem medlem, String newName, int newCprnr, int newFødselsdato, boolean NewMedlemskabsstatus, String newMail) {
+    public void redigerMedlem(Motionist medlem, String newName, int newCprnr, int newFødselsdato, boolean NewMedlemskabsstatus, String newMail) {
         ObjectOutputStream out = null;
         try {
             File file = new File(FILENAME);
@@ -239,13 +239,13 @@ public class DataAccessorFile {
     }
 
 
-    public Medlem søgMedlemPåCprnr2(int cprnr) {
+    public Motionist søgMedlemPåCprnr2(int cprnr) {
         ObjectInputStream in = null;
-        Medlem result = null;
+        Motionist result = null;
         try {
             File file = new File(FILENAME);
             in = new ObjectInputStream(new FileInputStream(file));
-            for (Medlem m : getMedlemmer()) {
+            for (Motionist m : getMedlemmer()) {
                 if (m.getCprnr() == cprnr) {
                     result = m;
                     return result;
@@ -272,13 +272,13 @@ public class DataAccessorFile {
         return result;
     }
 
-    public Medlem søgMedlemPåMail2(String mail) {
+    public Motionist søgMedlemPåMail2(String mail) {
         ObjectInputStream in = null;
-        Medlem result = null;
+        Motionist result = null;
         try {
             File file = new File(FILENAME);
             in = new ObjectInputStream(new FileInputStream(file));
-            for (Medlem m : getMedlemmer()) {
+            for (Motionist m : getMedlemmer()) {
                 if (m.getMail().equalsIgnoreCase(mail)) {
                     result = m;
                     return result;
@@ -305,7 +305,7 @@ public class DataAccessorFile {
     }
 
     //Ikke en metode vi skal bruge, brug redigerMedlem3
-    public void redigerMedlem2(Medlem medlem, String newName, int newCprnr, int newFødselsdato, boolean NewMedlemskabsstatus, String newMail) {
+    public void redigerMedlem2(Motionist medlem, String newName, int newCprnr, int newFødselsdato, boolean NewMedlemskabsstatus, String newMail) {
         ObjectOutputStream out = null;
         try {
             File file = new File(FILENAME);
@@ -332,12 +332,12 @@ public class DataAccessorFile {
         }
     }
 
-    public void redigerMedlem3(Medlem medlem, String newName, int newCprnr, int newFødselsdato, boolean NewMedlemskabsstatus, String newMail) {
+    public void redigerMedlem3(Motionist medlem, String newName, int newCprnr, int newFødselsdato, boolean NewMedlemskabsstatus, String newMail) {
         ObjectOutputStream out = null;
         try {
             File file = new File(FILENAME);
             out = new ObjectOutputStream(new FileOutputStream(file));
-            for (Medlem m : getMedlemmer()) {
+            for (Motionist m : getMedlemmer()) {
                 if (m.getCprnr() == medlem.getCprnr()) {
                     m.setName(newName);
                     m.setCprnr(newCprnr);
