@@ -5,7 +5,6 @@
  */
 package delfinen.logic;
 
-import delfinen.data.Medlem;
 import delfinen.data.Motionist;
 import org.junit.After;
 import org.junit.AfterClass;
