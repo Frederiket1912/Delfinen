@@ -1,10 +1,13 @@
 package delfinen.logic;
 
 import delfinen.data.Medlem;
-import delfinen.data.Kontingent;
+
 
 public class Betaling {
-
+    final private int passivPris = 500;
+    final private int juniorPris = 1000;
+    final private int voksenPris = 1600;
+    final private int seniorPris = 1200;
     private int year;
 
     public Betaling() {
@@ -14,18 +17,17 @@ public class Betaling {
     public int udregnBetaling(Medlem medlem, int year) {
         int age;
         age = year - medlem.getFødselsdato();
-        Kontingent k = new Kontingent();
         if (medlem.isMedlemskabsstatus()) {
             if (age < 18) {
-                return k.getJuniorPris();
+                return juniorPris;
             }
             if (age >= 18 && age < 60) {
-                return k.getVoksenPris();
+                return voksenPris;
             }
             if (age >= 60) {
-                return k.getSeniorPris();
+                return seniorPris;
             }
         }
-        return k.getPassivPris();
+        return passivPris;
     }
 }
