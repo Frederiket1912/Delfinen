@@ -44,7 +44,7 @@ public class BetalingTest {
     @Test
     public void testUdregnVoksen() {
         System.out.println("udregnVoksen");
-        Medlem medlem = new Medlem("Medina", 251078, 1978, true, "mail@.com");
+        Medlem medlem = new Medlem("Bob", 251078, 1978, true, "mail@.com");
         int year = 2008;
         Betaling instance = new Betaling();
         int expResult = 1600;
@@ -56,7 +56,7 @@ public class BetalingTest {
     @Test
     public void testUdregnJunior() {
         System.out.println("udregnJunior");
-        Medlem medlem = new Medlem("Medina", 251078, 1998, true, "mail@.com");
+        Medlem medlem = new Medlem("Bob", 251078, 1998, true, "mail@.com");
         int year = 2008;
         Betaling instance = new Betaling();
         int expResult = 1000;
@@ -68,7 +68,7 @@ public class BetalingTest {
     @Test
     public void testUdregnSenior() {
         System.out.println("udregnSenior");
-        Medlem medlem = new Medlem("Medina", 251078, 1938, true, "mail@.com");
+        Medlem medlem = new Medlem("Bob", 251078, 1938, true, "mail@.com");
         int year = 2008;
         Betaling instance = new Betaling();
         int expResult = 1200;
@@ -80,7 +80,7 @@ public class BetalingTest {
     @Test
     public void testUdregnPassiv() {
         System.out.println("udregnBetaling");
-        Medlem medlem = new Medlem("Medina", 251078, 1978, false, "mail@.com");
+        Medlem medlem = new Medlem("Bob", 251078, 1978, false, "mail@.com");
         int year = 2008;
         Betaling instance = new Betaling();
         int expResult = 500;
