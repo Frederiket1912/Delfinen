@@ -7,6 +7,7 @@ package delfinen.presentation;
 
 import delfinen.data.DataAccessorFile;
 import delfinen.data.Medlem;
+import delfinen.data.Motionist;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -46,7 +47,7 @@ public class NewJFrame extends javax.swing.JFrame {
                     aktivitetsform = false;
                 }
                 createTable().setValueAt(jTextField6.getText(), this.jTable1.getSelectedRow(), 2);
-                Medlem tempMedlem = dao.søgMedlemPåCprnr2(Integer.parseInt(this.jTable1.getValueAt(this.jTable1.getSelectedRow(), 1).toString()));
+                Motionist tempMedlem = dao.søgMedlemPåCprnr2(Integer.parseInt(this.jTable1.getValueAt(this.jTable1.getSelectedRow(), 1).toString()));
                 dao.redigerMedlem(tempMedlem, jTextField4.getText(), tempMedlem.getCprnr(), 15, aktivitetsform, jTextField6.getText());
 
             } catch (Exception ex) {
@@ -191,7 +192,7 @@ public class NewJFrame extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         DataAccessorFile dao = new DataAccessorFile();
         int tempCPR = 0;
-        for (Medlem m : dao.getMedlemmer()) {
+        for (Motionist m : dao.getMedlemmer()) {
             try {
                 tempCPR = Integer.parseInt(this.jTextField1.getText());
 
@@ -250,7 +251,7 @@ public class NewJFrame extends javax.swing.JFrame {
                 DataAccessorFile dao = new DataAccessorFile();
                 dao.opretMedlem("Frederik", 100200, 15, true, "noget@noget.dk");
 
-                Medlem m = dao.søgMedlemPåCprnr2(100200);
+                Motionist m = dao.søgMedlemPåCprnr2(100200);
                 System.out.println(m);
                 dao.opretMedlem("Thomas", 100200, 15, true, "andet@noget.dk");
                 dao.redigerMedlem(m, "Thomas", 10, 15, true, "noget@andet.dk");
