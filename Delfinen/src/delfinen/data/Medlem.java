@@ -3,19 +3,34 @@ package delfinen.data;
 
 import delfinen.logic.Betaling;
 import java.io.Serializable;
+import java.util.ArrayList;
 
 
 public class Medlem implements Serializable {
+    private ArrayList<Betaling> betalinger;
     private String name;
-    private int cprnr;
-    private boolean medlemskabsstatus;
     private String mail;
-    private Betaling betaling;
+    private int cprnr;
     private int fødselsdato;
+
+    public ArrayList<Betaling> getBetalinger() {
+        return betalinger;
+    }
+
+    public void setBetalinger(Betaling betaling) {
+        betalinger.add(betaling);
+    }
+    private boolean medlemskabsstatus;
 
     @Override
     public String toString() {
-        return "Medlem{" + "name=" + name + ", cprnr=" + cprnr + ", medlemskabsstatus=" + medlemskabsstatus + ", mail=" + mail + ", betaling=" + betaling + ", f\u00f8dselsdato=" + fødselsdato + '}';
+        return "Medlem{" 
+                + "name=" + name 
+                + ", cprnr=" + cprnr 
+                + ", medlemskabsstatus=" + medlemskabsstatus 
+                + ", mail=" + mail 
+                + ", f\u00f8dselsdato=" + fødselsdato 
+                + ", betalinger=" + betalinger + '}';
     }
 
     
@@ -26,49 +41,16 @@ public class Medlem implements Serializable {
         this.medlemskabsstatus = medlemskabsstatus;
         this.mail = mail;
         this.fødselsdato = fødselsdato;
-        //this.betaling = betaling;
     }
 
     public void setFødselsdato(int fødselsdato) {
         this.fødselsdato = fødselsdato;
     }
-    
-//    public void visMedlem(Medlem medlem){
-//        jtextfieldName.setText(medlem.getName());
-//        jtextfieldCprnr.setText(medlem.getCprnr());
-//        jtextfieldMail.setText(medlem.getMail());
-//        if (medlemskabsstatus){
-//            jradiobuttonAktiv.doClick();
-//        }
-//        else {
-//            jradibuttonPassiv.doClick();
-//        }      
-//    }
-//    
-//    public void gemÆndringer(Medlem medlem){
-//        String name = jtextfieldName.getText();
-//        int cprnr = Integer.parseInt(jtextfieldCprnr.getText());
-//        String mail = jtextfieldMail.getText();
-//        if (jradiobuttonAktiv.isSelected()){
-//            medlemskabsstatus = true;
-//        }
-//        else{
-//            medlemskabsstatus = false;
-//        }
-//        medlem.setName(name);
-//        medlem.setCprnr(cprnr);
-//        medlem.setMail(mail);
-//        medlem.setMedlemskabsstatus(medlemskabsstatus);
-//    }
 
     public int getFødselsdato() {
         return fødselsdato;
     }
     
-    
-    
-    
-
     public String getName() {
         return name;
     }
@@ -100,16 +82,5 @@ public class Medlem implements Serializable {
     public void setMail(String mail) {
         this.mail = mail;
     }
-
-    public Betaling getBetaling() {
-        return betaling;
-    }
-
-    public void setBetaling(Betaling betaling) {
-        this.betaling = betaling;
-    }
-    
-    
-    
 
 }
