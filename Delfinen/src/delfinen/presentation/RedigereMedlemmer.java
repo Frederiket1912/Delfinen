@@ -6,7 +6,7 @@
 package delfinen.presentation;
 
 import delfinen.data.DataAccessorFile;
-import delfinen.data.Medlem;
+import delfinen.data.Motionist;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -26,6 +26,10 @@ public class RedigereMedlemmer extends javax.swing.JFrame {
 
     public void editUser() {
         DataAccessorFile dao = new DataAccessorFile();
+        this.jTextField4.setText(this.jTable1.getValueAt(this.jTable1.getSelectedRow(),0).toString());
+        this.jTextField5.setText(this.jTable1.getValueAt(this.jTable1.getSelectedRow(),1).toString());
+        this.jTextField6.setText(this.jTable1.getValueAt(this.jTable1.getSelectedRow(),2).toString());
+        
         Object[] message = {
             "Navn:", jTextField4,
             "Aktiv eller Passiv A/P:", jTextField5,
@@ -44,8 +48,8 @@ public class RedigereMedlemmer extends javax.swing.JFrame {
                     aktivitetsform = false;
                 }
                 createTable().setValueAt(jTextField6.getText(), this.jTable1.getSelectedRow(), 2);
-                Medlem tempMedlem = dao.søgMedlemPåCprnr2(Integer.parseInt(this.jTable1.getValueAt(this.jTable1.getSelectedRow(), 1).toString()));
-                dao.redigerMedlem(tempMedlem, jTextField4.getText(), tempMedlem.getCprnr(), 15, aktivitetsform, jTextField6.getText());
+                Motionist tempMedlem = dao.søgMedlemPåCprnr2(Integer.parseInt(this.jTable1.getValueAt(this.jTable1.getSelectedRow(), 1).toString()));
+                dao.redigerMedlem3(tempMedlem, jTextField4.getText(), tempMedlem.getCprnr(), 15, aktivitetsform, jTextField6.getText());
                 System.out.println(dao.getMedlemmer());
 
             } catch (Exception ex) {
@@ -233,7 +237,7 @@ public class RedigereMedlemmer extends javax.swing.JFrame {
         model.getDataVector().removeAllElements();
         model.fireTableDataChanged();
         int tempCPR = 0;
-        for (Medlem m : dao.getMedlemmer()) {
+        for (Motionist m : dao.getMedlemmer()) {
             try {
                 tempCPR = Integer.parseInt(this.CPRfield.getText());
 
@@ -260,7 +264,7 @@ public class RedigereMedlemmer extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         DataAccessorFile dao = new DataAccessorFile();
-        for (Medlem m : dao.getMedlemmer()) {
+        for (Motionist m : dao.getMedlemmer()) {
             if (Integer.parseInt(this.jTable1.getValueAt(this.jTable1.getSelectedRow(), 1).toString()) == m.getCprnr()) {
                 dao.sletMedlem(m);
                 break;
