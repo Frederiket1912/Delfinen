@@ -19,7 +19,7 @@ public class Betaling {
             if (age < 18) {
                 return k.getJuniorPris();
             }
-            if (age >= 18) {
+            if (age >= 18 && age < 60) {
                 return k.getVoksenPris();
             }
             if (age >= 60) {
