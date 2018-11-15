@@ -1,6 +1,6 @@
 package delfinen.logic;
 
-import delfinen.data.Medlem;
+import delfinen.data.Motionist;
 
 
 public class Betaling {
@@ -12,13 +12,13 @@ public class Betaling {
     private int betalingssum;
     private int betalingsyear;
 
-    public Betaling(Medlem medlem, int betalingsyear) {
+    public Betaling(Motionist medlem, int betalingsyear) {
         this.betalingssum = udregnBetaling(medlem, betalingsyear);
         this.betalingsyear = betalingsyear;
 
     }
 
-    public int udregnBetaling(Medlem medlem, int year) {
+    public int udregnBetaling(Motionist medlem, int year) {
         int age;
         age = year - medlem.getFødselsdato();
         if (medlem.isMedlemskabsstatus()) {
