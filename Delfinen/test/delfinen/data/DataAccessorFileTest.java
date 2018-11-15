@@ -72,7 +72,7 @@ public class DataAccessorFileTest {
         instance.opretMedlem("Thomas", 1504891953, 17283849, false, "noget@andet.dk");
         expResult.add(new Medlem("Frederik", 1912891867, 19121989,true,"frederiket@gmail.com"));
         expResult.add(new Medlem("Thomas", 1504891953, 17283849, false, "noget@andet.dk"));
-        ArrayList<Medlem> result = instance.getMedlemmer();
+        ArrayList<Motionist> result = instance.getMedlemmer();
         //vi tjekker om der er det samme antal medlemmer i begge arrays
         assertEquals(expResult.size(), result.size());
     }
@@ -83,11 +83,11 @@ public class DataAccessorFileTest {
     @Test
     public void testSletMedlem() {
         System.out.println("sletMedlem");
-        Medlem medlem = new Medlem("Frederik", 1912891867, 19121989,true,"frederiket@gmail.com");
+        Motionist motionist = new Motionist("Frederik", 1912891867, 19121989,true,"frederiket@gmail.com");
         DataAccessorFile instance = new DataAccessorFile();
         File file = new File(FILENAME);
         long fileBefore = file.length();
-        instance.sletMedlem(medlem);
+        instance.sletMedlem(motionist);
         long fileAfter = file.length();
         //vi tjekker om filen har ændret størrelse efter vi sletter et medlem
         assertNotEquals(fileBefore, fileAfter);
@@ -146,7 +146,7 @@ public class DataAccessorFileTest {
     public void testRedigerMedlem3() {
         System.out.println("redigerMedlem");
         DataAccessorFile instance = new DataAccessorFile();
-        Medlem m = instance.søgMedlemPåCprnr2(1912891867);
+        Motionist m = instance.søgMedlemPåCprnr2(1912891867);
         String newName = "Hans";
         int newCprnr = 100200;
         int newFødselsdato = 100200;
@@ -166,8 +166,8 @@ public class DataAccessorFileTest {
         int cprnr = 1912891867;
         DataAccessorFile instance = new DataAccessorFile();
         instance.opretMedlem("Frederik", 1912891867, 19121989,true,"frederiket@gmail.com");
-        Medlem expResult = new Medlem("Frederik", 1912891867, 19121989,true,"frederiket@gmail.com");
-        Medlem result = instance.søgMedlemPåCprnr2(cprnr);
+        Motionist expResult = new Motionist("Frederik", 1912891867, 19121989,true,"frederiket@gmail.com");
+        Motionist result = instance.søgMedlemPåCprnr2(cprnr);
         //vi tjekker om vi får den rigtigt mail når vi søger på cpr nr.
         assertEquals(expResult.getMail(), result.getMail());
     }
@@ -181,8 +181,8 @@ public class DataAccessorFileTest {
         String mail = "frederiket@gmail.com";
         DataAccessorFile instance = new DataAccessorFile();
         instance.opretMedlem("Frederik", 1912891867, 19121989,true,"frederiket@gmail.com");
-        Medlem expResult = new Medlem("Frederik", 1912891867, 19121989,true,"frederiket@gmail.com");
-        Medlem result = instance.søgMedlemPåMail2(mail);
+        Motionist expResult = new Motionist("Frederik", 1912891867, 19121989,true,"frederiket@gmail.com");
+        Motionist result = instance.søgMedlemPåMail2(mail);
         //vi tjekker om vi får det rigtige cprnr når vi søger på mail
         assertEquals(expResult.getCprnr(), result.getCprnr());
     }
