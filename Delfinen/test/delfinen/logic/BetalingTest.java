@@ -6,6 +6,7 @@
 package delfinen.logic;
 
 import delfinen.data.Medlem;
+import delfinen.data.Motionist;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -44,11 +45,11 @@ public class BetalingTest {
     @Test
     public void testUdregnVoksen() {
         System.out.println("udregnVoksen");
-        Medlem medlem = new Medlem("Bob", 251078, 1978, true, "mail@.com");
+        Motionist motionist = new Motionist("Bob", 251078, 1978, true, "mail@.com");
         int year = 2008;
-        Betaling instance = new Betaling(medlem, year);
+        Betaling instance = new Betaling(motionist, year);
         int expResult = 1600;
-        int result = instance.udregnBetaling(medlem, year);
+        int result = instance.udregnBetaling(motionist, year);
         assertEquals(expResult, result);
 
     }
@@ -56,11 +57,11 @@ public class BetalingTest {
     @Test
     public void testUdregnJunior() {
         System.out.println("udregnJunior");
-        Medlem medlem = new Medlem("Bob", 251078, 1998, true, "mail@.com");
+        Motionist motionist = new Motionist("Bob", 251078, 1998, true, "mail@.com");
         int year = 2008;
-        Betaling instance = new Betaling(medlem, year);
+        Betaling instance = new Betaling(motionist, year);
         int expResult = 1000;
-        int result = instance.udregnBetaling(medlem, year);
+        int result = instance.udregnBetaling(motionist, year);
         assertEquals(expResult, result);
 
     }
@@ -68,11 +69,11 @@ public class BetalingTest {
     @Test
     public void testUdregnSenior() {
         System.out.println("udregnSenior");
-        Medlem medlem = new Medlem("Bob", 251078, 1938, true, "mail@.com");
+        Motionist motionist = new Motionist("Bob", 251078, 1938, true, "mail@.com");
         int year = 2008;
-        Betaling instance = new Betaling(medlem, year);
+        Betaling instance = new Betaling(motionist, year);
         int expResult = 1200;
-        int result = instance.udregnBetaling(medlem, year);
+        int result = instance.udregnBetaling(motionist, year);
         assertEquals(expResult, result);
 
     }
@@ -80,11 +81,11 @@ public class BetalingTest {
     @Test
     public void testUdregnPassiv() {
         System.out.println("udregnBetaling");
-        Medlem medlem = new Medlem("Bob", 251078, 1978, false, "mail@.com");
+        Motionist motionist = new Motionist("Bob", 251078, 1978, false, "mail@.com");
         int year = 2008;
-        Betaling instance = new Betaling(medlem, year);
+        Betaling instance = new Betaling(motionist, year);
         int expResult = 500;
-        int result = instance.udregnBetaling(medlem, year);
+        int result = instance.udregnBetaling(motionist, year);
         assertEquals(expResult, result);
 
     }
