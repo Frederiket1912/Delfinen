@@ -6,7 +6,11 @@
 package delfinen.presentation;
 
 import delfinen.data.DataAccessorFile;
+import delfinen.data.Medlem;
 import delfinen.data.Motionist;
+import delfinen.logic.Controller;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -25,7 +29,7 @@ public class RedigereMedlemmer extends javax.swing.JFrame {
     }
 
     public void editUser() {
-        DataAccessorFile dao = new DataAccessorFile();
+        Controller c = new Controller(new DataAccessorFile());
         this.jTextField4.setText(this.jTable1.getValueAt(this.jTable1.getSelectedRow(),0).toString());
         this.jTextField5.setText(this.jTable1.getValueAt(this.jTable1.getSelectedRow(),1).toString());
         this.jTextField6.setText(this.jTable1.getValueAt(this.jTable1.getSelectedRow(),2).toString());
@@ -48,9 +52,9 @@ public class RedigereMedlemmer extends javax.swing.JFrame {
                     aktivitetsform = false;
                 }
                 createTable().setValueAt(jTextField6.getText(), this.jTable1.getSelectedRow(), 2);
-                Motionist tempMedlem = dao.søgMedlemPåCprnr2(Integer.parseInt(this.jTable1.getValueAt(this.jTable1.getSelectedRow(), 1).toString()));
-                dao.redigerMedlem3(tempMedlem, jTextField4.getText(), tempMedlem.getCprnr(), 15, aktivitetsform, jTextField6.getText());
-                System.out.println(dao.getMedlemmer());
+                Medlem tempMedlem = c.søgMedlemPåCprnr(Integer.parseInt(this.jTable1.getValueAt(this.jTable1.getSelectedRow(), 1).toString()));
+                c.redigerMedlem(tempMedlem, jTextField4.getText(), 15, aktivitetsform, jTextField6.getText());
+                System.out.println(c.getMedlemmer());
 
             } catch (Exception ex) {
 
@@ -232,12 +236,12 @@ public class RedigereMedlemmer extends javax.swing.JFrame {
     }//GEN-LAST:event_CPRfieldActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        DataAccessorFile dao = new DataAccessorFile();
+        Controller c = new Controller(new DataAccessorFile());
         DefaultTableModel model = createTable();
         model.getDataVector().removeAllElements();
         model.fireTableDataChanged();
         int tempCPR = 0;
-        for (Motionist m : dao.getMedlemmer()) {
+        for (Medlem m : c.getMedlemmer()) {
             try {
                 tempCPR = Integer.parseInt(this.CPRfield.getText());
 
@@ -246,6 +250,7 @@ public class RedigereMedlemmer extends javax.swing.JFrame {
             if (m.getCprnr() == tempCPR || m.getMail().toLowerCase().equals(this.MailField.getText().toLowerCase()) || m.getName().toLowerCase().equals(this.NameField.getText().toLowerCase())) {
                 Object rowData[] = new Object[5];
                 rowData[0] = m.getName();
+                //man kan ikke ændre cprnr i metoden redigerMedlem mere
                 rowData[1] = m.getCprnr();
                 rowData[2] = m.getMail();
                 rowData[3] = m.getFødselsdato();
@@ -263,10 +268,14 @@ public class RedigereMedlemmer extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        DataAccessorFile dao = new DataAccessorFile();
-        for (Motionist m : dao.getMedlemmer()) {
+        Controller c = new Controller(new DataAccessorFile());
+        for (Medlem m : c.getMedlemmer()) {
             if (Integer.parseInt(this.jTable1.getValueAt(this.jTable1.getSelectedRow(), 1).toString()) == m.getCprnr()) {
-                dao.sletMedlem(m);
+                try {
+                    c.sletMedlem(m);
+                } catch (ClassNotFoundException ex) {
+                    //skal nok noget ind her :p
+                }
                 break;
             }
         }
