@@ -49,7 +49,7 @@ public class DataAccessorFileTest {
         long fileBefore = file.length();
         ArrayList<Medlem> alleMedlemmer = new ArrayList();
         DataAccessorFile instance = new DataAccessorFile();
-        Medlem m = new Medlem("Frederik", 1912891867, 19121989,true,"frederiket@gmail.com");
+        Motionist m = new Motionist("Frederik", 1912891867, 19121989,true,"frederiket@gmail.com");
         alleMedlemmer.add(m);
         instance.skrivTilFil(alleMedlemmer);
         long fileAfter = file.length();
@@ -68,7 +68,7 @@ public class DataAccessorFileTest {
         System.out.println("l\u00e6sFil");
         DataAccessorFile instance = new DataAccessorFile();
         ArrayList<Medlem> alleMedlemmer = new ArrayList();
-        Medlem m = new Medlem("Frederik", 1912891867, 19121989,true,"frederiket@gmail.com");
+        Motionist m = new Motionist("Frederik", 1912891867, 19121989,true,"frederiket@gmail.com");
         alleMedlemmer.add(m);
         instance.skrivTilFil(alleMedlemmer);
         ArrayList<Medlem> result = instance.læsFil();
