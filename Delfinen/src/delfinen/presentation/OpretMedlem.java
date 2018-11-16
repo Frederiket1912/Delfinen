@@ -6,6 +6,7 @@
 package delfinen.presentation;
 
 import delfinen.data.DataAccessorFile;
+import delfinen.logic.Controller;
 import java.util.Enumeration;
 import javax.swing.AbstractButton;
 import javax.swing.ButtonGroup;
@@ -16,7 +17,7 @@ import javax.swing.JOptionPane;
  * @author frederik
  */
 public class OpretMedlem extends javax.swing.JFrame {
-    DataAccessorFile dao = new DataAccessorFile();
+    Controller c = new Controller(new DataAccessorFile());
     /**
      * Creates new form OpretMedlem
      */
@@ -169,13 +170,13 @@ public class OpretMedlem extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void OpretButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OpretButtonActionPerformed
-        dao.getMedlemmer();
+        c.getMedlemmer();
         boolean motionist = false;
         try{
             if(this.getSelectedButtonText(buttonGroup1).equals("Koncurrence")){
             motionist = true;
         }
-            dao.opretMedlem(this.NameField.getText(), Integer.parseInt(this.AgeField.getText()), Integer.parseInt(this.CPRField.getText()), motionist, this.EmailField.getText());
+            c.opretMedlem(this.NameField.getText(), Integer.parseInt(this.AgeField.getText()), Integer.parseInt(this.CPRField.getText()), motionist, this.EmailField.getText());
             JOptionPane.showMessageDialog(null,"Medlem Oprettet");
             setVisible(false);
         }catch(Exception ex){
