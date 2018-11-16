@@ -176,7 +176,7 @@ public class OpretMedlem extends javax.swing.JFrame {
             if(this.getSelectedButtonText(buttonGroup1).equals("Koncurrence")){
             motionist = true;
         }
-            c.opretMedlem(this.NameField.getText(), Integer.parseInt(this.AgeField.getText()), Integer.parseInt(this.CPRField.getText()), motionist, this.EmailField.getText());
+            c.opretMotionist(this.NameField.getText(), Integer.parseInt(this.AgeField.getText()), Integer.parseInt(this.CPRField.getText()), motionist, this.EmailField.getText());
             JOptionPane.showMessageDialog(null,"Medlem Oprettet");
             setVisible(false);
         }catch(Exception ex){
