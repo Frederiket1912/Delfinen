@@ -87,7 +87,7 @@ public class Controller {
         return result;
     }
     
-    public void redigerMedlem(Medlem medlem, String newName, int newCprnr, int newFødselsdato, boolean NewMedlemskabsstatus, String newMail) {
+    public void redigerMedlem(Medlem medlem, String newName, int newFødselsdato, boolean NewMedlemskabsstatus, String newMail) {
             for (Medlem m : alleMedlemmer) {
                 if (m.getCprnr() == medlem.getCprnr()) {
                     m.setName(newName);
