@@ -7,6 +7,7 @@ package delfinen.logic;
 
 import delfinen.data.DataAccessorFile;
 import delfinen.data.Medlem;
+import delfinen.data.Motionist;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -37,8 +38,8 @@ public class Controller {
         return alleMedlemmer;
     }
     
-    public void opretMedlem(String name, int cprnr, int fødselsdato, boolean medlemskabsstatus, String mail) throws ClassNotFoundException {
-            Medlem m = new Medlem(name, cprnr, fødselsdato, medlemskabsstatus, mail);
+    public void opretMotionist(String name, int cprnr, int fødselsdato, boolean medlemskabsstatus, String mail) throws ClassNotFoundException {
+            Medlem m = new Motionist(name, cprnr, fødselsdato, medlemskabsstatus, mail);
             alleMedlemmer.add(m);
             dao.skrivTilFil(alleMedlemmer);
         
