@@ -6,7 +6,9 @@
 package delfinen;
 
 import delfinen.data.DataAccessorFile;
+import delfinen.data.Medlem;
 import delfinen.data.Motionist;
+import delfinen.logic.Controller;
 import java.util.ArrayList;
 
 /**
@@ -18,21 +20,21 @@ public class Delfinen {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        DataAccessorFile dao = new DataAccessorFile();
-        dao.opretMedlem("Frederik", 1912891867, 19121989, true, "frederiket@gmail.com");
-        dao.opretMedlem("Thomas", 1968, 100200, true, "noget@andet.dk");
-        System.out.println(dao.getMedlemmer().size());
-        Motionist m = new Motionist("Hans", 0, 0, true, "mail");
-        dao.opretMedlem(m.getName(),m.getCprnr(),m.getFødselsdato(),m.isMedlemskabsstatus(),m.getMail());
-        System.out.println(dao.getMedlemmer().size());
+    public static void main(String[] args) throws ClassNotFoundException {
+        Controller c = new Controller(new DataAccessorFile());
+        c.opretMedlem("Frederik", 1912891867, 19121989, true, "frederiket@gmail.com");
+        c.opretMedlem("Thomas", 1968, 100200, true, "noget@andet.dk");
+        System.out.println(c.getMedlemmer().size());
+        Medlem m = new Medlem("Hans", 0, 0, true, "mail");
+        c.opretMedlem(m.getName(),m.getCprnr(),m.getFødselsdato(),m.isMedlemskabsstatus(),m.getMail());
+        System.out.println(c.getMedlemmer().size());
         //dao.sletMedlem(m);
-        System.out.println(dao.getMedlemmer().size());
-        System.out.println(dao.søgMedlemPåMail("frederiket@gmail.com"));
-        dao.redigerMedlem3(m, "Kalle", 100200, 100200, false, "kalle@gmail.com");
-        System.out.println(dao.getMedlemmer().size());
-        System.out.println(dao.søgMedlemPåNavn("Kalle"));
-        System.out.println(dao.søgMedlemPåNavn("Hans"));
+        System.out.println(c.getMedlemmer().size());
+        System.out.println(c.søgMedlemPåMail("frederiket@gmail.com"));
+        c.redigerMedlem(m, "Kalle", 100200, true, "kalle@gmail.com");
+        System.out.println(c.getMedlemmer().size());
+        System.out.println(c.søgMedlemPåNavn("Kalle"));
+        System.out.println(c.søgMedlemPåNavn("Hans"));
     }
     
 }
