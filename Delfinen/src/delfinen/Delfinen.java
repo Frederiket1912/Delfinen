@@ -6,8 +6,12 @@
 package delfinen;
 
 import delfinen.data.DataAccessorFile;
+import delfinen.data.Disciplin;
+import delfinen.data.Konkurrencesvømmer;
 import delfinen.data.Medlem;
 import delfinen.data.Motionist;
+import delfinen.data.Resultat;
+import delfinen.logic.Betaling;
 import delfinen.logic.Controller;
 import java.util.ArrayList;
 
@@ -22,19 +26,21 @@ public class Delfinen {
      */
     public static void main(String[] args) throws ClassNotFoundException {
         Controller c = new Controller(new DataAccessorFile());
-        c.opretMotionist("Frederik", 1912891867, 19121989, true, "frederiket@gmail.com");
-        c.opretMotionist("Thomas", 1968, 100200, true, "noget@andet.dk");
-        System.out.println(c.getMedlemmer().size());
-        Medlem m = new Motionist("Hans", 0, 0, true, "mail");
-        c.opretMotionist(m.getName(),m.getCprnr(),m.getFødselsdato(),m.isMedlemskabsstatus(),m.getMail());
-        System.out.println(c.getMedlemmer().size());
-        //dao.sletMedlem(m);
-        System.out.println(c.getMedlemmer().size());
-        System.out.println(c.søgMedlemPåMail("frederiket@gmail.com"));
-        c.redigerMedlem(m, "Kalle", 100200, true, "kalle@gmail.com");
-        System.out.println(c.getMedlemmer().size());
-        System.out.println(c.søgMedlemPåNavn("Kalle"));
-        System.out.println(c.søgMedlemPåNavn("Hans"));
+        Resultat r1 = new Resultat(100, "10/10/1999", Disciplin.CRAWL, null, 0);
+        Resultat r2 = new Resultat(200, "10/10/1999", Disciplin.CRAWL, null, 0);
+        ArrayList<Betaling> betalinger = new ArrayList();
+        ArrayList<Resultat> resultater = new ArrayList();
+        Konkurrencesvømmer ks = new Konkurrencesvømmer("Frederik", 1912891967, true, "frederiket@gmail.com", betalinger, 0, resultater, "Henrik");
+        
+        Medlem m = c.søgMedlemPåCprnr(1912891867);
+        c.opretKonkurrencesvømmer("Frederik", 1912891867, true, "frederiket@gmail.com", betalinger, 0, resultater, "Henrik");
+        c.opretResultat(ks, 200, "10/10/1999", Disciplin.CRAWL, null, 0);
+        c.opretResultat(ks, 100, "10/10/1999", Disciplin.CRAWL, null, 0);
+        System.out.println(ks.getResultater());
+        System.out.println(c.getMedlemmer());
+        System.out.println(m);
+        System.out.println(m.getResultater());
+        System.out.println(c.getTop5(Disciplin.CRAWL));
     }
     
 }

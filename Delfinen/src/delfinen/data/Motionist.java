@@ -13,6 +13,11 @@ public class Motionist implements Serializable, Medlem {
     private String mail;
     private ArrayList<Betaling> betalinger;
     private int fødselsdato;
+    private boolean aktivitetsform = false;
+
+    public boolean isAktivitetsform() {
+        return aktivitetsform;
+    }
 
     @Override
     public String toString() {
@@ -52,10 +57,6 @@ public class Motionist implements Serializable, Medlem {
         return cprnr;
     }
 
-    public void setCprnr(int cprnr) {
-        this.cprnr = cprnr;
-    }
-
     public boolean isMedlemskabsstatus() {
         return medlemskabsstatus;
     }
@@ -80,6 +81,12 @@ public class Motionist implements Serializable, Medlem {
     @Override
     public void setBetalinger(Betaling betaling) {
         betalinger.add(betaling);
+    }
+
+    @Override
+    public ArrayList<Resultat> getResultater() {
+        ArrayList<Resultat> ingenting = new ArrayList();
+        return ingenting;
     }
     
     

@@ -16,6 +16,7 @@ public interface Medlem {
 
     public ArrayList<Betaling> getBetalinger(); 
     
+    public boolean isAktivitetsform();
 
     public void setBetalinger(Betaling betaling);
 
@@ -32,8 +33,6 @@ public interface Medlem {
 
     public int getCprnr();
 
-    public void setCprnr(int cprnr);
-
     public boolean isMedlemskabsstatus();
 
     public void setMedlemskabsstatus(boolean medlemskabsstatus);
@@ -41,4 +40,6 @@ public interface Medlem {
     public String getMail();
 
     public void setMail(String mail);
+    
+    public ArrayList<Resultat> getResultater();
 }
