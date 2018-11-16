@@ -22,11 +22,11 @@ public class Delfinen {
      */
     public static void main(String[] args) throws ClassNotFoundException {
         Controller c = new Controller(new DataAccessorFile());
-        c.opretMedlem("Frederik", 1912891867, 19121989, true, "frederiket@gmail.com");
-        c.opretMedlem("Thomas", 1968, 100200, true, "noget@andet.dk");
+        c.opretMotionist("Frederik", 1912891867, 19121989, true, "frederiket@gmail.com");
+        c.opretMotionist("Thomas", 1968, 100200, true, "noget@andet.dk");
         System.out.println(c.getMedlemmer().size());
-        Medlem m = new Medlem("Hans", 0, 0, true, "mail");
-        c.opretMedlem(m.getName(),m.getCprnr(),m.getFødselsdato(),m.isMedlemskabsstatus(),m.getMail());
+        Medlem m = new Motionist("Hans", 0, 0, true, "mail");
+        c.opretMotionist(m.getName(),m.getCprnr(),m.getFødselsdato(),m.isMedlemskabsstatus(),m.getMail());
         System.out.println(c.getMedlemmer().size());
         //dao.sletMedlem(m);
         System.out.println(c.getMedlemmer().size());
