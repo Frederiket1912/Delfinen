@@ -3,19 +3,20 @@ package delfinen.data;
 
 import delfinen.logic.Betaling;
 import java.io.Serializable;
+import java.util.ArrayList;
 
 
-public class Motionist implements Serializable {
+public class Motionist implements Serializable, Medlem {
     private String name;
     private int cprnr;
     private boolean medlemskabsstatus;
     private String mail;
-    private Betaling betaling;
+    private ArrayList<Betaling> betalinger;
     private int fødselsdato;
 
     @Override
     public String toString() {
-        return "Medlem{" + "name=" + name + ", cprnr=" + cprnr + ", medlemskabsstatus=" + medlemskabsstatus + ", mail=" + mail + ", betaling=" + betaling + ", f\u00f8dselsdato=" + fødselsdato + '}';
+        return "Medlem{" + "name=" + name + ", cprnr=" + cprnr + ", medlemskabsstatus=" + medlemskabsstatus + ", mail=" + mail + ", betaling=" + betalinger + ", f\u00f8dselsdato=" + fødselsdato + '}';
     }
 
     
@@ -26,48 +27,18 @@ public class Motionist implements Serializable {
         this.medlemskabsstatus = medlemskabsstatus;
         this.mail = mail;
         this.fødselsdato = fødselsdato;
-        //this.betaling = betaling;
+        //this.betalinger = betalinger;
     }
 
     public void setFødselsdato(int fødselsdato) {
         this.fødselsdato = fødselsdato;
     }
     
-//    public void visMedlem(Motionist medlem){
-//        jtextfieldName.setText(medlem.getName());
-//        jtextfieldCprnr.setText(medlem.getCprnr());
-//        jtextfieldMail.setText(medlem.getMail());
-//        if (medlemskabsstatus){
-//            jradiobuttonAktiv.doClick();
-//        }
-//        else {
-//            jradibuttonPassiv.doClick();
-//        }      
-//    }
-//    
-//    public void gemÆndringer(Motionist medlem){
-//        String name = jtextfieldName.getText();
-//        int cprnr = Integer.parseInt(jtextfieldCprnr.getText());
-//        String mail = jtextfieldMail.getText();
-//        if (jradiobuttonAktiv.isSelected()){
-//            medlemskabsstatus = true;
-//        }
-//        else{
-//            medlemskabsstatus = false;
-//        }
-//        medlem.setName(name);
-//        medlem.setCprnr(cprnr);
-//        medlem.setMail(mail);
-//        medlem.setMedlemskabsstatus(medlemskabsstatus);
-//    }
 
     public int getFødselsdato() {
         return fødselsdato;
     }
-    
-    
-    
-    
+     
 
     public String getName() {
         return name;
@@ -101,12 +72,14 @@ public class Motionist implements Serializable {
         this.mail = mail;
     }
 
-    public Betaling getBetaling() {
-        return betaling;
+    @Override
+    public ArrayList<Betaling> getBetalinger() {
+        return betalinger;
     }
 
-    public void setBetaling(Betaling betaling) {
-        this.betaling = betaling;
+    @Override
+    public void setBetalinger(Betaling betaling) {
+        betalinger.add(betaling);
     }
     
     
