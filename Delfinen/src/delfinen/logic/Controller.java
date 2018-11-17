@@ -96,9 +96,9 @@ public class Controller {
         Konkurrencesvømmer result = null;
         for (Medlem m : alleMedlemmer) {
             if (m.isAktivitetsform() == true && m.getCprnr() == cprnr){
-                result = m;
+                result = (Konkurrencesvømmer) m;
             }
-        }
+        }return result;
     }
 
     public Medlem søgMedlemPåMail(String mail) {
