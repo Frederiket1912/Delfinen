@@ -44,8 +44,14 @@ public class Delfinen {
         c.opretResultat(m, 600, "10/10/1999", Disciplin.CRAWL, null, 0);
         c.opretResultat(m, 600, "10/10/1999", Disciplin.CRAWL, null, 0);
         c.opretResultat(m, 600, "10/10/1999", Disciplin.CRAWL, null, 0);
-        System.out.println(m.getResultater());
-        System.out.println(c.getTop5(Disciplin.CRAWL));
+        //System.out.println(m.getResultater());
+        //System.out.println(c.getTop5(Disciplin.CRAWL));
+        System.out.println("getMedlemmer");
+        System.out.println(c.getMedlemmer());
+        c.redigerMedlem(m, "Hans", 0, false, "hej");
+        System.out.println(m);
+        System.out.println("getMedlemmer");
+        System.out.println(c.getMedlemmer());
     }
     
 }

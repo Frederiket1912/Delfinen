@@ -173,12 +173,15 @@ public class OpretMedlem extends javax.swing.JFrame {
 
     private void OpretButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OpretButtonActionPerformed
         c.getMedlemmer();
+        //den måde jeg har lavet metoden til at oprette motionister skal de ikke have en boolean om de er motionister eller
+        //konkurrencesvømmere, men om de er aktive eller passive medlemmer.
         boolean motionist = false;
         try{
             if(this.getSelectedButtonText(buttonGroup1).equals("Koncurrence")){
             motionist = true;
-        }   //jeg har addet en arraylist med betalinger som attribut i motiotist og den er med i constructoren
-            //så jeg lave bare en tom arraylist hver motionist får når de bliver oprettet
+        }   //metoden er måske blever ændret siden det her blev lavet, 
+            //men opretMotionist skal have (String name, int cprnr, int fødselsdato, boolean medlemskabsstatus, String mail)
+            //så cpr og age skal byttes om, og age skal nok omdøbes til fødelsdato.
             c.opretMotionist(this.NameField.getText(), Integer.parseInt(this.AgeField.getText()), Integer.parseInt(this.CPRField.getText()), motionist, this.EmailField.getText());
             JOptionPane.showMessageDialog(null,"Medlem Oprettet");
             setVisible(false);
