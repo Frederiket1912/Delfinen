@@ -15,15 +15,14 @@ public class Konkurrencesvømmer implements Serializable, Medlem {
     private int fødselsdato;
     private ArrayList<Resultat> resultater;
     private String trænernavn;
-    private boolean aktivitetsform = true;
+    private Aktivitetsform aktivitetsform = Aktivitetsform.KONKURRENCESVØMMER;
 
-    public boolean isAktivitetsform() {
-        return aktivitetsform;
-    }
+
+
 
     
 
-    public Konkurrencesvømmer(String name, int cprnr, boolean medlemskabsstatus, String mail, ArrayList<Betaling> betalinger, int fødselsdato, ArrayList<Resultat> resultater, String trænernavn) {
+    public Konkurrencesvømmer(String name, int cprnr, int fødselsdato, boolean medlemskabsstatus, String mail, ArrayList<Betaling> betalinger, ArrayList<Resultat> resultater, String trænernavn) {
         this.name = name;
         this.cprnr = cprnr;
         this.medlemskabsstatus = medlemskabsstatus;
@@ -37,6 +36,9 @@ public class Konkurrencesvømmer implements Serializable, Medlem {
     @Override
     public String toString() {
         return "Konkurrencesv\u00f8mmer{" + "name=" + name + ", cprnr=" + cprnr + ", medlemskabsstatus=" + medlemskabsstatus + ", mail=" + mail + ", betalinger=" + betalinger + ", f\u00f8dselsdato=" + fødselsdato + ", resultater=" + resultater + ", tr\u00e6nernavn=" + trænernavn + '}';
+    }
+    public Aktivitetsform getAktivitetsform() {
+        return aktivitetsform;
     }
 
     public ArrayList<Resultat> getResultater() {

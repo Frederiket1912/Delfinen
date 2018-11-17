@@ -5,6 +5,7 @@
  */
 package delfinen.logic;
 
+import delfinen.data.Aktivitetsform;
 import delfinen.data.DataAccessorFile;
 import delfinen.data.Disciplin;
 import delfinen.data.Konkurrencesvømmer;
@@ -51,8 +52,8 @@ public class Controller {
 
     }
 
-    public void opretKonkurrencesvømmer(String name, int cprnr, boolean medlemskabsstatus, String mail, ArrayList<Betaling> betalinger, int fødselsdato, ArrayList<Resultat> resultater, String trænernavn) {
-        Medlem m = new Konkurrencesvømmer(name, cprnr, medlemskabsstatus, mail, betalinger, fødselsdato, resultater, trænernavn);
+    public void opretKonkurrencesvømmer(String name, int cprnr, int fødselsdato, boolean medlemskabsstatus, String mail, ArrayList<Betaling> betalinger, ArrayList<Resultat> resultater, String trænernavn) {
+        Medlem m = new Konkurrencesvømmer(name, cprnr, fødselsdato, medlemskabsstatus, mail, betalinger, resultater, trænernavn);
         alleMedlemmer.add(m);
         dao.skrivTilFil(alleMedlemmer);
     }
@@ -88,14 +89,11 @@ public class Controller {
         }
         return result;
     }
-    //Jeg tror vi har brug for en metode der altid returne en konkurrencesvømmer
-    //for at oprette resultater.
-    //Fordi opretResultat() metoden kræver en konkurrencesvømmer for at kører,
-    //men jeg kan ikke lige finde ud af at lave en metode til det.
+
     public Konkurrencesvømmer søgKonkurrencesvømmerPåCprnr(int cprnr) {
         Konkurrencesvømmer result = null;
         for (Medlem m : alleMedlemmer) {
-            if (m.isAktivitetsform() == true && m.getCprnr() == cprnr){
+            if (m.getAktivitetsform() == Aktivitetsform.KONKURRENCESVØMMER && m.getCprnr() == cprnr){
                 result = (Konkurrencesvømmer) m;
             }
         }return result;
@@ -185,13 +183,17 @@ public class Controller {
     
     public ArrayList<Resultat> getTop5(Disciplin disciplin){
         ArrayList<Resultat> disciplinResultater = new ArrayList();
+        ArrayList<Resultat> top5DisciplinResultater = new ArrayList();
         for (Resultat r : søgAlleResultater()) {
             if (r.getDisciplin() == disciplin){
                 disciplinResultater.add(r);
             }
         }
         Collections.sort(disciplinResultater);
-        return disciplinResultater;
+        for (int i = 0; i < 5; i++) {
+            top5DisciplinResultater.add(disciplinResultater.get(i));
+        }
+        return top5DisciplinResultater;
     }
 }
 

@@ -16,7 +16,7 @@ public interface Medlem {
 
     public ArrayList<Betaling> getBetalinger(); 
     
-    public boolean isAktivitetsform();
+    public Aktivitetsform getAktivitetsform();
 
     public void setBetalinger(Betaling betaling);
 

@@ -13,11 +13,8 @@ public class Motionist implements Serializable, Medlem {
     private String mail;
     private ArrayList<Betaling> betalinger;
     private int fødselsdato;
-    private boolean aktivitetsform = false;
+    private Aktivitetsform aktivitetsform = Aktivitetsform.MOTIONIST;
 
-    public boolean isAktivitetsform() {
-        return aktivitetsform;
-    }
 
     @Override
     public String toString() {
@@ -32,9 +29,13 @@ public class Motionist implements Serializable, Medlem {
         this.medlemskabsstatus = medlemskabsstatus;
         this.mail = mail;
         this.fødselsdato = fødselsdato;
-        //this.betalinger = betalinger;
+        this.betalinger = new ArrayList();
     }
 
+    public Aktivitetsform getAktivitetsform() {
+        return aktivitetsform;
+    }
+    
     public void setFødselsdato(int fødselsdato) {
         this.fødselsdato = fødselsdato;
     }

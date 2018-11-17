@@ -6,8 +6,11 @@
 package delfinen.logic;
 
 import delfinen.data.DataAccessorFile;
+import delfinen.data.Disciplin;
+import delfinen.data.Konkurrencesvømmer;
 import delfinen.data.Medlem;
 import delfinen.data.Motionist;
+import delfinen.data.Resultat;
 import java.io.File;
 import java.util.ArrayList;
 import org.junit.After;
@@ -69,7 +72,20 @@ public class ControllerTest {
         int listBefore = c.getMedlemmer().size();
         c.opretMotionist("Frederik", 1912891867, 19121989,true,"frederiket@gmail.com");
         int listAfter = c.getMedlemmer().size();
-        //vi tjekker om listen med medlemmer er blevet en større efter vi opretter et medlem
+        //vi tjekker om listen med medlemmer er blevet en større efter vi opretter en motionist
+        assertEquals(listBefore, listAfter - 1);
+    }
+    
+    @Test
+    public void testOpretKonkurrencesvømmer() throws Exception {
+        System.out.println("opretKonkurrencesvømmer");
+        Controller c = new Controller(new DataAccessorFile());
+        int listBefore = c.getMedlemmer().size();
+        ArrayList<Betaling> betalinger = new ArrayList();
+        ArrayList<Resultat> resultater = new ArrayList();
+        c.opretKonkurrencesvømmer("Frederik", 1912891867, 19121989, true, "frederiket@gmail.com", betalinger, resultater, "Henrik");
+        int listAfter = c.getMedlemmer().size();
+        //vi tjekker om listen med medlemmer er blevet en større efter vi opretter en konkurrencesvømmer
         assertEquals(listBefore, listAfter - 1);
     }
 
@@ -158,5 +174,10 @@ public class ControllerTest {
         assertEquals("Hans", result.getName());
     }
     
+    @Test
+    public void testOpretResultat(Konkurrencesvømmer konkurrencesvømmer, int timeInSeconds, String date, Disciplin disciplin, String competitionName, int placement) {
+        Resultat r = new Resultat(timeInSeconds, date, disciplin, competitionName, placement);
+        konkurrencesvømmer.setResultater(r);
+    }
 }
 

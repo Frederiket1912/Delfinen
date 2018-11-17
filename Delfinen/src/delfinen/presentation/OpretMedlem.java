@@ -6,7 +6,9 @@
 package delfinen.presentation;
 
 import delfinen.data.DataAccessorFile;
+import delfinen.logic.Betaling;
 import delfinen.logic.Controller;
+import java.util.ArrayList;
 import java.util.Enumeration;
 import javax.swing.AbstractButton;
 import javax.swing.ButtonGroup;
@@ -175,7 +177,8 @@ public class OpretMedlem extends javax.swing.JFrame {
         try{
             if(this.getSelectedButtonText(buttonGroup1).equals("Koncurrence")){
             motionist = true;
-        }
+        }   //jeg har addet en arraylist med betalinger som attribut i motiotist og den er med i constructoren
+            //så jeg lave bare en tom arraylist hver motionist får når de bliver oprettet
             c.opretMotionist(this.NameField.getText(), Integer.parseInt(this.AgeField.getText()), Integer.parseInt(this.CPRField.getText()), motionist, this.EmailField.getText());
             JOptionPane.showMessageDialog(null,"Medlem Oprettet");
             setVisible(false);

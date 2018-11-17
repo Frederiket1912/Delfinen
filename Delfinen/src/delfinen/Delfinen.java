@@ -26,19 +26,24 @@ public class Delfinen {
      */
     public static void main(String[] args) throws ClassNotFoundException {
         Controller c = new Controller(new DataAccessorFile());
-        Resultat r1 = new Resultat(100, "10/10/1999", Disciplin.CRAWL, null, 0);
-        Resultat r2 = new Resultat(200, "10/10/1999", Disciplin.CRAWL, null, 0);
+
         ArrayList<Betaling> betalinger = new ArrayList();
-        ArrayList<Resultat> resultater = new ArrayList();
-        Konkurrencesvømmer ks = new Konkurrencesvømmer("Frederik", 1912891967, true, "frederiket@gmail.com", betalinger, 0, resultater, "Henrik");
-        
-        Medlem m = c.søgMedlemPåCprnr(1912891867);
-        c.opretKonkurrencesvømmer("Frederik", 1912891867, true, "frederiket@gmail.com", betalinger, 0, resultater, "Henrik");
-        c.opretResultat(ks, 200, "10/10/1999", Disciplin.CRAWL, null, 0);
-        c.opretResultat(ks, 100, "10/10/1999", Disciplin.CRAWL, null, 0);
-        System.out.println(ks.getResultater());
-        System.out.println(c.getMedlemmer());
+        ArrayList<Resultat> resultater = new ArrayList(); 
+        c.opretKonkurrencesvømmer("Frederik", 1912891867, 0, true, "frederiket@gmail.com", betalinger, resultater, "Henrik");
+        //Medlem m = c.søgMedlemPåCprnr(1912891867);
+        Konkurrencesvømmer m = c.søgKonkurrencesvømmerPåCprnr(1912891867);
         System.out.println(m);
+        c.opretResultat(m, 200, "10/10/1999", Disciplin.CRAWL, null, 0);
+        c.opretResultat(m, 100, "10/10/1999", Disciplin.CRAWL, null, 0);
+        c.opretResultat(m, 100, "10/10/1999", Disciplin.CRAWL, null, 0);
+        c.opretResultat(m, 500, "10/10/1999", Disciplin.CRAWL, null, 0);
+        c.opretResultat(m, 700, "10/10/1999", Disciplin.CRAWL, null, 0);
+        c.opretResultat(m, 300, "10/10/1999", Disciplin.CRAWL, null, 0);
+        c.opretResultat(m, 600, "10/10/1999", Disciplin.CRAWL, null, 0);
+        c.opretResultat(m, 600, "10/10/1999", Disciplin.CRAWL, null, 0);
+        c.opretResultat(m, 600, "10/10/1999", Disciplin.CRAWL, null, 0);
+        c.opretResultat(m, 600, "10/10/1999", Disciplin.CRAWL, null, 0);
+        c.opretResultat(m, 600, "10/10/1999", Disciplin.CRAWL, null, 0);
         System.out.println(m.getResultater());
         System.out.println(c.getTop5(Disciplin.CRAWL));
     }
