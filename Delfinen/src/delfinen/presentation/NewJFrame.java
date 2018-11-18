@@ -203,7 +203,7 @@ public class NewJFrame extends javax.swing.JFrame {
                 rowData[0] = m.getName();
                 rowData[1] = m.getCprnr();
                 rowData[2] = m.getMail();
-                rowData[3] = m.getFødselsdato();
+                rowData[3] = m.getFødselsår();
                 //rowData[4] = m.getBetaling();
 
                 createTable().addRow(rowData);

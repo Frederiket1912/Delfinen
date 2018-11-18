@@ -43,7 +43,7 @@ public class RedigereMedlemmer extends javax.swing.JFrame {
 
         int option = JOptionPane.showConfirmDialog(null, message, "Edit User", JOptionPane.OK_CANCEL_OPTION);
         if (option == JOptionPane.OK_OPTION) {
-            //navnet på variablen burde nok være medlemskabsstatus
+            //navnet på variablen burde nok være medlemskabsstatus da aktivitetsform er om de er motionist/konkurrencesvømmer
             boolean aktivitetsform = true;
             try {
                 createTable().setValueAt(jTextField4.getText(), this.jTable1.getSelectedRow(), 0);
@@ -55,7 +55,7 @@ public class RedigereMedlemmer extends javax.swing.JFrame {
                 createTable().setValueAt(jTextField6.getText(), this.jTable1.getSelectedRow(), 2);
                 Medlem tempMedlem = c.søgMedlemPåCprnr(Integer.parseInt(this.jTable1.getValueAt(this.jTable1.getSelectedRow(), 1).toString()));
                 //vi skal huske at ændre 15 til enten at få en værdi fra et field, 
-                //eller bare at få værdien fra tempMedlem.getFødelsdato(), hvis fødselsdatoen ikke skal kunne redigeres.
+                //eller bare at få værdien fra tempMedlem.getFødelsår(), hvis fødselsåret ikke skal kunne redigeres.
                 c.redigerMedlem(tempMedlem, jTextField4.getText(), 15, aktivitetsform, jTextField6.getText());
                 System.out.println(c.getMedlemmer());
 
@@ -256,7 +256,7 @@ public class RedigereMedlemmer extends javax.swing.JFrame {
                 //man kan ikke ændre cprnr i metoden redigerMedlem mere
                 rowData[1] = m.getCprnr();
                 rowData[2] = m.getMail();
-                rowData[3] = m.getFødselsdato();
+                rowData[3] = m.getFødselsår();
                 //rowData[4] = m.getBetaling();
 
                 model.addRow(rowData);

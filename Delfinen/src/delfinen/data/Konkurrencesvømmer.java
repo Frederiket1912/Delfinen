@@ -12,7 +12,7 @@ public class Konkurrencesvømmer implements Serializable, Medlem {
     private boolean medlemskabsstatus;
     private String mail;
     private ArrayList<Betaling> betalinger;
-    private int fødselsdato;
+    private int fødselsår;
     private ArrayList<Resultat> resultater;
     private String trænernavn;
     private Aktivitetsform aktivitetsform = Aktivitetsform.KONKURRENCESVØMMER;
@@ -28,14 +28,14 @@ public class Konkurrencesvømmer implements Serializable, Medlem {
         this.medlemskabsstatus = medlemskabsstatus;
         this.mail = mail;
         this.betalinger = betalinger;
-        this.fødselsdato = fødselsdato;
+        this.fødselsår = fødselsdato;
         this.resultater = resultater;
         this.trænernavn = trænernavn;
     }
 
     @Override
     public String toString() {
-        return "Konkurrencesv\u00f8mmer{" + "name=" + name + ", cprnr=" + cprnr + ", medlemskabsstatus=" + medlemskabsstatus + ", mail=" + mail + ", betalinger=" + betalinger + ", f\u00f8dselsdato=" + fødselsdato + ", resultater=" + resultater + ", tr\u00e6nernavn=" + trænernavn + '}';
+        return "Konkurrencesv\u00f8mmer{" + "name=" + name + ", cprnr=" + cprnr + ", medlemskabsstatus=" + medlemskabsstatus + ", mail=" + mail + ", betalinger=" + betalinger + ", f\u00f8dselsdato=" + fødselsår + ", resultater=" + resultater + ", tr\u00e6nernavn=" + trænernavn + '}';
     }
     public Aktivitetsform getAktivitetsform() {
         return aktivitetsform;
@@ -68,13 +68,13 @@ public class Konkurrencesvømmer implements Serializable, Medlem {
     }
 
     @Override
-    public void setFødselsdato(int fødselsdato) {
-        this.fødselsdato = fødselsdato;
+    public void setFødselsår(int fødselsår) {
+        this.fødselsår = fødselsår;
     }
 
     @Override
-    public int getFødselsdato() {
-        return fødselsdato;
+    public int getFødselsår() {
+        return fødselsår;
     }
 
     @Override

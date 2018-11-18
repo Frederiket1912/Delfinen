@@ -18,9 +18,17 @@ public class Betaling {
 
     }
 
+    public int getBetalingsyear() {
+        return betalingsyear;
+    }
+
+    public int getBetalingssum() {
+        return betalingssum;
+    }
+
     public int udregnBetaling(Motionist medlem, int year) {
         int age;
-        age = year - medlem.getFødselsdato();
+        age = year - medlem.getFødselsår();
         if (medlem.isMedlemskabsstatus()) {
             if (age < 18) {
                 return JUNIORPRIS;

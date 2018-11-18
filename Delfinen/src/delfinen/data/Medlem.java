@@ -23,9 +23,9 @@ public interface Medlem {
     @Override
     public String toString();
 
-    public void setFødselsdato(int fødselsdato);
+    public void setFødselsår(int fødselsdato);
 
-    public int getFødselsdato();
+    public int getFødselsår();
     
     public String getName();
 

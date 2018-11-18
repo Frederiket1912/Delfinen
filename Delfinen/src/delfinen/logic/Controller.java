@@ -12,17 +12,8 @@ import delfinen.data.Konkurrencesvømmer;
 import delfinen.data.Medlem;
 import delfinen.data.Motionist;
 import delfinen.data.Resultat;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.Comparator;
 import static jdk.nashorn.internal.runtime.Context.DEBUG;
 
 public class Controller {
@@ -45,15 +36,15 @@ public class Controller {
         return alleMedlemmer;
     }
 
-    public void opretMotionist(String name, int cprnr, int fødselsdato, boolean medlemskabsstatus, String mail) throws ClassNotFoundException {
-        Medlem m = new Motionist(name, cprnr, fødselsdato, medlemskabsstatus, mail);
+    public void opretMotionist(String name, int cprnr, int fødselsår, boolean medlemskabsstatus, String mail) throws ClassNotFoundException {
+        Medlem m = new Motionist(name, cprnr, fødselsår, medlemskabsstatus, mail);
         alleMedlemmer.add(m);
         dao.skrivTilFil(alleMedlemmer);
 
     }
 
-    public void opretKonkurrencesvømmer(String name, int cprnr, int fødselsdato, boolean medlemskabsstatus, String mail, ArrayList<Betaling> betalinger, ArrayList<Resultat> resultater, String trænernavn) {
-        Medlem m = new Konkurrencesvømmer(name, cprnr, fødselsdato, medlemskabsstatus, mail, betalinger, resultater, trænernavn);
+    public void opretKonkurrencesvømmer(String name, int cprnr, int fødselsår, boolean medlemskabsstatus, String mail, ArrayList<Betaling> betalinger, ArrayList<Resultat> resultater, String trænernavn) {
+        Medlem m = new Konkurrencesvømmer(name, cprnr, fødselsår, medlemskabsstatus, mail, betalinger, resultater, trænernavn);
         alleMedlemmer.add(m);
         dao.skrivTilFil(alleMedlemmer);
     }
@@ -110,11 +101,11 @@ public class Controller {
         return result;
     }
 
-    public void redigerMedlem(Medlem medlem, String newName, int newFødselsdato, boolean NewMedlemskabsstatus, String newMail) {
+    public void redigerMedlem(Medlem medlem, String newName, int newFødselsår, boolean NewMedlemskabsstatus, String newMail) {
         for (Medlem m : alleMedlemmer) {
             if (m.getCprnr() == medlem.getCprnr()) {
                 m.setName(newName);
-                m.setFødselsdato(newFødselsdato);
+                m.setFødselsår(newFødselsår);
                 m.setMedlemskabsstatus(NewMedlemskabsstatus);
                 m.setMail(newMail);
             }
@@ -194,6 +185,50 @@ public class Controller {
             top5DisciplinResultater.add(disciplinResultater.get(i));
         }
         return top5DisciplinResultater;
+    }
+    
+    public int getRestanceForMedlem(Medlem medlem){
+        int restanceForMedlem = 0;
+        BetalingCalculator bc = new BetalingCalculator();
+        for (Betaling b : medlem.getBetalinger()){
+            if (b.getBetalingssum() == 0){
+                restanceForMedlem += bc.udregnBetaling(medlem, b.getBetalingsyear());
+            }
+        }
+        return restanceForMedlem;
+    }
+    
+    public ArrayList<Medlem> getMedlemmerIRestance(){
+        ArrayList<Medlem> alleMedlemmerIRestance = new ArrayList();
+        for (Medlem m : alleMedlemmer){
+            if (getRestanceForMedlem(m) > 0){
+                alleMedlemmerIRestance.add(m);
+            }
+        }
+        return alleMedlemmerIRestance;
+    }
+    
+    public int getRestanceForYear(int year){
+        int totalRestanceForYear = 0;
+        for (Medlem m : getMedlemmerIRestance()){
+            for (Betaling b : m.getBetalinger())
+                if (b.getBetalingsyear() == year){
+                    totalRestanceForYear += getRestanceForMedlem(m);
+                }
+        }
+        return totalRestanceForYear;
+    }
+    
+    public int getForventetIndkomstFraKontingenter(int year){
+        int forventetIndkomst = 0;
+        BetalingCalculator bc = new BetalingCalculator();
+        for (Medlem m : alleMedlemmer){
+            for (Betaling b : m.getBetalinger())
+                if (b.getBetalingsyear() == year){
+                    forventetIndkomst += bc.udregnBetaling(m, b.getBetalingsyear());
+                }
+        }
+        return forventetIndkomst;
     }
 }
 
