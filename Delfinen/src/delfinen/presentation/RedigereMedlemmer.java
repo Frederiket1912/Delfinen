@@ -337,7 +337,9 @@ public class RedigereMedlemmer extends javax.swing.JFrame {
         };
         int option = JOptionPane.showConfirmDialog(null, message, "Edit User", JOptionPane.OK_OPTION);
         if (option == JOptionPane.OK_OPTION) {
-            Betaling b = new Betaling(tempMedlem, Integer.parseInt(this.jTextField6.getText()));
+            //jeg har lavet en ny attribut til betaling der er en boolean.
+            //hvis de betaler 0, altså ikke betaler skal den sættes til false, ellers til true
+            Betaling b = new Betaling(tempMedlem, Integer.parseInt(this.jTextField6.getText()), null);
             tempMedlem.setBetalinger(b);
 
 

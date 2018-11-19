@@ -13,6 +13,10 @@ import delfinen.data.Konkurrencesvømmer;
 import delfinen.data.Medlem;
 import delfinen.data.Motionist;
 import delfinen.data.Resultat;
+import static delfinen.logic.BetalingCalculator.JUNIORPRIS;
+import static delfinen.logic.BetalingCalculator.PASSIVPRIS;
+import static delfinen.logic.BetalingCalculator.SENIORPRIS;
+import static delfinen.logic.BetalingCalculator.VOKSENPRIS;
 import java.util.ArrayList;
 import java.util.Collections;
 import static jdk.nashorn.internal.runtime.Context.DEBUG;
@@ -270,8 +274,42 @@ public class Controller {
         return result;
     }
     
-    //metode til at omskrive tid
+    public String timeFormatter(int time){
+        int min = time / 60;
+        int sec = time % 60;
+        String strMin = String.format("%02d", min);
+        String strSec = String.format("%02d", sec);
+        return strMin + ":" + strSec;
+    }
     
+    public Betaling getBetalingByYear(Medlem medlem, int year){
+        Betaling result = null;
+        for (Betaling b : medlem.getBetalinger()){
+            if (b.getBetalingsyear() == year){
+                result = b;
+            }
+        }
+        return result;
+    }
+    
+    public int udregnBetaling(Medlem medlem, int year) {
+        int age;
+        age = year - medlem.getFødselsår();
+        if(getBetalingByYear(medlem, year).isHasPaid() == false)
+            return 0;
+        if (medlem.isMedlemskabsstatus()) {
+            if (age < 18) {
+                return JUNIORPRIS;
+            }
+            if (age >= 18 && age < 60) {
+                return VOKSENPRIS;
+            }
+            if (age >= 60) {
+                return SENIORPRIS;
+            }
+        }
+        return PASSIVPRIS;
+    }
     //metode BetalingsCalculator flytters til controller
 }
 

@@ -53,7 +53,8 @@ public class Delfinen {
         System.out.println(c.getMedlemmer());
         
         
-        
+        int time = 130;
+        System.out.println(c.timeFormatter(time));
     }
     
 }
