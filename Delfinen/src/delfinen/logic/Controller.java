@@ -40,8 +40,8 @@ public class Controller {
         }
         return alleMedlemmer;
     }
-    
-    public ArrayList<Medlem> getMedlemmerListe(){
+
+    public ArrayList<Medlem> getMedlemmerListe() {
         return alleMedlemmer;
     }
 
@@ -93,10 +93,11 @@ public class Controller {
     public Konkurrencesvømmer søgKonkurrencesvømmerPåCprnr(int cprnr) {
         Konkurrencesvømmer result = null;
         for (Medlem m : alleMedlemmer) {
-            if (m.getAktivitetsform() == Aktivitetsform.KONKURRENCESVØMMER && m.getCprnr() == cprnr){
+            if (m.getAktivitetsform() == Aktivitetsform.KONKURRENCESVØMMER && m.getCprnr() == cprnr) {
                 result = (Konkurrencesvømmer) m;
             }
-        }return result;
+        }
+        return result;
     }
 
     public Medlem søgMedlemPåMail(String mail) {
@@ -125,10 +126,12 @@ public class Controller {
     public void opretResultat(Konkurrencesvømmer konkurrencesvømmer, int timeInSeconds, String date, Disciplin disciplin, String competitionName, int placement) {
         Resultat r = new Resultat(timeInSeconds, date, disciplin, competitionName, placement, konkurrencesvømmer);
         konkurrencesvømmer.setResultater(r);
+        dao.skrivTilFil(alleMedlemmer);
     }
 
     public void setTrænernavn(Konkurrencesvømmer konkurrencesvømmer, String trænernavn) {
         konkurrencesvømmer.setTrænernavn(trænernavn);
+        dao.skrivTilFil(alleMedlemmer);
     }
 
     public ArrayList<Resultat> getAlleResultater() {
@@ -150,7 +153,7 @@ public class Controller {
         }
         return crawlResultater;
     }
-    
+
     public ArrayList<Resultat> getRygrawlResultater() {
         ArrayList<Resultat> rygcrawlResultater = new ArrayList();
         for (Resultat r : getAlleResultater()) {
@@ -160,7 +163,7 @@ public class Controller {
         }
         return rygcrawlResultater;
     }
-    
+
     public ArrayList<Resultat> getButterflyResultater() {
         ArrayList<Resultat> butterflyResultater = new ArrayList();
         for (Resultat r : getAlleResultater()) {
@@ -170,7 +173,7 @@ public class Controller {
         }
         return butterflyResultater;
     }
-    
+
     public ArrayList<Resultat> getBrystsvømningResultater() {
         ArrayList<Resultat> brystsvømningResultater = new ArrayList();
         for (Resultat r : getAlleResultater()) {
@@ -180,7 +183,7 @@ public class Controller {
         }
         return brystsvømningResultater;
     }
-    
+
     public ArrayList<Resultat> getDisciplinResultater(Disciplin disciplin) {
         ArrayList<Resultat> disciplinResultater = new ArrayList();
         for (Resultat r : getAlleResultater()) {
@@ -190,12 +193,12 @@ public class Controller {
         }
         return disciplinResultater;
     }
-    
-    public ArrayList<Resultat> getTop5(Disciplin disciplin){
+
+    public ArrayList<Resultat> getTop5(Disciplin disciplin) {
         ArrayList<Resultat> disciplinResultater = new ArrayList();
         ArrayList<Resultat> top5DisciplinResultater = new ArrayList();
         for (Resultat r : getAlleResultater()) {
-            if (r.getDisciplin() == disciplin){
+            if (r.getDisciplin() == disciplin) {
                 disciplinResultater.add(r);
             }
         }
@@ -205,67 +208,69 @@ public class Controller {
         }
         return top5DisciplinResultater;
     }
-      
-    public int getRestanceForMedlem(Medlem medlem){
+
+    public int getRestanceForMedlem(Medlem medlem) {
         int restanceForMedlem = 0;
         BetalingCalculator bc = new BetalingCalculator();
-        for (Betaling b : medlem.getBetalinger()){
-            if (b.getBetalingssum() == 0){
+        for (Betaling b : medlem.getBetalinger()) {
+            if (b.getBetalingssum() == 0) {
                 restanceForMedlem += bc.udregnBetaling(medlem, b.getBetalingsyear());
             }
         }
         return restanceForMedlem;
     }
-    
-    public ArrayList<Medlem> getMedlemmerIRestance(){
+
+    public ArrayList<Medlem> getMedlemmerIRestance() {
         ArrayList<Medlem> alleMedlemmerIRestance = new ArrayList();
-        for (Medlem m : alleMedlemmer){
-            if (getRestanceForMedlem(m) > 0){
+        for (Medlem m : alleMedlemmer) {
+            if (getRestanceForMedlem(m) > 0) {
                 alleMedlemmerIRestance.add(m);
             }
         }
         return alleMedlemmerIRestance;
     }
-    
-    public int getRestanceForYear(int year){
+
+    public int getRestanceForYear(int year) {
         int totalRestanceForYear = 0;
-        for (Medlem m : getMedlemmerIRestance()){
-            for (Betaling b : m.getBetalinger())
-                if (b.getBetalingsyear() == year){
+        for (Medlem m : getMedlemmerIRestance()) {
+            for (Betaling b : m.getBetalinger()) {
+                if (b.getBetalingsyear() == year) {
                     totalRestanceForYear += getRestanceForMedlem(m);
                 }
+            }
         }
         return totalRestanceForYear;
     }
-    
-    public int getForventetIndkomstFraKontingenter(int year){
+
+    public int getForventetIndkomstFraKontingenter(int year) {
         int forventetIndkomst = 0;
         BetalingCalculator bc = new BetalingCalculator();
-        for (Medlem m : alleMedlemmer){
-            for (Betaling b : m.getBetalinger())
-                if (b.getBetalingsyear() == year){
+        for (Medlem m : alleMedlemmer) {
+            for (Betaling b : m.getBetalinger()) {
+                if (b.getBetalingsyear() == year) {
                     forventetIndkomst += bc.udregnBetaling(m, b.getBetalingsyear());
                 }
+            }
         }
         return forventetIndkomst;
     }
-    
-    public ArrayList<Konkurrencesvømmer> getKonkurrencesvømmere(){
+
+    public ArrayList<Konkurrencesvømmer> getKonkurrencesvømmere() {
         ArrayList<Konkurrencesvømmer> alleKonkurrencesvømmere = new ArrayList();
         for (Medlem m : alleMedlemmer) {
-            if (m.getAktivitetsform() == Aktivitetsform.KONKURRENCESVØMMER){
+            if (m.getAktivitetsform() == Aktivitetsform.KONKURRENCESVØMMER) {
                 Konkurrencesvømmer ks = (Konkurrencesvømmer) m;
                 alleKonkurrencesvømmere.add(ks);
-            }           
+            }
         }
         return alleKonkurrencesvømmere;
     }
-    
-    public Resultat getBestResult(Konkurrencesvømmer konkurrencesvømmer, Disciplin disciplin){
+
+    public Resultat getBestResult(Konkurrencesvømmer konkurrencesvømmer, Disciplin disciplin) {
         Resultat result = null;
         ArrayList<Resultat> resultater = new ArrayList();
-        for (Resultat r : konkurrencesvømmer.getResultater()){
-            if (r.getDisciplin() == disciplin){
+        for (Resultat r : konkurrencesvømmer.getResultater()) {
+            if (r.getDisciplin() == disciplin) {
                 resultater.add(r);
                 Collections.sort(resultater);
                 result = resultater.get(0);
@@ -273,30 +278,31 @@ public class Controller {
         }
         return result;
     }
-    
-    public String timeFormatter(int time){
+
+    public String timeFormatter(int time) {
         int min = time / 60;
         int sec = time % 60;
         String strMin = String.format("%02d", min);
         String strSec = String.format("%02d", sec);
         return strMin + ":" + strSec;
     }
-    
-    public Betaling getBetalingByYear(Medlem medlem, int year){
+
+    public Betaling getBetalingByYear(Medlem medlem, int year) {
         Betaling result = null;
-        for (Betaling b : medlem.getBetalinger()){
-            if (b.getBetalingsyear() == year){
+        for (Betaling b : medlem.getBetalinger()) {
+            if (b.getBetalingsyear() == year) {
                 result = b;
             }
         }
         return result;
     }
-    
+
     public int udregnBetaling(Medlem medlem, int year) {
         int age;
         age = year - medlem.getFødselsår();
-        if(getBetalingByYear(medlem, year).isHasPaid() == false)
+        if (getBetalingByYear(medlem, year).isHasPaid() == false) {
             return 0;
+        }
         if (medlem.isMedlemskabsstatus()) {
             if (age < 18) {
                 return JUNIORPRIS;
@@ -310,6 +316,4 @@ public class Controller {
         }
         return PASSIVPRIS;
     }
-    //metode BetalingsCalculator flytters til controller
 }
-
