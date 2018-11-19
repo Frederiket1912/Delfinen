@@ -20,44 +20,51 @@ import javax.swing.table.DefaultTableModel;
  * @author frederik
  */
 public class RedigereMedlemmer extends javax.swing.JFrame {
-
+    private Controller c;
     /**
      * Creates new form NewJFrame
      */
     public RedigereMedlemmer() {
         initComponents();
+        DataAccessorFile dao = new DataAccessorFile();
+        c = new Controller(dao);
+        c.getMedlemmer();
     }
 
     public void editUser() {
-        Controller c = new Controller(new DataAccessorFile());
+        
         this.jTextField4.setText(this.jTable1.getValueAt(this.jTable1.getSelectedRow(),0).toString());
         this.jTextField5.setText(this.jTable1.getValueAt(this.jTable1.getSelectedRow(),1).toString());
         this.jTextField6.setText(this.jTable1.getValueAt(this.jTable1.getSelectedRow(),2).toString());
+        this.jTextField7.setText(this.jTable1.getValueAt(this.jTable1.getSelectedRow(),3).toString());
         
+        DefaultTableModel model = createTable();
         Object[] message = {
             "Navn:", jTextField4,
             "Aktiv eller Passiv A/P:", jTextField5,
-            "Email:", jTextField6, //"Aktiv/Passiv:", jTextField7,
+            "Email:", jTextField6, "Fødselsdag", jTextField7,
         //"Motionist/Koncurrence:", jTextField8
         };
 
         int option = JOptionPane.showConfirmDialog(null, message, "Edit User", JOptionPane.OK_CANCEL_OPTION);
         if (option == JOptionPane.OK_OPTION) {
             //navnet på variablen burde nok være medlemskabsstatus da aktivitetsform er om de er motionist/konkurrencesvømmer
-            boolean aktivitetsform = true;
+            boolean medlemskabsstatus = true;
             try {
-                createTable().setValueAt(jTextField4.getText(), this.jTable1.getSelectedRow(), 0);
+                model.setValueAt(jTextField4.getText(), this.jTable1.getSelectedRow(), 0);
+                int alder = Integer.parseInt(this.jTable1.getValueAt(this.jTable1.getSelectedRow(), 3).toString());
                 if (jTextField5.getText().equalsIgnoreCase("a")) {
-                    aktivitetsform = true;
+                    medlemskabsstatus = true;
                 } else {
-                    aktivitetsform = false;
+                    medlemskabsstatus = false;
                 }
-                createTable().setValueAt(jTextField6.getText(), this.jTable1.getSelectedRow(), 2);
+                
                 Medlem tempMedlem = c.søgMedlemPåCprnr(Integer.parseInt(this.jTable1.getValueAt(this.jTable1.getSelectedRow(), 1).toString()));
                 //vi skal huske at ændre 15 til enten at få en værdi fra et field, 
                 //eller bare at få værdien fra tempMedlem.getFødelsår(), hvis fødselsåret ikke skal kunne redigeres.
-                c.redigerMedlem(tempMedlem, jTextField4.getText(), 15, aktivitetsform, jTextField6.getText());
-                System.out.println(c.getMedlemmer());
+                c.redigerMedlem(tempMedlem, jTextField4.getText(), alder, medlemskabsstatus, jTextField6.getText());
+               
+                
 
             } catch (Exception ex) {
 
@@ -129,7 +136,7 @@ public class RedigereMedlemmer extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Navn", "CPR", "E-mail"
+                "Navn", "CPR", "E-mail", "Fødselsdag"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -239,7 +246,7 @@ public class RedigereMedlemmer extends javax.swing.JFrame {
     }//GEN-LAST:event_CPRfieldActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Controller c = new Controller(new DataAccessorFile());
+
         DefaultTableModel model = createTable();
         model.getDataVector().removeAllElements();
         model.fireTableDataChanged();
@@ -271,7 +278,7 @@ public class RedigereMedlemmer extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        Controller c = new Controller(new DataAccessorFile());
+       
         for (Medlem m : c.getMedlemmer()) {
             if (Integer.parseInt(this.jTable1.getValueAt(this.jTable1.getSelectedRow(), 1).toString()) == m.getCprnr()) {
                 try {
