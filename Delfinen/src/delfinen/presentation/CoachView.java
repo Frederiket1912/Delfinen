@@ -150,7 +150,7 @@ public class CoachView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void RegisterTidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegisterTidActionPerformed
-        // TODO add your handling code here:
+        new RegistrerSvømmeResultater().setVisible(true);
     }//GEN-LAST:event_RegisterTidActionPerformed
 
     private void søgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_søgActionPerformed

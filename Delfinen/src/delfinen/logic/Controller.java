@@ -36,6 +36,10 @@ public class Controller {
         }
         return alleMedlemmer;
     }
+    
+    public ArrayList<Medlem> getMedlemmerListe(){
+        return alleMedlemmer;
+    }
 
     public void opretMotionist(String name, int cprnr, int fødselsår, boolean medlemskabsstatus, String mail) {
         Medlem m = new Motionist(name, cprnr, fødselsår, medlemskabsstatus, mail);
@@ -123,7 +127,7 @@ public class Controller {
         konkurrencesvømmer.setTrænernavn(trænernavn);
     }
 
-    public ArrayList<Resultat> søgAlleResultater() {
+    public ArrayList<Resultat> getAlleResultater() {
         ArrayList<Resultat> alleResultater = new ArrayList();
         for (Medlem m : alleMedlemmer) {
             ArrayList<Resultat> resultater = new ArrayList();
@@ -133,9 +137,9 @@ public class Controller {
         return alleResultater;
     }
 
-    public ArrayList<Resultat> søgCrawlResultater() {
+    public ArrayList<Resultat> getCrawlResultater() {
         ArrayList<Resultat> crawlResultater = new ArrayList();
-        for (Resultat r : søgAlleResultater()) {
+        for (Resultat r : getAlleResultater()) {
             if (r.getDisciplin() == Disciplin.CRAWL) {
                 crawlResultater.add(r);
             }
@@ -143,9 +147,9 @@ public class Controller {
         return crawlResultater;
     }
     
-    public ArrayList<Resultat> søgRygrawlResultater() {
+    public ArrayList<Resultat> getRygrawlResultater() {
         ArrayList<Resultat> rygcrawlResultater = new ArrayList();
-        for (Resultat r : søgAlleResultater()) {
+        for (Resultat r : getAlleResultater()) {
             if (r.getDisciplin() == Disciplin.RYGCRAWL) {
                 rygcrawlResultater.add(r);
             }
@@ -153,9 +157,9 @@ public class Controller {
         return rygcrawlResultater;
     }
     
-    public ArrayList<Resultat> søgButterflyResultater() {
+    public ArrayList<Resultat> getButterflyResultater() {
         ArrayList<Resultat> butterflyResultater = new ArrayList();
-        for (Resultat r : søgAlleResultater()) {
+        for (Resultat r : getAlleResultater()) {
             if (r.getDisciplin() == Disciplin.CRAWL) {
                 butterflyResultater.add(r);
             }
@@ -163,9 +167,9 @@ public class Controller {
         return butterflyResultater;
     }
     
-    public ArrayList<Resultat> søgBrystsvømningResultater() {
+    public ArrayList<Resultat> getBrystsvømningResultater() {
         ArrayList<Resultat> brystsvømningResultater = new ArrayList();
-        for (Resultat r : søgAlleResultater()) {
+        for (Resultat r : getAlleResultater()) {
             if (r.getDisciplin() == Disciplin.CRAWL) {
                 brystsvømningResultater.add(r);
             }
@@ -173,10 +177,20 @@ public class Controller {
         return brystsvømningResultater;
     }
     
+    public ArrayList<Resultat> getDisciplinResultater(Disciplin disciplin) {
+        ArrayList<Resultat> disciplinResultater = new ArrayList();
+        for (Resultat r : getAlleResultater()) {
+            if (r.getDisciplin() == disciplin) {
+                disciplinResultater.add(r);
+            }
+        }
+        return disciplinResultater;
+    }
+    
     public ArrayList<Resultat> getTop5(Disciplin disciplin){
         ArrayList<Resultat> disciplinResultater = new ArrayList();
         ArrayList<Resultat> top5DisciplinResultater = new ArrayList();
-        for (Resultat r : søgAlleResultater()) {
+        for (Resultat r : getAlleResultater()) {
             if (r.getDisciplin() == disciplin){
                 disciplinResultater.add(r);
             }
@@ -186,6 +200,19 @@ public class Controller {
             top5DisciplinResultater.add(disciplinResultater.get(i));
         }
         return top5DisciplinResultater;
+    }
+    
+    public ArrayList<Konkurrencesvømmer> getTop5Medlemmer(Disciplin disciplin){
+            Resultat r = null;
+            ArrayList<Konkurrencesvømmer> bedstemedlemmer = new ArrayList();
+            int temptime = 0;
+        for (Konkurrencesvømmer ks : getKonkurrencesvømmere()){
+            if (getBestResult(ks, disciplin).getTimeInSeconds() < temptime || bedstemedlemmer.size() <= 5){
+                bedstemedlemmer.add(ks);
+                if (bedstemedlemmer.size() == 5)
+                    temptime = getBestResult(bedstemedlemmer.get(4), disciplin);
+            }
+        }
     }
     
     public int getRestanceForMedlem(Medlem medlem){
@@ -230,6 +257,30 @@ public class Controller {
                 }
         }
         return forventetIndkomst;
+    }
+    
+    public ArrayList<Konkurrencesvømmer> getKonkurrencesvømmere(){
+        ArrayList<Konkurrencesvømmer> alleKonkurrencesvømmere = new ArrayList();
+        for (Medlem m : alleMedlemmer) {
+            if (m.getAktivitetsform() == Aktivitetsform.KONKURRENCESVØMMER){
+                Konkurrencesvømmer ks = (Konkurrencesvømmer) m;
+                alleKonkurrencesvømmere.add(ks);
+            }           
+        }
+        return alleKonkurrencesvømmere;
+    }
+    
+    public Resultat getBestResult(Konkurrencesvømmer konkurrencesvømmer, Disciplin disciplin){
+        Resultat result = null;
+        ArrayList<Resultat> resultater = new ArrayList();
+        for (Resultat r : konkurrencesvømmer.getResultater()){
+            if (r.getDisciplin() == disciplin){
+                resultater.add(r);
+                Collections.sort(resultater);
+                result = resultater.get(0);
+            }
+        }
+        return result;
     }
 }
 

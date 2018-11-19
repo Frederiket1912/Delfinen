@@ -10,7 +10,7 @@ public class Betaling {
     private int betalingssum;
     private int betalingsyear;
 
-    public Betaling(Motionist medlem, int betalingsyear) {
+    public Betaling(Medlem medlem, int betalingsyear) {
         BetalingCalculator bc = new BetalingCalculator();
         this.betalingssum = bc.udregnBetaling(medlem, betalingsyear);
         this.betalingsyear = betalingsyear;
@@ -24,5 +24,9 @@ public class Betaling {
 
     public int getBetalingssum() {
         return betalingssum;
+    }
+    
+    public String toString() {
+        return this.betalingssum + " " + this.betalingsyear + "";
     }
 }

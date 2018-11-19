@@ -51,6 +51,9 @@ public class Delfinen {
         System.out.println(c.søgMedlemPåCprnr(1912891867));
         System.out.println("getMedlemmer");
         System.out.println(c.getMedlemmer());
+        
+        
+        
     }
     
 }
