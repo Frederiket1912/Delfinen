@@ -22,15 +22,15 @@ public class Konkurrencesvømmer implements Serializable, Medlem {
 
     
 
-    public Konkurrencesvømmer(String name, int cprnr, int fødselsdato, boolean medlemskabsstatus, String mail, ArrayList<Betaling> betalinger, ArrayList<Resultat> resultater, String trænernavn) {
+    public Konkurrencesvømmer(String name, int cprnr, int fødselsdato, boolean medlemskabsstatus, String mail) {
         this.name = name;
         this.cprnr = cprnr;
         this.medlemskabsstatus = medlemskabsstatus;
         this.mail = mail;
-        this.betalinger = betalinger;
+        this.betalinger = new ArrayList();
         this.fødselsår = fødselsdato;
-        this.resultater = resultater;
-        this.trænernavn = trænernavn;
+        this.resultater = new ArrayList();
+        this.trænernavn = null;
     }
 
     @Override

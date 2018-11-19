@@ -26,11 +26,8 @@ public class Delfinen {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws ClassNotFoundException {
-        Controller c = new Controller(new DataAccessorFile());
-
-        ArrayList<Betaling> betalinger = new ArrayList();
-        ArrayList<Resultat> resultater = new ArrayList(); 
-        c.opretKonkurrencesvømmer("Frederik", 1912891867, 0, true, "frederiket@gmail.com", betalinger, resultater, "Henrik");
+        Controller c = new Controller(new DataAccessorFile()); 
+        c.opretKonkurrencesvømmer("Frederik", 1912891867, 0, true, "frederiket@gmail.com");
         //Medlem m = c.søgMedlemPåCprnr(1912891867);
         Konkurrencesvømmer m = c.søgKonkurrencesvømmerPåCprnr(1912891867);
         System.out.println(m);
@@ -50,7 +47,8 @@ public class Delfinen {
         System.out.println("getMedlemmer");
         System.out.println(c.getMedlemmer());
         c.redigerMedlem(m, "Hans", 0, false, "hej");
-        System.out.println(m);
+        System.out.println("redigeret medlem:");
+        System.out.println(c.søgMedlemPåCprnr(1912891867));
         System.out.println("getMedlemmer");
         System.out.println(c.getMedlemmer());
     }

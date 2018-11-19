@@ -37,20 +37,20 @@ public class Controller {
         return alleMedlemmer;
     }
 
-    public void opretMotionist(String name, int cprnr, int fødselsår, boolean medlemskabsstatus, String mail) throws ClassNotFoundException {
+    public void opretMotionist(String name, int cprnr, int fødselsår, boolean medlemskabsstatus, String mail) {
         Medlem m = new Motionist(name, cprnr, fødselsår, medlemskabsstatus, mail);
         alleMedlemmer.add(m);
         dao.skrivTilFil(alleMedlemmer);
 
     }
 
-    public void opretKonkurrencesvømmer(String name, int cprnr, int fødselsår, boolean medlemskabsstatus, String mail, ArrayList<Betaling> betalinger, ArrayList<Resultat> resultater, String trænernavn) {
-        Medlem m = new Konkurrencesvømmer(name, cprnr, fødselsår, medlemskabsstatus, mail, betalinger, resultater, trænernavn);
+    public void opretKonkurrencesvømmer(String name, int cprnr, int fødselsår, boolean medlemskabsstatus, String mail) {
+        Medlem m = new Konkurrencesvømmer(name, cprnr, fødselsår, medlemskabsstatus, mail);
         alleMedlemmer.add(m);
         dao.skrivTilFil(alleMedlemmer);
     }
 
-    public void sletMedlem(Medlem medlem) throws ClassNotFoundException {
+    public void sletMedlem(Medlem medlem) {
         ArrayList<Medlem> fjernes = new ArrayList();
         for (Medlem m : alleMedlemmer) {
             if (m.getCprnr() == medlem.getCprnr()) {
@@ -61,7 +61,7 @@ public class Controller {
         dao.skrivTilFil(alleMedlemmer);
     }
 
-    public ArrayList<Medlem> søgMedlemPåNavn(String name) throws ClassNotFoundException {
+    public ArrayList<Medlem> søgMedlemPåNavn(String name) {
         ArrayList<Medlem> medlemmerMedNavn = new ArrayList();
         for (Medlem m : alleMedlemmer) {
             if (m.getName().contains(name)) {
