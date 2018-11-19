@@ -6,7 +6,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 
-public class Konkurrencesvømmer implements Serializable, Medlem {
+public class Konkurrencesvømmer implements Serializable, Medlem{
     private String name;
     private int cprnr;
     private boolean medlemskabsstatus;

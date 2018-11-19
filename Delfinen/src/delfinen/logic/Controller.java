@@ -119,7 +119,7 @@ public class Controller {
     }
 
     public void opretResultat(Konkurrencesvømmer konkurrencesvømmer, int timeInSeconds, String date, Disciplin disciplin, String competitionName, int placement) {
-        Resultat r = new Resultat(timeInSeconds, date, disciplin, competitionName, placement);
+        Resultat r = new Resultat(timeInSeconds, date, disciplin, competitionName, placement, konkurrencesvømmer);
         konkurrencesvømmer.setResultater(r);
     }
 
@@ -202,18 +202,19 @@ public class Controller {
         return top5DisciplinResultater;
     }
     
-    public ArrayList<Konkurrencesvømmer> getTop5Medlemmer(Disciplin disciplin){
-            Resultat r = null;
-            ArrayList<Konkurrencesvømmer> bedstemedlemmer = new ArrayList();
-            int temptime = 0;
-        for (Konkurrencesvømmer ks : getKonkurrencesvømmere()){
-            if (getBestResult(ks, disciplin).getTimeInSeconds() < temptime || bedstemedlemmer.size() <= 5){
-                bedstemedlemmer.add(ks);
-                if (bedstemedlemmer.size() == 5)
-                    temptime = getBestResult(bedstemedlemmer.get(4), disciplin);
-            }
-        }
-    }
+//    public ArrayList<Konkurrencesvømmer> getTop5Medlemmer(Disciplin disciplin){
+//            Resultat r = null;
+//            ArrayList<Konkurrencesvømmer> bedstemedlemmer = new ArrayList();
+//            int temptime = 0;
+//        for (Konkurrencesvømmer ks : getKonkurrencesvømmere()){
+//            if (getBestResult(ks, disciplin).getTimeInSeconds() < temptime || bedstemedlemmer.size() <= 5){
+//                bedstemedlemmer.add(ks);
+//                if (bedstemedlemmer.size() == 5)
+//                    temptime = getBestResult(bedstemedlemmer.get(4), disciplin).getTimeInSeconds();
+//            }
+//        }
+//        Collections.sort(bedstemedlemmer);
+//    }
     
     public int getRestanceForMedlem(Medlem medlem){
         int restanceForMedlem = 0;

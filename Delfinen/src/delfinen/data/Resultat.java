@@ -8,13 +8,19 @@ public class Resultat implements Comparable<Resultat>{
     private Disciplin disciplin;
     private String competitionName;
     private int placement;
+    private String name;
 
-    public Resultat(int timeInSeconds, String date, Disciplin disciplin, String competitionName, int placement) {
+    public Resultat(int timeInSeconds, String date, Disciplin disciplin, String competitionName, int placement, Konkurrencesvømmer konkurrencesvømmer) {
         this.timeInSeconds = timeInSeconds;
         this.date = date;
         this.disciplin = disciplin;
         this.competitionName = competitionName;
         this.placement = placement;
+        this.name = konkurrencesvømmer.getName();
+    }
+
+    public String getName() {
+        return name;
     }
 
     @Override
