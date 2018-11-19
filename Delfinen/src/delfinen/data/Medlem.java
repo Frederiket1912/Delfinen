@@ -5,7 +5,7 @@
  */
 package delfinen.data;
 
-import delfinen.logic.Betaling;
+import delfinen.logic.BetalingsCalculator;
 import java.util.ArrayList;
 
 /**
@@ -14,11 +14,11 @@ import java.util.ArrayList;
  */
 public interface Medlem {
 
-    public ArrayList<Betaling> getBetalinger(); 
+    public ArrayList<BetalingsCalculator> getBetalinger(); 
     
     public Aktivitetsform getAktivitetsform();
 
-    public void setBetalinger(Betaling betaling);
+    public void setBetalinger(BetalingsCalculator betaling);
 
     @Override
     public String toString();

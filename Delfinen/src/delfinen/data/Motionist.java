@@ -1,7 +1,7 @@
 
 package delfinen.data;
 
-import delfinen.logic.Betaling;
+import delfinen.logic.BetalingsCalculator;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -11,7 +11,7 @@ public class Motionist implements Serializable, Medlem {
     private int cprnr;
     private boolean medlemskabsstatus;
     private String mail;
-    private ArrayList<Betaling> betalinger;
+    private ArrayList<BetalingsCalculator> betalinger;
     private int fødselsår;
     private Aktivitetsform aktivitetsform = Aktivitetsform.MOTIONIST;
 
@@ -75,12 +75,12 @@ public class Motionist implements Serializable, Medlem {
     }
 
     @Override
-    public ArrayList<Betaling> getBetalinger() {
+    public ArrayList<BetalingsCalculator> getBetalinger() {
         return betalinger;
     }
 
     @Override
-    public void setBetalinger(Betaling betaling) {
+    public void setBetalinger(BetalingsCalculator betaling) {
         betalinger.add(betaling);
     }
 

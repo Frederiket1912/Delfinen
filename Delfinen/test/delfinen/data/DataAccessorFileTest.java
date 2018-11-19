@@ -5,7 +5,7 @@
  */
 package delfinen.data;
 
-import delfinen.logic.Betaling;
+import delfinen.logic.BetalingsCalculator;
 import java.io.File;
 import java.util.ArrayList;
 import org.junit.After;

@@ -1,7 +1,7 @@
 
 package delfinen.data;
 
-import delfinen.logic.Betaling;
+import delfinen.logic.BetalingsCalculator;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -11,7 +11,7 @@ public class Konkurrencesvømmer implements Serializable, Medlem {
     private int cprnr;
     private boolean medlemskabsstatus;
     private String mail;
-    private ArrayList<Betaling> betalinger;
+    private ArrayList<BetalingsCalculator> betalinger;
     private int fødselsår;
     private ArrayList<Resultat> resultater;
     private String trænernavn;
@@ -22,7 +22,7 @@ public class Konkurrencesvømmer implements Serializable, Medlem {
 
     
 
-    public Konkurrencesvømmer(String name, int cprnr, int fødselsdato, boolean medlemskabsstatus, String mail, ArrayList<Betaling> betalinger, ArrayList<Resultat> resultater, String trænernavn) {
+    public Konkurrencesvømmer(String name, int cprnr, int fødselsdato, boolean medlemskabsstatus, String mail, ArrayList<BetalingsCalculator> betalinger, ArrayList<Resultat> resultater, String trænernavn) {
         this.name = name;
         this.cprnr = cprnr;
         this.medlemskabsstatus = medlemskabsstatus;
@@ -58,12 +58,12 @@ public class Konkurrencesvømmer implements Serializable, Medlem {
     }
 
     @Override
-    public ArrayList<Betaling> getBetalinger() {
+    public ArrayList<BetalingsCalculator> getBetalinger() {
         return betalinger;
     }
 
     @Override
-    public void setBetalinger(Betaling betaling) {
+    public void setBetalinger(BetalingsCalculator betaling) {
         betalinger.add(betaling);
     }
 
