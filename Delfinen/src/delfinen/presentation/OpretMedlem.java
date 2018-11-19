@@ -176,8 +176,7 @@ public class OpretMedlem extends javax.swing.JFrame {
         //konkurrencesvømmere, men om de er aktive eller passive medlemmer.
         boolean motionist = false;
         try{
-            if(this.getSelectedButtonText(buttonGroup1).equals("Motioist")){
-            motionist = true;
+            if(this.getSelectedButtonText(buttonGroup1).equals("Motionist")){
             c.opretMotionist(this.NameField.getText(), Integer.parseInt(this.AgeField.getText()), Integer.parseInt(this.CPRField.getText()), motionist, this.EmailField.getText());
             
         } else{

@@ -6,6 +6,8 @@
 package delfinen.presentation;
 
 import delfinen.data.DataAccessorFile;
+import delfinen.data.Disciplin;
+import delfinen.data.Konkurrencesvømmer;
 import delfinen.data.Medlem;
 import delfinen.logic.Controller;
 import javax.swing.table.DefaultTableModel;
@@ -159,7 +161,7 @@ public class CoachView extends javax.swing.JFrame {
         model.getDataVector().removeAllElements();
         model.fireTableDataChanged();
         int tempCPR = 0;
-        for (Medlem m : c.getMedlemmer()) {
+        for (Medlem m : c.getKonkurrencesvømmere()) {
             try {
                 tempCPR = Integer.parseInt(this.CPRField.getText());
 
@@ -168,10 +170,9 @@ public class CoachView extends javax.swing.JFrame {
             if (m.getCprnr() == tempCPR || m.getMail().toLowerCase().equals(this.EmailField.getText().toLowerCase()) || m.getName().toLowerCase().equals(this.NameField.getText().toLowerCase())) {
                 Object rowData[] = new Object[5];
                 rowData[0] = m.getName();
-                //man kan ikke ændre cprnr i metoden redigerMedlem mere
                 rowData[1] = m.getFødselsår();
-                rowData[2] = m.getResultater();
-                rowData[3] = m.getFødselsår();
+                rowData[2] = c.getBestResult((Konkurrencesvømmer)m, Disciplin.CRAWL);
+                //rowData[3] = m.getFødselsår();
                 //rowData[4] = m.getBetaling();
 
                 model.addRow(rowData);
