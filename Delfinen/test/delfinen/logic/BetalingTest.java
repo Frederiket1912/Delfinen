@@ -47,7 +47,7 @@ public class BetalingTest {
         System.out.println("udregnVoksen");
         Motionist motionist = new Motionist("Bob", 251078, 1978, true, "mail@.com");
         int year = 2008;
-        BetalingsCalculator instance = new BetalingsCalculator();
+        BetalingCalculator instance = new BetalingCalculator();
         int expResult = 1600;
         int result = instance.udregnBetaling(motionist, year);
         assertEquals(expResult, result);
@@ -59,7 +59,7 @@ public class BetalingTest {
         System.out.println("udregnJunior");
         Motionist motionist = new Motionist("Bob", 251078, 1998, true, "mail@.com");
         int year = 2008;
-        BetalingsCalculator instance = new BetalingsCalculator();
+        BetalingCalculator instance = new BetalingCalculator();
         int expResult = 1000;
         int result = instance.udregnBetaling(motionist, year);
         assertEquals(expResult, result);
@@ -71,7 +71,7 @@ public class BetalingTest {
         System.out.println("udregnSenior");
         Motionist motionist = new Motionist("Bob", 251078, 1938, true, "mail@.com");
         int year = 2008;
-        BetalingsCalculator instance = new BetalingsCalculator();
+        BetalingCalculator instance = new BetalingCalculator();
         int expResult = 1200;
         int result = instance.udregnBetaling(motionist, year);
         assertEquals(expResult, result);
@@ -83,7 +83,7 @@ public class BetalingTest {
         System.out.println("udregnBetaling");
         Motionist motionist = new Motionist("Bob", 251078, 1978, false, "mail@.com");
         int year = 2008;
-        BetalingsCalculator instance = new BetalingsCalculator();
+        BetalingCalculator instance = new BetalingCalculator();
         int expResult = 500;
         int result = instance.udregnBetaling(motionist, year);
         assertEquals(expResult, result);
