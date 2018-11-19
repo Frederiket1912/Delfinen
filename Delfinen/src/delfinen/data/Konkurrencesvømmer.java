@@ -1,7 +1,7 @@
 
 package delfinen.data;
 
-import delfinen.logic.Betaling;
+import delfinen.logic.BetalingCalculator;
 import java.io.Serializable;
 import java.util.ArrayList;
 

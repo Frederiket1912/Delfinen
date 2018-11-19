@@ -6,6 +6,7 @@
 package delfinen.logic;
 
 import delfinen.data.Aktivitetsform;
+import delfinen.data.Betaling;
 import delfinen.data.DataAccessorFile;
 import delfinen.data.Disciplin;
 import delfinen.data.Konkurrencesvømmer;

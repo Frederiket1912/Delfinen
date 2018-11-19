@@ -5,13 +5,14 @@
  */
 package delfinen;
 
+import delfinen.data.Betaling;
 import delfinen.data.DataAccessorFile;
 import delfinen.data.Disciplin;
 import delfinen.data.Konkurrencesvømmer;
 import delfinen.data.Medlem;
 import delfinen.data.Motionist;
 import delfinen.data.Resultat;
-import delfinen.logic.Betaling;
+import delfinen.logic.BetalingCalculator;
 import delfinen.logic.Controller;
 import java.util.ArrayList;
 

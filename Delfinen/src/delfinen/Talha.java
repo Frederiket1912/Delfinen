@@ -12,10 +12,10 @@ import javax.swing.JFrame;
  * @author Dhono
  */
 public class Talha {
-     public static void main(String[] args) {
-        
-         JFrame kontingent = new JFrame();
-         kontingent.setAlwaysOnTop(true);
-         
-    }
+//     public static void main(String[] args) {
+//        
+//         JFrame kontingent = new JFrame();
+//         kontingent.setAlwaysOnTop(true);
+//         
+//    }
 }

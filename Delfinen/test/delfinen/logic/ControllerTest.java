@@ -81,7 +81,7 @@ public class ControllerTest {
         System.out.println("opretKonkurrencesvømmer");
         Controller c = new Controller(new DataAccessorFile());
         int listBefore = c.getMedlemmer().size();
-        ArrayList<Betaling> betalinger = new ArrayList();
+        ArrayList<BetalingsCalculator> betalinger = new ArrayList();
         ArrayList<Resultat> resultater = new ArrayList();
         c.opretKonkurrencesvømmer("Frederik", 1912891867, 19121989, true, "frederiket@gmail.com", betalinger, resultater, "Henrik");
         int listAfter = c.getMedlemmer().size();
