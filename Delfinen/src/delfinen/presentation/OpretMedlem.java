@@ -6,7 +6,6 @@
 package delfinen.presentation;
 
 import delfinen.data.DataAccessorFile;
-import delfinen.logic.BetalingsCalculator;
 import delfinen.logic.Controller;
 import java.util.ArrayList;
 import java.util.Enumeration;
