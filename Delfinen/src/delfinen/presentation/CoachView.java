@@ -82,6 +82,11 @@ public class CoachView extends javax.swing.JFrame {
         });
 
         jButton1.setText("Samlet Resultater");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Navn");
 
@@ -168,13 +173,14 @@ public class CoachView extends javax.swing.JFrame {
             } catch (Exception ex) {
             }
             if (m.getCprnr() == tempCPR || m.getMail().toLowerCase().equals(this.EmailField.getText().toLowerCase()) || m.getName().toLowerCase().equals(this.NameField.getText().toLowerCase())) {
-                Object rowData[] = new Object[5];
+                Object rowData[] = new Object[6];
                 rowData[0] = m.getName();
                 rowData[1] = m.getFødselsår();
                 rowData[2] = c.getBestResult((Konkurrencesvømmer)m, Disciplin.CRAWL);
-                //rowData[3] = m.getFødselsår();
-                //rowData[4] = m.getBetaling();
-
+                rowData[3] = c.getBestResult((Konkurrencesvømmer)m, Disciplin.BRYSTSVØMNING);
+                rowData[4] = c.getBestResult((Konkurrencesvømmer)m, Disciplin.RYGCRAWL);
+                rowData[5] = c.getBestResult((Konkurrencesvømmer)m, Disciplin.BUTTERFLY);
+                
                 model.addRow(rowData);
 
             }
@@ -185,6 +191,10 @@ public class CoachView extends javax.swing.JFrame {
     private void NameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NameFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_NameFieldActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       new SvømmeResultater().setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     public DefaultTableModel createTable() {
         DefaultTableModel model = (DefaultTableModel) this.jTable1.getModel();
