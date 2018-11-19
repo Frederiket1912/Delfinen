@@ -26,7 +26,7 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                  <Component id="jButton2" max="32767" attributes="0"/>
+                  <Component id="jButtonRegistrerSvømmeresultat" max="32767" attributes="0"/>
                   <Component id="jButton1" alignment="1" max="32767" attributes="0"/>
                   <Component id="jButton10" alignment="1" pref="211" max="32767" attributes="0"/>
                   <Component id="jButton11" alignment="1" pref="211" max="32767" attributes="0"/>
@@ -39,7 +39,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="jButton3" min="-2" pref="195" max="-2" attributes="0"/>
+                      <Component id="jButtonHovedemenu" min="-2" pref="195" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
@@ -85,8 +85,8 @@
               </Group>
               <EmptySpace pref="38" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="jButton3" pref="65" max="32767" attributes="0"/>
-                  <Component id="jButton2" max="32767" attributes="0"/>
+                  <Component id="jButtonHovedemenu" pref="65" max="32767" attributes="0"/>
+                  <Component id="jButtonRegistrerSvømmeresultat" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -158,20 +158,20 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton11ActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton2">
+    <Component class="javax.swing.JButton" name="jButtonRegistrerSv&#xf8;mmeresultat">
       <Properties>
         <Property name="text" type="java.lang.String" value="Registrer sv&#xf8;mmeresultat"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonRegistrerSv&#xf8;mmeresultatActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton3">
+    <Component class="javax.swing.JButton" name="jButtonHovedemenu">
       <Properties>
         <Property name="text" type="java.lang.String" value="Hovedemenu"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton3ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonHovedemenuActionPerformed"/>
       </Events>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">

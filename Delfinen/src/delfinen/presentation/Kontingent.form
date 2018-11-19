@@ -95,6 +95,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="jTextField2">
       <Properties>
+        <Property name="editable" type="boolean" value="false"/>
         <Property name="text" type="java.lang.String" value="Forventet indkomst fra &#xe5;r xxxx"/>
       </Properties>
     </Component>
