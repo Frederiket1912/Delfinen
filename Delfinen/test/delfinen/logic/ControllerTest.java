@@ -192,7 +192,7 @@ public class ControllerTest {
         int cprnr = 1912891867;
         Konkurrencesvømmer expResult = new Konkurrencesvømmer("Frederik", 1912891867, 19121989,true,"frederiket@gmail.com");
         Konkurrencesvømmer result = c.søgKonkurrencesvømmerPåCprnr(cprnr);
-        assertEquals(expResult, result);
+        assertEquals(expResult.getCprnr(), result.getCprnr());
         
       
 
