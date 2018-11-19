@@ -10,6 +10,7 @@ package delfinen.presentation;
  * @author Talha Noory
  */
 public class Hovedemenu extends javax.swing.JFrame {
+    
 
     /**
      * Creates new form Hovedemenu
@@ -27,34 +28,35 @@ public class Hovedemenu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jButtonMedlemmer = new javax.swing.JButton();
+        jButtonKontingent = new javax.swing.JButton();
+        jButtonSvømmeresultater = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("Medlemmer");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonMedlemmer.setText("Medlemmer");
+        jButtonMedlemmer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonMedlemmerActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Kontingent");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jButtonKontingent.setText("Kontingent");
+        jButtonKontingent.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jButtonKontingentActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Svømmeresultater");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jButtonSvømmeresultater.setText("Svømmeresultater");
+        jButtonSvømmeresultater.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jButtonSvømmeresultaterActionPerformed(evt);
             }
         });
 
+        jTextField1.setEditable(false);
         jTextField1.setText("Hovedemenu");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -66,9 +68,9 @@ public class Hovedemenu extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jButtonSvømmeresultater, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
+                            .addComponent(jButtonKontingent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonMedlemmer, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(89, 89, 89))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -80,28 +82,34 @@ public class Hovedemenu extends javax.swing.JFrame {
                 .addGap(36, 36, 36)
                 .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButtonMedlemmer, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButtonKontingent, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButtonSvømmeresultater, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(75, 75, 75))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void jButtonKontingentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonKontingentActionPerformed
+        this.dispose();
+        Kontingent k = new Kontingent();
+        k.setVisible(true);
+    }//GEN-LAST:event_jButtonKontingentActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void jButtonMedlemmerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMedlemmerActionPerformed
+        this.dispose();
+        RedigereMedlemmer m = new RedigereMedlemmer();
+        m.setVisible(true);
+    }//GEN-LAST:event_jButtonMedlemmerActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void jButtonSvømmeresultaterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSvømmeresultaterActionPerformed
+        this.dispose();
+        SvømmeResultater sr = new SvømmeResultater();
+        sr.setVisible(true);
+    }//GEN-LAST:event_jButtonSvømmeresultaterActionPerformed
 
     /**
      * @param args the command line arguments
@@ -139,9 +147,9 @@ public class Hovedemenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButtonKontingent;
+    private javax.swing.JButton jButtonMedlemmer;
+    private javax.swing.JButton jButtonSvømmeresultater;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

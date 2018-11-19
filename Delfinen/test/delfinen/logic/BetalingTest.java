@@ -80,7 +80,7 @@ public class BetalingTest {
     
     @Test
     public void testUdregnPassiv() {
-        System.out.println("udregnBetaling");
+        System.out.println("udregnPassiv");
         Motionist motionist = new Motionist("Bob", 251078, 1978, false, "mail@.com");
         int year = 2008;
         BetalingCalculator instance = new BetalingCalculator();

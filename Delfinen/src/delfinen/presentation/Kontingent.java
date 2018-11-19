@@ -47,6 +47,7 @@ public class Kontingent extends javax.swing.JFrame {
 
         jTextField1.setText("Indtast årstal");
 
+        jTextField2.setEditable(false);
         jTextField2.setText("Forventet indkomst fra år xxxx");
 
         jButtonHovedemenu.setText("Hovedemenu");
@@ -121,7 +122,9 @@ public class Kontingent extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonIndkomstActionPerformed
 
     private void jButtonHovedemenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonHovedemenuActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
+        Hovedemenu hm = new Hovedemenu();
+        hm.setVisible(true);
     }//GEN-LAST:event_jButtonHovedemenuActionPerformed
 
     private void jButtonRestanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRestanceActionPerformed

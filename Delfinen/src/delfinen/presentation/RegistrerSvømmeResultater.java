@@ -36,8 +36,8 @@ public class RegistrerSvømmeResultater extends javax.swing.JFrame {
         jCheckBox3 = new javax.swing.JCheckBox();
         jCheckBox4 = new javax.swing.JCheckBox();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jButtonSvømmeresultater = new javax.swing.JButton();
+        jButtonHovedemenu = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -84,17 +84,17 @@ public class RegistrerSvømmeResultater extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Svømmeresultater");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jButtonSvømmeresultater.setText("Svømmeresultater");
+        jButtonSvømmeresultater.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jButtonSvømmeresultaterActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Hovedemenu");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jButtonHovedemenu.setText("Hovedemenu");
+        jButtonHovedemenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jButtonHovedemenuActionPerformed(evt);
             }
         });
 
@@ -127,9 +127,9 @@ public class RegistrerSvømmeResultater extends javax.swing.JFrame {
                             .addComponent(jCheckBox2)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(12, 12, 12)
-                        .addComponent(jButton2)
+                        .addComponent(jButtonSvømmeresultater)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButtonHovedemenu, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -151,8 +151,8 @@ public class RegistrerSvømmeResultater extends javax.swing.JFrame {
                 .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButtonSvømmeresultater, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonHovedemenu, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34))
         );
 
@@ -167,13 +167,16 @@ public class RegistrerSvømmeResultater extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBox3ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void jButtonHovedemenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonHovedemenuActionPerformed
+        this.dispose();
+        Hovedemenu hm = new Hovedemenu();
+        hm.setVisible(true);    }//GEN-LAST:event_jButtonHovedemenuActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void jButtonSvømmeresultaterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSvømmeresultaterActionPerformed
+        this.dispose();
+        SvømmeResultater sr = new SvømmeResultater();
+        sr.setVisible(true);
+    }//GEN-LAST:event_jButtonSvømmeresultaterActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
@@ -224,8 +227,8 @@ public class RegistrerSvømmeResultater extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButtonHovedemenu;
+    private javax.swing.JButton jButtonSvømmeresultater;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JCheckBox jCheckBox3;

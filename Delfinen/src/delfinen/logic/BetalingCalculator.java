@@ -10,10 +10,13 @@ public class BetalingCalculator {
     final static int JUNIORPRIS = 1000;
     final static int VOKSENPRIS = 1600;
     final static int SENIORPRIS = 1200;
+    private boolean hasPaid;
+    
 
     public int udregnBetaling(Medlem medlem, int year) {
         int age;
         age = year - medlem.getFødselsår();
+        if(!hasPaid) return 0;
         if (medlem.isMedlemskabsstatus()) {
             if (age < 18) {
                 return JUNIORPRIS;

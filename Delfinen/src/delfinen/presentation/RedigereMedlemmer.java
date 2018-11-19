@@ -269,7 +269,7 @@ public class RedigereMedlemmer extends javax.swing.JFrame {
         model.getDataVector().removeAllElements();
         model.fireTableDataChanged();
         int tempCPR = 0;
-        for (Medlem m : c.getMedlemmer()) {
+        for (Medlem m : c.getMedlemmerListe()) {
             try {
                 tempCPR = Integer.parseInt(this.CPRfield.getText());
                 System.out.println(m.getBetalinger());
@@ -282,8 +282,12 @@ public class RedigereMedlemmer extends javax.swing.JFrame {
                 rowData[1] = m.getCprnr();
                 rowData[2] = m.getMail();
                 rowData[3] = m.getFødselsår();
-                
-                
+
+                for(Betaling b : m.getBetalinger()){
+                    betalingsår.add(b.getBetalingsyear());
+                }
+                rowData[4] = betalingsår;
+
 
                 model.addRow(rowData);
 
@@ -317,25 +321,28 @@ public class RedigereMedlemmer extends javax.swing.JFrame {
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         
         DefaultTableModel model = createTable();
-        
-        
+
+
         Medlem tempMedlem = c.søgMedlemPåCprnr(Integer.parseInt(this.jTable1.getValueAt(this.jTable1.getSelectedRow(),1).toString()));
            this.jTextField4.setText(""+tempMedlem.getCprnr());
-         
-        
-        
+           this.jTextField5.setText(tempMedlem.getName());
+
+
+
+
         Object[] message = {
             "CPR:", jTextField4,
-            "Betalingsår", jTextField5
-           
+            "Navn", jTextField5,
+                "Betalingsår", jTextField6
+
         };
         int option = JOptionPane.showConfirmDialog(null, message, "Edit User", JOptionPane.OK_OPTION);
         if (option == JOptionPane.OK_OPTION) {
-            Betaling b = new Betaling(tempMedlem, Integer.parseInt(this.jTextField5.getText()));
+            Betaling b = new Betaling(tempMedlem, Integer.parseInt(this.jTextField6.getText()));
             tempMedlem.setBetalinger(b);
-            
-            
-        
+
+
+
         }
     }//GEN-LAST:event_jButton5ActionPerformed
 
