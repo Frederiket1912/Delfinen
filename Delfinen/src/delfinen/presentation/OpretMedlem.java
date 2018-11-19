@@ -18,12 +18,15 @@ import javax.swing.JOptionPane;
  * @author frederik
  */
 public class OpretMedlem extends javax.swing.JFrame {
-    Controller c = new Controller(new DataAccessorFile());
+    private Controller c ;
     /**
      * Creates new form OpretMedlem
      */
     public OpretMedlem() {
         initComponents();
+        DataAccessorFile dao = new DataAccessorFile();
+        c = new Controller(dao);
+        c.getMedlemmer();
     }
     
     private String getSelectedButtonText(ButtonGroup buttonGroup) {
@@ -171,23 +174,24 @@ public class OpretMedlem extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void OpretButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OpretButtonActionPerformed
-        c.getMedlemmer();
+
         //den måde jeg har lavet metoden til at oprette motionister skal de ikke have en boolean om de er motionister eller
         //konkurrencesvømmere, men om de er aktive eller passive medlemmer.
         boolean motionist = false;
         try{
             if(this.getSelectedButtonText(buttonGroup1).equals("Motionist")){
             c.opretMotionist(this.NameField.getText(), Integer.parseInt(this.AgeField.getText()), Integer.parseInt(this.CPRField.getText()), motionist, this.EmailField.getText());
-            
+            JOptionPane.showMessageDialog(null,"Motionist Oprettet");
         } else{
                 c.opretKonkurrencesvømmer(this.NameField.getText(), Integer.parseInt(this.AgeField.getText()), Integer.parseInt(this.CPRField.getText()), motionist, this.EmailField.getText());
+                JOptionPane.showMessageDialog(null,"Konkurrence svømmer Oprettet");
             }
             
             //metoden er måske blever ændret siden det her blev lavet, 
             //men opretMotionist skal have (String name, int cprnr, int fødselsår, boolean medlemskabsstatus, String mail)
             //så cpr og age skal byttes om, og age skal nok omdøbes til fødelsår
             
-            JOptionPane.showMessageDialog(null,"Medlem Oprettet");
+            
             setVisible(false);
         }catch(Exception ex){
             
