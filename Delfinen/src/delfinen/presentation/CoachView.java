@@ -26,6 +26,10 @@ public class CoachView extends javax.swing.JFrame {
         DataAccessorFile dao = new DataAccessorFile();
         c = new Controller(dao);
         c.getMedlemmer();
+        //for(Konkurrencesvømmer k : c.getKonkurrencesvømmere()){
+        //    c.opretResultat(k, 66, "75", Disciplin.CRAWL, "Noget", 1);
+        //}
+       
     }
 
     /**
@@ -176,11 +180,14 @@ public class CoachView extends javax.swing.JFrame {
                 Object rowData[] = new Object[6];
                 rowData[0] = m.getName();
                 rowData[1] = m.getFødselsår();
-                rowData[2] = c.getBestResult((Konkurrencesvømmer)m, Disciplin.CRAWL);
-                rowData[3] = c.getBestResult((Konkurrencesvømmer)m, Disciplin.BRYSTSVØMNING);
-                rowData[4] = c.getBestResult((Konkurrencesvømmer)m, Disciplin.RYGCRAWL);
-                rowData[5] = c.getBestResult((Konkurrencesvømmer)m, Disciplin.BUTTERFLY);
-                
+                try{
+                rowData[2] = c.getBestResult((Konkurrencesvømmer)m, Disciplin.CRAWL).getTimeInSeconds();
+                rowData[3] = c.getBestResult((Konkurrencesvømmer)m, Disciplin.BRYSTSVØMNING).getTimeInSeconds();
+                rowData[4] = c.getBestResult((Konkurrencesvømmer)m, Disciplin.RYGCRAWL).getTimeInSeconds();
+                rowData[5] = c.getBestResult((Konkurrencesvømmer)m, Disciplin.BUTTERFLY).getTimeInSeconds();
+                }catch(Exception ex){
+                    
+                }
                 model.addRow(rowData);
 
             }
@@ -231,6 +238,7 @@ public class CoachView extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(CoachView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
