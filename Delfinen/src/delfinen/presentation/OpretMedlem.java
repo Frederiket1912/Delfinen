@@ -176,12 +176,18 @@ public class OpretMedlem extends javax.swing.JFrame {
         //konkurrencesvømmere, men om de er aktive eller passive medlemmer.
         boolean motionist = false;
         try{
-            if(this.getSelectedButtonText(buttonGroup1).equals("Koncurrence")){
+            if(this.getSelectedButtonText(buttonGroup1).equals("Motioist")){
             motionist = true;
-        }   //metoden er måske blever ændret siden det her blev lavet, 
+            c.opretMotionist(this.NameField.getText(), Integer.parseInt(this.AgeField.getText()), Integer.parseInt(this.CPRField.getText()), motionist, this.EmailField.getText());
+            
+        } else{
+                c.opretKonkurrencesvømmer(this.NameField.getText(), Integer.parseInt(this.AgeField.getText()), Integer.parseInt(this.CPRField.getText()), motionist, this.EmailField.getText());
+            }
+            
+            //metoden er måske blever ændret siden det her blev lavet, 
             //men opretMotionist skal have (String name, int cprnr, int fødselsår, boolean medlemskabsstatus, String mail)
             //så cpr og age skal byttes om, og age skal nok omdøbes til fødelsår
-            c.opretMotionist(this.NameField.getText(), Integer.parseInt(this.AgeField.getText()), Integer.parseInt(this.CPRField.getText()), motionist, this.EmailField.getText());
+            
             JOptionPane.showMessageDialog(null,"Medlem Oprettet");
             setVisible(false);
         }catch(Exception ex){
