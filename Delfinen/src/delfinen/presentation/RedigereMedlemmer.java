@@ -42,7 +42,7 @@ public class RedigereMedlemmer extends javax.swing.JFrame {
         Object[] message = {
             "Navn:", jTextField4,
             "Aktiv eller Passiv A/P:", jTextField5,
-            "Email:", jTextField6, "Fødselsdag", jTextField7,
+            "Email:", jTextField6, "Fødselsår", jTextField7,
         //"Motionist/Koncurrence:", jTextField8
         };
 
