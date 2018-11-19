@@ -268,7 +268,7 @@ public class RedigereMedlemmer extends javax.swing.JFrame {
         model.getDataVector().removeAllElements();
         model.fireTableDataChanged();
         int tempCPR = 0;
-        for (Medlem m : c.getMedlemmerListe()) {
+        for (Medlem m : c.getMedlemmer()) {
             try {
                 tempCPR = Integer.parseInt(this.CPRfield.getText());
                 System.out.println(m.getBetalinger());
