@@ -283,7 +283,7 @@ public class RedigereMedlemmer extends javax.swing.JFrame {
             if (Integer.parseInt(this.jTable1.getValueAt(this.jTable1.getSelectedRow(), 1).toString()) == m.getCprnr()) {
                 try {
                     c.sletMedlem(m);
-                } catch (ClassNotFoundException ex) {
+                } catch (Exception ex) {
                     //skal nok noget ind her :p
                 }
                 break;
