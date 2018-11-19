@@ -339,7 +339,7 @@ public class RedigereMedlemmer extends javax.swing.JFrame {
         if (option == JOptionPane.OK_OPTION) {
             //jeg har lavet en ny attribut til betaling der er en boolean.
             //hvis de betaler 0, altså ikke betaler skal den sættes til false, ellers til true
-            Betaling b = new Betaling(tempMedlem, Integer.parseInt(this.jTextField6.getText()), null);
+            Betaling b = new Betaling(tempMedlem, Integer.parseInt(this.jTextField6.getText()), true);
             tempMedlem.setBetalinger(b);
 
 
