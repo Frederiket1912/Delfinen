@@ -5,6 +5,7 @@
  */
 package delfinen.logic;
 
+import delfinen.data.Betaling;
 import delfinen.data.DataAccessorFile;
 import delfinen.data.Disciplin;
 import delfinen.data.Konkurrencesvømmer;
@@ -81,9 +82,9 @@ public class ControllerTest {
         System.out.println("opretKonkurrencesvømmer");
         Controller c = new Controller(new DataAccessorFile());
         int listBefore = c.getMedlemmer().size();
-        ArrayList<BetalingsCalculator> betalinger = new ArrayList();
+        ArrayList<Betaling> betaling = new ArrayList();
         ArrayList<Resultat> resultater = new ArrayList();
-        c.opretKonkurrencesvømmer("Frederik", 1912891867, 19121989, true, "frederiket@gmail.com", betalinger, resultater, "Henrik");
+        c.opretKonkurrencesvømmer("Frederik", 1912891867, 19121989, true, "frederiket@gmail.com", betaling , resultater, "Henrik");
         int listAfter = c.getMedlemmer().size();
         //vi tjekker om listen med medlemmer er blevet en større efter vi opretter en konkurrencesvømmer
         assertEquals(listBefore, listAfter - 1);
