@@ -6,6 +6,7 @@
 package delfinen.logic;
 
 import delfinen.data.Aktivitetsform;
+import delfinen.data.Betaling;
 import delfinen.data.DataAccessorFile;
 import delfinen.data.Disciplin;
 import delfinen.data.Konkurrencesvømmer;
@@ -43,7 +44,7 @@ public class Controller {
 
     }
 
-    public void opretKonkurrencesvømmer(String name, int cprnr, int fødselsår, boolean medlemskabsstatus, String mail, ArrayList<BetalingCalculator> betalinger, ArrayList<Resultat> resultater, String trænernavn) {
+    public void opretKonkurrencesvømmer(String name, int cprnr, int fødselsår, boolean medlemskabsstatus, String mail, ArrayList<Betaling> betalinger, ArrayList<Resultat> resultater, String trænernavn) {
         Medlem m = new Konkurrencesvømmer(name, cprnr, fødselsår, medlemskabsstatus, mail, betalinger, resultater, trænernavn);
         alleMedlemmer.add(m);
         dao.skrivTilFil(alleMedlemmer);
@@ -190,7 +191,7 @@ public class Controller {
     public int getRestanceForMedlem(Medlem medlem){
         int restanceForMedlem = 0;
         BetalingCalculator bc = new BetalingCalculator();
-        for (BetalingCalculator b : medlem.getBetalinger()){
+        for (Betaling b : medlem.getBetalinger()){
             if (b.getBetalingssum() == 0){
                 restanceForMedlem += bc.udregnBetaling(medlem, b.getBetalingsyear());
             }
@@ -211,7 +212,7 @@ public class Controller {
     public int getRestanceForYear(int year){
         int totalRestanceForYear = 0;
         for (Medlem m : getMedlemmerIRestance()){
-            for (BetalingCalculator b : m.getBetalinger())
+            for (Betaling b : m.getBetalinger())
                 if (b.getBetalingsyear() == year){
                     totalRestanceForYear += getRestanceForMedlem(m);
                 }
@@ -223,7 +224,7 @@ public class Controller {
         int forventetIndkomst = 0;
         BetalingCalculator bc = new BetalingCalculator();
         for (Medlem m : alleMedlemmer){
-            for (BetalingCalculator b : m.getBetalinger())
+            for (Betaling b : m.getBetalinger())
                 if (b.getBetalingsyear() == year){
                     forventetIndkomst += bc.udregnBetaling(m, b.getBetalingsyear());
                 }

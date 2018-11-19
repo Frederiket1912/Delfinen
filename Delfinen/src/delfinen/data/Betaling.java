@@ -1,7 +1,7 @@
 
 package delfinen.data;
 
-import delfinen.logic.BetalingsCalculator;
+import delfinen.logic.BetalingCalculator;
 
 
 public class Betaling {
@@ -11,7 +11,7 @@ public class Betaling {
     private int betalingsyear;
 
     public Betaling(Motionist medlem, int betalingsyear) {
-        BetalingsCalculator bc = new BetalingsCalculator();
+        BetalingCalculator bc = new BetalingCalculator();
         this.betalingssum = bc.udregnBetaling(medlem, betalingsyear);
         this.betalingsyear = betalingsyear;
         

@@ -5,13 +5,14 @@
  */
 package delfinen;
 
+import delfinen.data.Betaling;
 import delfinen.data.DataAccessorFile;
 import delfinen.data.Disciplin;
 import delfinen.data.Konkurrencesvømmer;
 import delfinen.data.Medlem;
 import delfinen.data.Motionist;
 import delfinen.data.Resultat;
-import delfinen.logic.BetalingsCalculator;
+import delfinen.logic.BetalingCalculator;
 import delfinen.logic.Controller;
 import java.util.ArrayList;
 
@@ -27,7 +28,7 @@ public class Delfinen {
     public static void main(String[] args) throws ClassNotFoundException {
         Controller c = new Controller(new DataAccessorFile());
 
-        ArrayList<BetalingsCalculator> betalinger = new ArrayList();
+        ArrayList<Betaling> betalinger = new ArrayList();
         ArrayList<Resultat> resultater = new ArrayList(); 
         c.opretKonkurrencesvømmer("Frederik", 1912891867, 0, true, "frederiket@gmail.com", betalinger, resultater, "Henrik");
         //Medlem m = c.søgMedlemPåCprnr(1912891867);
