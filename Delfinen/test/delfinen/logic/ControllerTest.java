@@ -180,5 +180,169 @@ public class ControllerTest {
         /*Resultat r = new Resultat(timeInSeconds, date, disciplin, competitionName, placement);*/
         /*konkurrencesvømmer.setResultater(r);*/
     }
+
+    /**
+     * Test of søgKonkurrencesvømmerPåCprnr method, of class Controller.
+     */
+    @Test
+    public void testSøgKonkurrencesvømmerPåCprnr() {
+        System.out.println("s\u00f8gKonkurrencesv\u00f8mmerP\u00e5Cprnr");
+        Controller c = new Controller(new DataAccessorFile());
+        Medlem m = new Konkurrencesvømmer("Frederik", 1912891867, 19121989,true,"frederiket@gmail.com");
+        int cprnr = 1912891867;
+        Konkurrencesvømmer expResult = new Konkurrencesvømmer("Frederik", 1912891867, 19121989,true,"frederiket@gmail.com");
+        Konkurrencesvømmer result = c.søgKonkurrencesvømmerPåCprnr(cprnr);
+        assertEquals(expResult, result);
+        
+      
+
+    }
+
+    /**
+     * Test of setTrænernavn method, of class Controller.
+     */
+    @Test
+    public void testSetTrænernavn() {
+        System.out.println("setTr\u00e6nernavn");
+        Konkurrencesvømmer konkurrencesvømmer = null;
+        String trænernavn = "";
+        Controller instance = null;
+        instance.setTrænernavn(konkurrencesvømmer, trænernavn);
+
+    }
+
+    /**
+     * Test of søgAlleResultater method, of class Controller.
+     */
+    @Test
+    public void testSøgAlleResultater() {
+        System.out.println("s\u00f8gAlleResultater");
+        Controller instance = null;
+        ArrayList<Resultat> expResult = null;
+        ArrayList<Resultat> result = instance.søgAlleResultater();
+        assertEquals(expResult, result);
+
+    }
+
+    /**
+     * Test of søgCrawlResultater method, of class Controller.
+     */
+    @Test
+    public void testSøgCrawlResultater() {
+        System.out.println("s\u00f8gCrawlResultater");
+        Controller instance = null;
+        ArrayList<Resultat> expResult = null;
+        ArrayList<Resultat> result = instance.søgCrawlResultater();
+        assertEquals(expResult, result);
+
+    }
+
+    /**
+     * Test of søgRygrawlResultater method, of class Controller.
+     */
+    @Test
+    public void testSøgRygrawlResultater() {
+        System.out.println("s\u00f8gRygrawlResultater");
+        Controller instance = null;
+        ArrayList<Resultat> expResult = null;
+        ArrayList<Resultat> result = instance.søgRygrawlResultater();
+        assertEquals(expResult, result);
+
+    }
+
+    /**
+     * Test of søgButterflyResultater method, of class Controller.
+     */
+    @Test
+    public void testSøgButterflyResultater() {
+        System.out.println("s\u00f8gButterflyResultater");
+        Controller instance = null;
+        ArrayList<Resultat> expResult = null;
+        ArrayList<Resultat> result = instance.søgButterflyResultater();
+        assertEquals(expResult, result);
+
+    }
+
+    /**
+     * Test of søgBrystsvømningResultater method, of class Controller.
+     */
+    @Test
+    public void testSøgBrystsvømningResultater() {
+        System.out.println("s\u00f8gBrystsv\u00f8mningResultater");
+        Controller instance = null;
+        ArrayList<Resultat> expResult = null;
+        ArrayList<Resultat> result = instance.søgBrystsvømningResultater();
+        assertEquals(expResult, result);
+
+    }
+
+    /**
+     * Test of getTop5 method, of class Controller.
+     */
+    @Test
+    public void testGetTop5() {
+        System.out.println("getTop5");
+        Disciplin disciplin = null;
+        Controller instance = null;
+        ArrayList<Resultat> expResult = null;
+        ArrayList<Resultat> result = instance.getTop5(disciplin);
+        assertEquals(expResult, result);
+
+    }
+
+    /**
+     * Test of getRestanceForMedlem method, of class Controller.
+     */
+    @Test
+    public void testGetRestanceForMedlem() {
+        System.out.println("getRestanceForMedlem");
+        Medlem medlem = null;
+        Controller instance = null;
+        int expResult = 0;
+        int result = instance.getRestanceForMedlem(medlem);
+        assertEquals(expResult, result);
+
+    }
+
+    /**
+     * Test of getMedlemmerIRestance method, of class Controller.
+     */
+    @Test
+    public void testGetMedlemmerIRestance() {
+        System.out.println("getMedlemmerIRestance");
+        Controller instance = null;
+        ArrayList<Medlem> expResult = null;
+        ArrayList<Medlem> result = instance.getMedlemmerIRestance();
+        assertEquals(expResult, result);
+
+    }
+
+    /**
+     * Test of getRestanceForYear method, of class Controller.
+     */
+    @Test
+    public void testGetRestanceForYear() {
+        System.out.println("getRestanceForYear");
+        int year = 0;
+        Controller instance = null;
+        int expResult = 0;
+        int result = instance.getRestanceForYear(year);
+        assertEquals(expResult, result);
+
+    }
+
+    /**
+     * Test of getForventetIndkomstFraKontingenter method, of class Controller.
+     */
+    @Test
+    public void testGetForventetIndkomstFraKontingenter() {
+        System.out.println("getForventetIndkomstFraKontingenter");
+        int year = 0;
+        Controller instance = null;
+        int expResult = 0;
+        int result = instance.getForventetIndkomstFraKontingenter(year);
+        assertEquals(expResult, result);
+
+    }
 }
 
