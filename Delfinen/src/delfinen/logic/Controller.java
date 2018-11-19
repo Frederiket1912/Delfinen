@@ -201,21 +201,7 @@ public class Controller {
         }
         return top5DisciplinResultater;
     }
-    
-//    public ArrayList<Konkurrencesvømmer> getTop5Medlemmer(Disciplin disciplin){
-//            Resultat r = null;
-//            ArrayList<Konkurrencesvømmer> bedstemedlemmer = new ArrayList();
-//            int temptime = 0;
-//        for (Konkurrencesvømmer ks : getKonkurrencesvømmere()){
-//            if (getBestResult(ks, disciplin).getTimeInSeconds() < temptime || bedstemedlemmer.size() <= 5){
-//                bedstemedlemmer.add(ks);
-//                if (bedstemedlemmer.size() == 5)
-//                    temptime = getBestResult(bedstemedlemmer.get(4), disciplin).getTimeInSeconds();
-//            }
-//        }
-//        Collections.sort(bedstemedlemmer);
-//    }
-    
+      
     public int getRestanceForMedlem(Medlem medlem){
         int restanceForMedlem = 0;
         BetalingCalculator bc = new BetalingCalculator();
@@ -283,5 +269,9 @@ public class Controller {
         }
         return result;
     }
+    
+    //metode til at omskrive tid
+    
+    //metode BetalingsCalculator flytters til controller
 }
 

@@ -219,7 +219,7 @@ public class ControllerTest {
         System.out.println("s\u00f8gAlleResultater");
         Controller instance = null;
         ArrayList<Resultat> expResult = null;
-        ArrayList<Resultat> result = instance.søgAlleResultater();
+        ArrayList<Resultat> result = instance.getAlleResultater();
         assertEquals(expResult, result);
 
     }
@@ -232,7 +232,7 @@ public class ControllerTest {
         System.out.println("s\u00f8gCrawlResultater");
         Controller instance = null;
         ArrayList<Resultat> expResult = null;
-        ArrayList<Resultat> result = instance.søgCrawlResultater();
+        ArrayList<Resultat> result = instance.getBrystsvømningResultater();
         assertEquals(expResult, result);
 
     }
