@@ -36,6 +36,10 @@ public class Controller {
         }
         return alleMedlemmer;
     }
+    
+    public ArrayList<Medlem> getMedlemmerListe(){
+        return alleMedlemmer;
+    }
 
     public void opretMotionist(String name, int cprnr, int fødselsår, boolean medlemskabsstatus, String mail) {
         Medlem m = new Motionist(name, cprnr, fødselsår, medlemskabsstatus, mail);
@@ -196,6 +200,19 @@ public class Controller {
             top5DisciplinResultater.add(disciplinResultater.get(i));
         }
         return top5DisciplinResultater;
+    }
+    
+    public ArrayList<Konkurrencesvømmer> getTop5Medlemmer(Disciplin disciplin){
+            Resultat r = null;
+            ArrayList<Konkurrencesvømmer> bedstemedlemmer = new ArrayList();
+            int temptime = 0;
+        for (Konkurrencesvømmer ks : getKonkurrencesvømmere()){
+            if (getBestResult(ks, disciplin).getTimeInSeconds() < temptime || bedstemedlemmer.size() <= 5){
+                bedstemedlemmer.add(ks);
+                if (bedstemedlemmer.size() == 5)
+                    temptime = getBestResult(bedstemedlemmer.get(4), disciplin);
+            }
+        }
     }
     
     public int getRestanceForMedlem(Medlem medlem){
