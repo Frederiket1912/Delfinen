@@ -1,6 +1,8 @@
 
 package delfinen.data;
 
+import delfinen.logic.Controller;
+
 
 public class Resultat implements Comparable<Resultat>{
     private int timeInSeconds;
@@ -18,7 +20,8 @@ public class Resultat implements Comparable<Resultat>{
         this.competitionName = competitionName;
         this.placement = placement;
         this.name = konkurrencesvømmer.getName();
-        
+        Controller c = new Controller()
+        this.id = 
     }
 
     public String getName() {

@@ -81,7 +81,7 @@ public class Motionist implements Serializable, Medlem {
 
     @Override
     public void setBetalinger(Betaling betaling) {
-        betalinger.add(betaling);
+        this.betalinger.add(betaling);
     }
 
     @Override

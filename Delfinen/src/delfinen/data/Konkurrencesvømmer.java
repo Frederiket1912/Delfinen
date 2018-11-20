@@ -64,7 +64,7 @@ public class Konkurrencesvømmer implements Serializable, Medlem{
 
     @Override
     public void setBetalinger(Betaling betaling) {
-        betalinger.add(betaling);
+        this.betalinger.add(betaling);
     }
 
     @Override
