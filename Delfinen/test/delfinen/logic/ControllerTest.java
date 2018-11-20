@@ -273,20 +273,18 @@ public class ControllerTest {
     @Test
     public void testGetTop5() {
         System.out.println("getTop5");
+        Konkurrencesvømmer ks = new Konkurrencesvømmer("Ivan", 1912891867, 191289, true, "mail@.com");
         Konkurrencesvømmer m = c.getKonkurrencesvømmerPåCprnr(1912891867);
-        c.opretResultat(m, 200, "10/10/1999", Disciplin.CRAWL, null, 0);
-        c.opretResultat(m, 100, "10/10/1999", Disciplin.CRAWL, null, 0);
-        c.opretResultat(m, 100, "10/10/1999", Disciplin.CRAWL, null, 0);
-        c.opretResultat(m, 500, "10/10/1999", Disciplin.CRAWL, null, 0);
-        c.opretResultat(m, 700, "10/10/1999", Disciplin.CRAWL, null, 0);
-        c.opretResultat(m, 300, "10/10/1999", Disciplin.CRAWL, null, 0);
-        
-        c.getTop5(Disciplin.CRAWL);
-        //Disciplin disciplin = null;
-        ArrayList<Resultat> expResult = c.getTop5(Disciplin.CRAWL);
+        c.opretResultat(m, 200, "10/10/1999", Disciplin.CRAWL, "randerssRegnskov", 0);
+        c.opretResultat(m, 100, "10/10/1999", Disciplin.CRAWL, "randerssRegnskov", 0);
+        c.opretResultat(m, 100, "10/10/1999", Disciplin.CRAWL, "randerssRegnskov", 0);
+        c.opretResultat(m, 500, "10/10/1999", Disciplin.CRAWL, "randerssRegnskov", 0);
+        c.opretResultat(m, 700, "10/10/1999", Disciplin.CRAWL, "randerssRegnskov", 0);
+        c.opretResultat(m, 300, "10/10/1999", Disciplin.CRAWL, "randerssRegnskov", 0);
+        int expResult = 5;
         ArrayList<Resultat> result = c.getTop5(Disciplin.CRAWL);
-        assertEquals(expResult, result);
-
+        assertEquals(expResult, result.size());
+        
     }
 
     /**
