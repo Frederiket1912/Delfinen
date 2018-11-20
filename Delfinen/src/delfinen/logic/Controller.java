@@ -130,6 +130,8 @@ public class Controller {
         konkurrencesvømmer.setResultater(r);
         dao.skrivTilFil(alleMedlemmer);
     }
+    
+    public void sletResultat()
 
     public void setTrænernavn(Konkurrencesvømmer konkurrencesvømmer, String trænernavn) {
         konkurrencesvømmer.setTrænernavn(trænernavn);

@@ -9,6 +9,7 @@ public class Resultat implements Comparable<Resultat>{
     private String competitionName;
     private int placement;
     private String name;
+    private int id;
 
     public Resultat(int timeInSeconds, String date, Disciplin disciplin, String competitionName, int placement, Konkurrencesvømmer konkurrencesvømmer) {
         this.timeInSeconds = timeInSeconds;
@@ -17,6 +18,7 @@ public class Resultat implements Comparable<Resultat>{
         this.competitionName = competitionName;
         this.placement = placement;
         this.name = konkurrencesvømmer.getName();
+        
     }
 
     public String getName() {
