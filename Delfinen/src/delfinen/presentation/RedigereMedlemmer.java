@@ -287,7 +287,7 @@ public class RedigereMedlemmer extends javax.swing.JFrame {
                 }
                 rowData[4] = betalingsår;
 
-
+                
                 model.addRow(rowData);
 
             }
