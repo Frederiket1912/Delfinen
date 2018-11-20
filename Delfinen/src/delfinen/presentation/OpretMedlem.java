@@ -6,6 +6,7 @@
 package delfinen.presentation;
 
 import delfinen.data.DataAccessorFile;
+import delfinen.logic.BetalingCalculator;
 import delfinen.logic.Controller;
 import java.util.ArrayList;
 import java.util.Enumeration;
@@ -25,7 +26,8 @@ public class OpretMedlem extends javax.swing.JFrame {
     public OpretMedlem() {
         initComponents();
         DataAccessorFile dao = new DataAccessorFile();
-        c = new Controller(dao);
+        BetalingCalculator bc = new BetalingCalculator();
+        c = new Controller(dao, bc);
         c.getMedlemmer();
     }
     
