@@ -26,7 +26,7 @@ import static org.junit.Assert.*;
  * @author frede
  */
 public class ControllerTest {
-    
+    Controller c = new Controller(new DataAccessorFile(), new BetalingCalculator());
     public ControllerTest() {
     }
     
@@ -52,7 +52,6 @@ public class ControllerTest {
     @Test
     public void testGetMedlemmer() throws ClassNotFoundException {
         System.out.println("getMedlemmer");
-        Controller c = new Controller(new DataAccessorFile());
         ArrayList<Medlem> expResult = new ArrayList();
         c.opretMotionist("Frederik", 1912891867, 19121989,true,"frederiket@gmail.com");
         c.opretMotionist("Thomas", 1504891953, 17283849, false, "noget@andet.dk");
@@ -69,7 +68,6 @@ public class ControllerTest {
     @Test
     public void testOpretMotionist() throws Exception {
         System.out.println("opretMedlem");
-        Controller c = new Controller(new DataAccessorFile());
         int listBefore = c.getMedlemmer().size();
         c.opretMotionist("Frederik", 1912891867, 19121989,true,"frederiket@gmail.com");
         int listAfter = c.getMedlemmer().size();
@@ -80,7 +78,6 @@ public class ControllerTest {
     @Test
     public void testOpretKonkurrencesvømmer() throws Exception {
         System.out.println("opretKonkurrencesvømmer");
-        Controller c = new Controller(new DataAccessorFile());
         int listBefore = c.getMedlemmer().size();
         ArrayList<Betaling> betaling = new ArrayList();
         ArrayList<Resultat> resultater = new ArrayList();
@@ -96,7 +93,6 @@ public class ControllerTest {
     @Test
     public void testSletMedlem() throws Exception {
         System.out.println("sletMedlem");
-        Controller c = new Controller(new DataAccessorFile());
         Medlem m = new Motionist("Frederik", 1912891867, 19121989,true,"frederiket@gmail.com");
         c.opretMotionist("Frederik", 1912891867, 19121989,true,"frederiket@gmail.com");
         int listBefore = c.getMedlemmer().size();
@@ -112,7 +108,6 @@ public class ControllerTest {
     @Test
     public void testSøgMedlemPåNavn() throws Exception {
         System.out.println("s\u00f8gMedlemP\u00e5Navn");
-        Controller c = new Controller(new DataAccessorFile());
         String name = "Frederik";
         c.opretMotionist("Frederik", 1912891867, 19121989,true,"frederiket@gmail.com");
         c.opretMotionist("Frederik", 100200, 100200,false,"noget@andet.dk");
@@ -128,7 +123,6 @@ public class ControllerTest {
     @Test
     public void testSøgMedlemPåCprnr() throws ClassNotFoundException {
         System.out.println("s\u00f8gMedlemP\u00e5Cprnr");
-        Controller c = new Controller(new DataAccessorFile());
         int cprnr = 1912891867;
         c.opretMotionist("Frederik", 1912891867, 19121989,true,"frederiket@gmail.com");
         c.opretMotionist("Frederik", 100200, 100200,false,"noget@andet.dk");
@@ -145,7 +139,6 @@ public class ControllerTest {
     @Test
     public void testSøgMedlemPåMail() throws ClassNotFoundException {
         System.out.println("s\u00f8gMedlemP\u00e5Mail");
-        Controller c = new Controller(new DataAccessorFile());
         String mail = "frederiket@gmail.com";
         c.opretMotionist("Frederik", 1912891867, 19121989,true,"frederiket@gmail.com");
         c.opretMotionist("Frederik", 100200, 100200,false,"noget@andet.dk");
@@ -162,7 +155,6 @@ public class ControllerTest {
     @Test
     public void testRedigerMedlem() throws ClassNotFoundException {
         System.out.println("redigerMedlem");
-        Controller c = new Controller(new DataAccessorFile());
         Medlem m = new Motionist("Frederik", 1912891867, 19121989,true,"frederiket@gmail.com");
         c.opretMotionist("Frederik", 1912891867, 19121989,true,"frederiket@gmail.com");
         String newName = "Hans";
@@ -187,7 +179,6 @@ public class ControllerTest {
     @Test
     public void testSøgKonkurrencesvømmerPåCprnr() {
         System.out.println("s\u00f8gKonkurrencesv\u00f8mmerP\u00e5Cprnr");
-        Controller c = new Controller(new DataAccessorFile());
         Medlem m = new Konkurrencesvømmer("Frederik", 1912891867, 19121989,true,"frederiket@gmail.com");
         int cprnr = 1912891867;
         Konkurrencesvømmer expResult = new Konkurrencesvømmer("Frederik", 1912891867, 19121989,true,"frederiket@gmail.com");
@@ -204,11 +195,10 @@ public class ControllerTest {
     @Test
     public void testSetTrænernavn() {
         System.out.println("setTr\u00e6nernavn");
-        Controller c = new Controller(new DataAccessorFile());
         c.opretKonkurrencesvømmer("Frederik", 1912891867, 1989, true, "frederiket@gmail.com");
         String trænernavn = "Talha";
         c.setTrænernavn(c.getKonkurrencesvømmerPåCprnr(1912891867), trænernavn);
-        assertEquals(, c);
+        assertEquals("Talha", c);
 
     }
 
