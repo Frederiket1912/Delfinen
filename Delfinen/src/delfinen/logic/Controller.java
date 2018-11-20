@@ -308,7 +308,7 @@ public class Controller {
         return result;
     }
     
-    public ArrayList<Betaling> getBetalinger(){
+    public ArrayList<Betaling> getAlleBetalinger(){
         ArrayList<Betaling> alleBetalinger = new ArrayList();
         for (Medlem m : alleMedlemmer){
              for (Betaling b : m.getBetalinger()){
@@ -329,7 +329,7 @@ public class Controller {
     }
     
     public void redigerBetaling(Betaling betaling, boolean isPaid){
-        for (Betaling b : getBetalinger()){
+        for (Betaling b : getAlleBetalinger()){
             if (b.getId() == betaling.getId()){
                 b.setHasPaid(isPaid);
             }              
