@@ -328,8 +328,6 @@ public class RedigereMedlemmer extends javax.swing.JFrame {
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         
         DefaultTableModel model = createTable();
-        System.out.println(c.getMedlemmerListe());
-        System.out.println(c.getMedlemmer());
         
         Medlem tempMedlem = c.getMedlemPåCprnr(Integer.parseInt(this.jTable1.getValueAt(this.jTable1.getSelectedRow(),1).toString()));
            this.jLabel4.setText("CPR: "+tempMedlem.getCprnr());
@@ -349,10 +347,7 @@ public class RedigereMedlemmer extends javax.swing.JFrame {
             //jeg har lavet en ny attribut til betaling der er en boolean.
             //hvis de betaler 0, altså ikke betaler skal den sættes til false, ellers til true
             c.opretBetaling(tempMedlem, Integer.parseInt(this.jTextField6.getText()), true);
-            System.out.println(tempMedlem + " noget");
-            System.out.println(c.getMedlemmerListe());
-            System.out.println(c.getKonkurrencesvømmere());
-            System.out.println(c.getMedlemmer());
+            
             
             
         }
