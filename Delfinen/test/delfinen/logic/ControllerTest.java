@@ -245,7 +245,7 @@ public class ControllerTest {
         System.out.println("s\u00f8gRygrawlResultater");
         Controller instance = null;
         ArrayList<Resultat> expResult = null;
-        ArrayList<Resultat> result = instance.søgRygrawlResultater();
+        ArrayList<Resultat> result = instance.getRygrawlResultater();
         assertEquals(expResult, result);
 
     }
@@ -258,7 +258,7 @@ public class ControllerTest {
         System.out.println("s\u00f8gButterflyResultater");
         Controller instance = null;
         ArrayList<Resultat> expResult = null;
-        ArrayList<Resultat> result = instance.søgButterflyResultater();
+        ArrayList<Resultat> result = instance.getButterflyResultater();
         assertEquals(expResult, result);
 
     }
@@ -271,7 +271,7 @@ public class ControllerTest {
         System.out.println("s\u00f8gBrystsv\u00f8mningResultater");
         Controller instance = null;
         ArrayList<Resultat> expResult = null;
-        ArrayList<Resultat> result = instance.søgBrystsvømningResultater();
+        ArrayList<Resultat> result = instance.getBrystsvømningResultater();
         assertEquals(expResult, result);
 
     }
