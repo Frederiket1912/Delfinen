@@ -1,6 +1,7 @@
 
 package delfinen.data;
 
+import delfinen.logic.BetalingCalculator;
 import delfinen.logic.Controller;
 
 
@@ -20,8 +21,12 @@ public class Resultat implements Comparable<Resultat>{
         this.competitionName = competitionName;
         this.placement = placement;
         this.name = konkurrencesvømmer.getName();
-        Controller c = new Controller()
-        this.id = 
+        Controller c = new Controller(new DataAccessorFile(), new BetalingCalculator());
+        this.id = c.getAlleResultater().size();
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getName() {

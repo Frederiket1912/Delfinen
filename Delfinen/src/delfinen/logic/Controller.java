@@ -131,7 +131,7 @@ public class Controller {
         dao.skrivTilFil(alleMedlemmer);
     }
     
-    public void sletResultat()
+    public void sletResultat(Konkurrencesvømmer konkurrencesvømmer, Resultat resultat)
 
     public void setTrænernavn(Konkurrencesvømmer konkurrencesvømmer, String trænernavn) {
         konkurrencesvømmer.setTrænernavn(trænernavn);
@@ -308,6 +308,10 @@ public class Controller {
                 m.setBetalinger(b);
             }
         }
+        dao.skrivTilFil(alleMedlemmer);
+    }
+    
+    public void skrivTilFil(){
         dao.skrivTilFil(alleMedlemmer);
     }
 }
