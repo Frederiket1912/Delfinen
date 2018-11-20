@@ -26,10 +26,10 @@ public class Delfinen {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws ClassNotFoundException {
-        Controller c = new Controller(new DataAccessorFile()); 
+        Controller c = new Controller(new DataAccessorFile(), new BetalingCalculator()); 
         c.opretKonkurrencesvømmer("Frederik", 1912891867, 0, true, "frederiket@gmail.com");
         //Medlem m = c.søgMedlemPåCprnr(1912891867);
-        Konkurrencesvømmer m = c.søgKonkurrencesvømmerPåCprnr(1912891867);
+        Konkurrencesvømmer m = c.getKonkurrencesvømmerPåCprnr(1912891867);
         System.out.println(m);
         c.opretResultat(m, 200, "10/10/1999", Disciplin.CRAWL, null, 0);
         c.opretResultat(m, 100, "10/10/1999", Disciplin.CRAWL, null, 0);
@@ -48,7 +48,7 @@ public class Delfinen {
         System.out.println(c.getMedlemmer());
         c.redigerMedlem(m, "Hans", 0, false, "hej");
         System.out.println("redigeret medlem:");
-        System.out.println(c.søgMedlemPåCprnr(1912891867));
+        System.out.println(c.getMedlemPåCprnr(1912891867));
         System.out.println("getMedlemmer");
         System.out.println(c.getMedlemmer());
         

@@ -61,7 +61,7 @@ public class RedigereMedlemmer extends javax.swing.JFrame {
                     medlemskabsstatus = false;
                 }
                 
-                Medlem tempMedlem = c.søgMedlemPåCprnr(Integer.parseInt(this.jTable1.getValueAt(this.jTable1.getSelectedRow(), 1).toString()));
+                Medlem tempMedlem = c.getMedlemPåCprnr(Integer.parseInt(this.jTable1.getValueAt(this.jTable1.getSelectedRow(), 1).toString()));
                 //vi skal huske at ændre 15 til enten at få en værdi fra et field, 
                 //eller bare at få værdien fra tempMedlem.getFødelsår(), hvis fødselsåret ikke skal kunne redigeres.
                 c.redigerMedlem(tempMedlem, jTextField4.getText(), alder, medlemskabsstatus, jTextField6.getText());
@@ -322,7 +322,7 @@ public class RedigereMedlemmer extends javax.swing.JFrame {
         DefaultTableModel model = createTable();
 
 
-        Medlem tempMedlem = c.søgMedlemPåCprnr(Integer.parseInt(this.jTable1.getValueAt(this.jTable1.getSelectedRow(),1).toString()));
+        Medlem tempMedlem = c.getMedlemPåCprnr(Integer.parseInt(this.jTable1.getValueAt(this.jTable1.getSelectedRow(),1).toString()));
            this.jTextField4.setText(""+tempMedlem.getCprnr());
            this.jTextField5.setText(tempMedlem.getName());
 

@@ -117,7 +117,7 @@ public class ControllerTest {
         c.opretMotionist("Frederik", 1912891867, 19121989,true,"frederiket@gmail.com");
         c.opretMotionist("Frederik", 100200, 100200,false,"noget@andet.dk");
         c.opretMotionist("Hans", 10,10,true,"hans@gmail.com");
-        ArrayList result = c.søgMedlemPåNavn(name);
+        ArrayList result = c.getMedlemPåNavn(name);
         //Vi opretter 3 medlemmer, men forventer kun at få 2 ud når vi søger på navnet Frederik
         assertEquals(2, result.size());
     }
@@ -134,7 +134,7 @@ public class ControllerTest {
         c.opretMotionist("Frederik", 100200, 100200,false,"noget@andet.dk");
         c.opretMotionist("Hans", 10,10,true,"hans@gmail.com");
         Medlem expResult = new Motionist("Frederik", 1912891867, 19121989,true,"frederiket@gmail.com");
-        Medlem result = c.søgMedlemPåCprnr(cprnr);
+        Medlem result = c.getMedlemPåCprnr(cprnr);
         //Vi søger på cpr nr, og tjekker om vi har fundet den rigtige ved at sammenligne mails
         assertEquals(expResult.getMail(), result.getMail());
     }
@@ -151,7 +151,7 @@ public class ControllerTest {
         c.opretMotionist("Frederik", 100200, 100200,false,"noget@andet.dk");
         c.opretMotionist("Hans", 10,10,true,"hans@gmail.com");
         Medlem expResult = new Motionist("Frederik", 1912891867, 19121989,true,"frederiket@gmail.com");
-        Medlem result = c.søgMedlemPåMail(mail);
+        Medlem result = c.getMedlemPåMail(mail);
         //Vi søger på mail, og tjekker om vi har fundet den rigtige ved at sammenligne cprnr
         assertEquals(expResult.getCprnr(), result.getCprnr());
     }
@@ -170,7 +170,7 @@ public class ControllerTest {
         boolean NewMedlemskabsstatus = false;
         String newMail = "hans@gmail.com";
         c.redigerMedlem(m, newName, newFødselsdato, NewMedlemskabsstatus, newMail);
-        Medlem result = c.søgMedlemPåCprnr(1912891867);
+        Medlem result = c.getMedlemPåCprnr(1912891867);
         //vi tjekker om der nu er et medlem med navnet Hans, m hed originalt Frederik
         assertEquals("Hans", result.getName());
     }
@@ -191,7 +191,7 @@ public class ControllerTest {
         Medlem m = new Konkurrencesvømmer("Frederik", 1912891867, 19121989,true,"frederiket@gmail.com");
         int cprnr = 1912891867;
         Konkurrencesvømmer expResult = new Konkurrencesvømmer("Frederik", 1912891867, 19121989,true,"frederiket@gmail.com");
-        Konkurrencesvømmer result = c.søgKonkurrencesvømmerPåCprnr(cprnr);
+        Konkurrencesvømmer result = c.getKonkurrencesvømmerPåCprnr(cprnr);
         assertEquals(expResult.getCprnr(), result.getCprnr());
         
       
@@ -204,10 +204,11 @@ public class ControllerTest {
     @Test
     public void testSetTrænernavn() {
         System.out.println("setTr\u00e6nernavn");
-        Konkurrencesvømmer konkurrencesvømmer = null;
-        String trænernavn = "";
-        Controller instance = null;
-        instance.setTrænernavn(konkurrencesvømmer, trænernavn);
+        Controller c = new Controller(new DataAccessorFile());
+        c.opretKonkurrencesvømmer("Frederik", 1912891867, 1989, true, "frederiket@gmail.com");
+        String trænernavn = "Talha";
+        c.setTrænernavn(c.getKonkurrencesvømmerPåCprnr(1912891867), trænernavn);
+        assertEquals(, c);
 
     }
 
@@ -245,7 +246,7 @@ public class ControllerTest {
         System.out.println("s\u00f8gRygrawlResultater");
         Controller instance = null;
         ArrayList<Resultat> expResult = null;
-        ArrayList<Resultat> result = instance.søgRygrawlResultater();
+        ArrayList<Resultat> result = instance.getRygrawlResultater();
         assertEquals(expResult, result);
 
     }
@@ -258,7 +259,7 @@ public class ControllerTest {
         System.out.println("s\u00f8gButterflyResultater");
         Controller instance = null;
         ArrayList<Resultat> expResult = null;
-        ArrayList<Resultat> result = instance.søgButterflyResultater();
+        ArrayList<Resultat> result = instance.getButterflyResultater();
         assertEquals(expResult, result);
 
     }

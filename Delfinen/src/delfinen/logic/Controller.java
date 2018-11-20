@@ -25,9 +25,11 @@ public class Controller {
 
     private ArrayList<Medlem> alleMedlemmer = new ArrayList<>();
     private DataAccessorFile dao;
+    private BetalingCalculator bc;
 
-    public Controller(DataAccessorFile dao) {
+    public Controller(DataAccessorFile dao, BetalingCalculator bc) {
         this.dao = dao;
+        this.bc = bc;
     }
 
     public ArrayList<Medlem> getMedlemmer() {
@@ -69,7 +71,7 @@ public class Controller {
         dao.skrivTilFil(alleMedlemmer);
     }
 
-    public ArrayList<Medlem> søgMedlemPåNavn(String name) {
+    public ArrayList<Medlem> getMedlemPåNavn(String name) {
         ArrayList<Medlem> medlemmerMedNavn = new ArrayList();
         for (Medlem m : alleMedlemmer) {
             if (m.getName().contains(name)) {
@@ -79,7 +81,7 @@ public class Controller {
         return medlemmerMedNavn;
     }
 
-    public Medlem søgMedlemPåCprnr(int cprnr) {
+    public Medlem getMedlemPåCprnr(int cprnr) {
         Medlem result = null;
         for (Medlem m : alleMedlemmer) {
             if (m.getCprnr() == cprnr) {
@@ -90,7 +92,7 @@ public class Controller {
         return result;
     }
 
-    public Konkurrencesvømmer søgKonkurrencesvømmerPåCprnr(int cprnr) {
+    public Konkurrencesvømmer getKonkurrencesvømmerPåCprnr(int cprnr) {
         Konkurrencesvømmer result = null;
         for (Medlem m : alleMedlemmer) {
             if (m.getAktivitetsform() == Aktivitetsform.KONKURRENCESVØMMER && m.getCprnr() == cprnr) {
@@ -100,7 +102,7 @@ public class Controller {
         return result;
     }
 
-    public Medlem søgMedlemPåMail(String mail) {
+    public Medlem getMedlemPåMail(String mail) {
         Medlem result = null;
         for (Medlem m : alleMedlemmer) {
             if (m.getMail().contains(mail)) {
@@ -296,24 +298,10 @@ public class Controller {
         }
         return result;
     }
-
-    public int udregnBetaling(Medlem medlem, int year) {
-        int age;
-        age = year - medlem.getFødselsår();
-        if (getBetalingByYear(medlem, year).isHasPaid() == false) {
-            return 0;
-        }
-        if (medlem.isMedlemskabsstatus()) {
-            if (age < 18) {
-                return JUNIORPRIS;
-            }
-            if (age >= 18 && age < 60) {
-                return VOKSENPRIS;
-            }
-            if (age >= 60) {
-                return SENIORPRIS;
-            }
-        }
-        return PASSIVPRIS;
+    
+    public void opretBetaling(Medlem medlem, int betalingsyear, boolean hasPaid){
+        Betaling b = new Betaling(medlem,betalingsyear,hasPaid);
+        medlem.setBetalinger(b);
+        dao.skrivTilFil(alleMedlemmer);
     }
 }
