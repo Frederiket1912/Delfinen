@@ -9,6 +9,7 @@ import delfinen.data.Betaling;
 import delfinen.data.DataAccessorFile;
 import delfinen.data.Medlem;
 import delfinen.data.Motionist;
+import delfinen.logic.BetalingCalculator;
 import delfinen.logic.Controller;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -29,8 +30,9 @@ public class RedigereMedlemmer extends javax.swing.JFrame {
     public RedigereMedlemmer() {
         initComponents();
         DataAccessorFile dao = new DataAccessorFile();
-        c = new Controller(dao);
-        c.getMedlemmer();
+        BetalingCalculator bc = new BetalingCalculator();
+        c = new Controller(dao, bc);
+        
     }
 
     public void editUser() {
@@ -50,7 +52,7 @@ public class RedigereMedlemmer extends javax.swing.JFrame {
 
         int option = JOptionPane.showConfirmDialog(null, message, "Edit User", JOptionPane.OK_CANCEL_OPTION);
         if (option == JOptionPane.OK_OPTION) {
-            //navnet på variablen burde nok være medlemskabsstatus da aktivitetsform er om de er motionist/konkurrencesvømmer
+            
             boolean medlemskabsstatus = true;
             try {
                 model.setValueAt(jTextField4.getText(), this.jTable1.getSelectedRow(), 0);
@@ -100,6 +102,8 @@ public class RedigereMedlemmer extends javax.swing.JFrame {
         jTextField7 = new javax.swing.JTextField();
         jTextField8 = new javax.swing.JTextField();
         jButton4 = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
         CPRfield = new javax.swing.JTextField();
         MailField = new javax.swing.JTextField();
         NameField = new javax.swing.JTextField();
@@ -125,6 +129,10 @@ public class RedigereMedlemmer extends javax.swing.JFrame {
         jTextField8.setText("jTextField8");
 
         jButton4.setText("jButton4");
+
+        jLabel4.setText("jLabel4");
+
+        jLabel5.setText("jLabel5");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -320,30 +328,33 @@ public class RedigereMedlemmer extends javax.swing.JFrame {
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         
         DefaultTableModel model = createTable();
-
-
+        System.out.println(c.getMedlemmerListe());
+        System.out.println(c.getMedlemmer());
+        
         Medlem tempMedlem = c.getMedlemPåCprnr(Integer.parseInt(this.jTable1.getValueAt(this.jTable1.getSelectedRow(),1).toString()));
-           this.jTextField4.setText(""+tempMedlem.getCprnr());
-           this.jTextField5.setText(tempMedlem.getName());
+           this.jLabel4.setText("CPR: "+tempMedlem.getCprnr());
+           this.jLabel5.setText("Navn: "+tempMedlem.getName());
 
 
 
 
         Object[] message = {
-            "CPR:", jTextField4,
-            "Navn", jTextField5,
+            "", jLabel4,
+            "", jLabel5,
                 "Betalingsår", jTextField6
 
         };
-        int option = JOptionPane.showConfirmDialog(null, message, "Edit User", JOptionPane.OK_OPTION);
+        int option = JOptionPane.showConfirmDialog(null, message, "Opret Betaling", JOptionPane.OK_CANCEL_OPTION);
         if (option == JOptionPane.OK_OPTION) {
             //jeg har lavet en ny attribut til betaling der er en boolean.
             //hvis de betaler 0, altså ikke betaler skal den sættes til false, ellers til true
-            Betaling b = new Betaling(tempMedlem, Integer.parseInt(this.jTextField6.getText()), true);
-            tempMedlem.setBetalinger(b);
-
-
-
+            c.opretBetaling(tempMedlem, Integer.parseInt(this.jTextField6.getText()), true);
+            System.out.println(tempMedlem + " noget");
+            System.out.println(c.getMedlemmerListe());
+            System.out.println(c.getKonkurrencesvømmere());
+            System.out.println(c.getMedlemmer());
+            
+            
         }
     }//GEN-LAST:event_jButton5ActionPerformed
 
@@ -399,6 +410,8 @@ public class RedigereMedlemmer extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JOptionPane jOptionPane1;
     private javax.swing.JOptionPane jOptionPane2;
     private javax.swing.JScrollPane jScrollPane1;
