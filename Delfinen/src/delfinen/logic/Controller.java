@@ -303,7 +303,11 @@ public class Controller {
     
     public void opretBetaling(Medlem medlem, int betalingsyear, boolean hasPaid){
         Betaling b = new Betaling(medlem,betalingsyear,hasPaid);
-        medlem.setBetalinger(b);
+        for (Medlem m : alleMedlemmer) {
+            if (m.getCprnr() == medlem.getCprnr()) {
+                m.setBetalinger(b);
+            }
+        }
         dao.skrivTilFil(alleMedlemmer);
     }
 }
