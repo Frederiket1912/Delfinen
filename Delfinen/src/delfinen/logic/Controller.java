@@ -131,7 +131,7 @@ public class Controller {
         dao.skrivTilFil(alleMedlemmer);
     }
     
-    public void sletResultat()
+    public void sletResultat(Konkurrencesvømmer konkurrencesvømmer, Resultat resultat)
 
     public void setTrænernavn(Konkurrencesvømmer konkurrencesvømmer, String trænernavn) {
         konkurrencesvømmer.setTrænernavn(trænernavn);
@@ -303,7 +303,15 @@ public class Controller {
     
     public void opretBetaling(Medlem medlem, int betalingsyear, boolean hasPaid){
         Betaling b = new Betaling(medlem,betalingsyear,hasPaid);
-        medlem.setBetalinger(b);
+        for (Medlem m : alleMedlemmer) {
+            if (m.getCprnr() == medlem.getCprnr()) {
+                m.setBetalinger(b);
+            }
+        }
+        dao.skrivTilFil(alleMedlemmer);
+    }
+    
+    public void skrivTilFil(){
         dao.skrivTilFil(alleMedlemmer);
     }
 }
