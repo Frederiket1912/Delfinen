@@ -26,9 +26,9 @@ public class CoachView extends javax.swing.JFrame {
         DataAccessorFile dao = new DataAccessorFile();
         c = new Controller(dao);
         c.getMedlemmer();
-        //for(Konkurrencesvømmer k : c.getKonkurrencesvømmere()){
-        //    c.opretResultat(k, 66, "75", Disciplin.CRAWL, "Noget", 1);
-        //}
+       // for(Konkurrencesvømmer k : c.getKonkurrencesvømmere()){
+       //     c.opretResultat(k, 66, "75", Disciplin.CRAWL, "Noget", 1);
+       // }
        
     }
 
@@ -181,10 +181,10 @@ public class CoachView extends javax.swing.JFrame {
                 rowData[0] = m.getName();
                 rowData[1] = m.getFødselsår();
                 try{
-                rowData[2] = c.getBestResult((Konkurrencesvømmer)m, Disciplin.CRAWL).getTimeInSeconds();
-                rowData[3] = c.getBestResult((Konkurrencesvømmer)m, Disciplin.BRYSTSVØMNING).getTimeInSeconds();
-                rowData[4] = c.getBestResult((Konkurrencesvømmer)m, Disciplin.RYGCRAWL).getTimeInSeconds();
-                rowData[5] = c.getBestResult((Konkurrencesvømmer)m, Disciplin.BUTTERFLY).getTimeInSeconds();
+                rowData[2] = c.timeFormatter(c.getBestResult((Konkurrencesvømmer)m, Disciplin.CRAWL).getTimeInSeconds());
+                rowData[3] = c.timeFormatter(c.getBestResult((Konkurrencesvømmer)m, Disciplin.BRYSTSVØMNING).getTimeInSeconds());
+                rowData[4] = c.timeFormatter(c.getBestResult((Konkurrencesvømmer)m, Disciplin.RYGCRAWL).getTimeInSeconds());
+                rowData[5] = c.timeFormatter(c.getBestResult((Konkurrencesvømmer)m, Disciplin.BUTTERFLY).getTimeInSeconds());
                 }catch(Exception ex){
                     
                 }

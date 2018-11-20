@@ -272,7 +272,7 @@ public class ControllerTest {
         System.out.println("s\u00f8gBrystsv\u00f8mningResultater");
         Controller instance = null;
         ArrayList<Resultat> expResult = null;
-        ArrayList<Resultat> result = instance.søgBrystsvømningResultater();
+        ArrayList<Resultat> result = instance.getBrystsvømningResultater();
         assertEquals(expResult, result);
 
     }
