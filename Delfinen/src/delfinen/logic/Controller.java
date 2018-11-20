@@ -131,7 +131,14 @@ public class Controller {
         dao.skrivTilFil(alleMedlemmer);
     }
     
-    public void sletResultat(Konkurrencesvømmer konkurrencesvømmer, Resultat resultat)
+    public void sletResultat(Konkurrencesvømmer konkurrencesvømmer, Resultat resultat){
+        ArrayList<Resultat> fjernes = new ArrayList();
+        for (Resultat r : konkurrencesvømmer.getResultater()){
+            if (r.getId() == resultat.getId())
+                fjernes.add(r);
+        }
+        konkurrencesvømmer.getResultater().removeAll(fjernes);
+    }
 
     public void setTrænernavn(Konkurrencesvømmer konkurrencesvømmer, String trænernavn) {
         konkurrencesvømmer.setTrænernavn(trænernavn);
@@ -301,6 +308,16 @@ public class Controller {
         return result;
     }
     
+    public ArrayList<Betaling> getBetalinger(){
+        ArrayList<Betaling> alleBetalinger = new ArrayList();
+        for (Medlem m : alleMedlemmer){
+             for (Betaling b : m.getBetalinger()){
+                 alleBetalinger.add(b);
+             }
+        }
+        return alleBetalinger;
+    }
+    
     public void opretBetaling(Medlem medlem, int betalingsyear, boolean hasPaid){
         Betaling b = new Betaling(medlem,betalingsyear,hasPaid);
         for (Medlem m : alleMedlemmer) {
@@ -309,6 +326,14 @@ public class Controller {
             }
         }
         dao.skrivTilFil(alleMedlemmer);
+    }
+    
+    public void redigerBetaling(Betaling betaling, boolean isPaid){
+        for (Betaling b : getBetalinger()){
+            if (b.getId() == betaling.getId()){
+                b.setHasPaid(isPaid);
+            }              
+        }
     }
     
     public void skrivTilFil(){

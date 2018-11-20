@@ -22,7 +22,18 @@ public class Resultat implements Comparable<Resultat>{
         this.placement = placement;
         this.name = konkurrencesvømmer.getName();
         Controller c = new Controller(new DataAccessorFile(), new BetalingCalculator());
-        this.id = c.getAlleResultater().size();
+        int counter = -1;
+        if (c.getAlleResultater().size() == 0){
+            this.id = 0;
+        }
+        else {
+            for (Resultat r : c.getAlleResultater()){
+                if (r.getId() > counter){
+                    counter = r.getId() + 1;
+                }
+            }
+            this.id = counter;
+        }
     }
 
     public int getId() {

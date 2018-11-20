@@ -2,6 +2,7 @@
 package delfinen.data;
 
 import delfinen.logic.BetalingCalculator;
+import delfinen.logic.Controller;
 import java.io.Serializable;
 
 
@@ -11,12 +12,30 @@ public class Betaling implements Serializable {
     private int betalingssum;
     private int betalingsyear;
     private boolean hasPaid;
+    private int id;
+
+    public int getId() {
+        return id;
+    }
     
     public Betaling(Medlem medlem, int betalingsyear, boolean hasPaid) {
         BetalingCalculator bc = new BetalingCalculator();
         this.betalingssum = bc.udregnBetaling(medlem, betalingsyear);
         this.betalingsyear = betalingsyear;
         this.hasPaid = hasPaid;
+        Controller c = new Controller(new DataAccessorFile(), new BetalingCalculator());
+        int counter = -1;
+        if (c.getAlleResultater().size() == 0){
+            this.id = 0;
+        }
+        else {
+            for (Resultat r : c.getAlleResultater()){
+                if (r.getId() > counter){
+                    counter = r.getId() + 1;
+                }
+            }
+            this.id = counter;
+        }
     }
 
     public boolean isHasPaid() {
