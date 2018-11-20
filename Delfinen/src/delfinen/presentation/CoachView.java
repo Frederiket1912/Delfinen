@@ -9,6 +9,7 @@ import delfinen.data.DataAccessorFile;
 import delfinen.data.Disciplin;
 import delfinen.data.Konkurrencesvømmer;
 import delfinen.data.Medlem;
+import delfinen.logic.BetalingCalculator;
 import delfinen.logic.Controller;
 import javax.swing.table.DefaultTableModel;
 
@@ -24,7 +25,8 @@ public class CoachView extends javax.swing.JFrame {
     public CoachView() {
         initComponents();
         DataAccessorFile dao = new DataAccessorFile();
-        c = new Controller(dao);
+        BetalingCalculator bc = new BetalingCalculator();
+        c = new Controller(dao, bc);
         c.getMedlemmer();
        // for(Konkurrencesvømmer k : c.getKonkurrencesvømmere()){
        //     c.opretResultat(k, 66, "75", Disciplin.CRAWL, "Noget", 1);
