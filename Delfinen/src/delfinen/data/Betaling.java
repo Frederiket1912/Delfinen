@@ -2,9 +2,10 @@
 package delfinen.data;
 
 import delfinen.logic.BetalingCalculator;
+import java.io.Serializable;
 
 
-public class Betaling {
+public class Betaling implements Serializable {
     
     private int year;
     private int betalingssum;
