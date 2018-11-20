@@ -14,6 +14,7 @@ import delfinen.data.Motionist;
 import delfinen.data.Resultat;
 import delfinen.logic.BetalingCalculator;
 import delfinen.logic.Controller;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 /**
@@ -44,17 +45,18 @@ public class Delfinen {
         c.opretResultat(m, 600, "10/10/1999", Disciplin.CRAWL, null, 0);
         //System.out.println(m.getResultater());
         //System.out.println(c.getTop5(Disciplin.CRAWL));
-        System.out.println("getMedlemmer");
-        System.out.println(c.getMedlemmer());
-        c.redigerMedlem(m, "Hans", 0, false, "hej");
-        System.out.println("redigeret medlem:");
-        System.out.println(c.getMedlemPåCprnr(1912891867));
-        System.out.println("getMedlemmer");
-        System.out.println(c.getMedlemmer());
-        
-        
-        int time = 130;
-        System.out.println(c.timeFormatter(time));
+//        System.out.println("getMedlemmer");
+//        System.out.println(c.getMedlemmer());
+//        c.redigerMedlem(m, "Hans", 0, false, "hej");
+//        System.out.println("redigeret medlem:");
+//        System.out.println(c.getMedlemPåCprnr(1912891867));
+//        System.out.println("getMedlemmer");
+//        System.out.println(c.getMedlemmer());
+//        
+//        
+//        int time = 130;
+//        System.out.println(c.timeFormatter(time));
+            System.out.println(LocalDate.now().getYear());
     }
     
 }

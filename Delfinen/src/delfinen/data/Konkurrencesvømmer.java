@@ -3,6 +3,7 @@ package delfinen.data;
 
 import delfinen.logic.BetalingCalculator;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 
@@ -31,6 +32,7 @@ public class Konkurrencesvømmer implements Serializable, Medlem{
         this.fødselsår = fødselsdato;
         this.resultater = new ArrayList();
         this.trænernavn = null;
+        betalinger.add(new Betaling(new Konkurrencesvømmer(name, cprnr, fødselsdato, medlemskabsstatus, mail), LocalDate.now().getYear(), true));
     }
 
     @Override
