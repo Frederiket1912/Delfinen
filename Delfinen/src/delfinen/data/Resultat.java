@@ -3,9 +3,10 @@ package delfinen.data;
 
 import delfinen.logic.BetalingCalculator;
 import delfinen.logic.Controller;
+import java.io.Serializable;
 
 
-public class Resultat implements Comparable<Resultat>{
+public class Resultat implements Comparable<Resultat>, Serializable{
     private int timeInSeconds;
     private String date;
     private Disciplin disciplin;
@@ -47,6 +48,9 @@ public class Resultat implements Comparable<Resultat>{
 
     public Disciplin getDisciplin() {
         return disciplin;
+    }
+    public int getPlacement(){
+        return this.placement;
     }
 
     @Override
