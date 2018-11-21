@@ -5,17 +5,55 @@
  */
 package delfinen.presentation;
 
+import delfinen.data.DataAccessorFile;
+import delfinen.data.Disciplin;
+import delfinen.data.Konkurrencesvømmer;
+import delfinen.data.Medlem;
+import delfinen.logic.BetalingCalculator;
+import delfinen.logic.Controller;
+import java.util.Enumeration;
+import javax.swing.AbstractButton;
+import javax.swing.ButtonGroup;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Talha Noory
  */
 public class RegistrerSvømmeResultater extends javax.swing.JFrame {
 
+    private Controller c;
+    private int CPR;
+
     /**
      * Creates new form RegistrerSvømmeResultater
      */
-    public RegistrerSvømmeResultater() {
+    public RegistrerSvømmeResultater(int CPR) {
         initComponents();
+        DataAccessorFile dao = new DataAccessorFile();
+        BetalingCalculator bc = new BetalingCalculator();
+        c = new Controller(dao, bc);
+        c.getMedlemmer();
+        for (Konkurrencesvømmer m : c.getKonkurrencesvømmere()) {
+            if (m.getCprnr() == CPR) {
+                this.JCPR.setText("CPR: " + CPR);
+                this.jName.setText(m.getName());
+                this.CPR = CPR;
+            }
+        }
+
+    }
+
+    private String getSelectedButtonText(ButtonGroup buttonGroup) {
+        for (Enumeration<AbstractButton> buttons = buttonGroup.getElements(); buttons.hasMoreElements();) {
+            AbstractButton button = buttons.nextElement();
+
+            if (button.isSelected()) {
+                return button.getText();
+            }
+        }
+
+        return null;
     }
 
     /**
@@ -27,14 +65,15 @@ public class RegistrerSvømmeResultater extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextFieldDato = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jCheckBox2 = new javax.swing.JCheckBox();
-        jCheckBox3 = new javax.swing.JCheckBox();
-        jCheckBox4 = new javax.swing.JCheckBox();
+        buttonGroup1 = new javax.swing.ButtonGroup();
+        JDato = new javax.swing.JTextField();
+        JSvømTid = new javax.swing.JTextField();
+        JPlacering = new javax.swing.JTextField();
+        JStævne = new javax.swing.JTextField();
+        JCrawl = new javax.swing.JCheckBox();
+        JBryst = new javax.swing.JCheckBox();
+        JButterfly = new javax.swing.JCheckBox();
+        JRygcrawl = new javax.swing.JCheckBox();
         jButton1 = new javax.swing.JButton();
         jButtonSvømmeresultater = new javax.swing.JButton();
         jButtonHovedemenu = new javax.swing.JButton();
@@ -42,50 +81,56 @@ public class RegistrerSvømmeResultater extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jName = new javax.swing.JLabel();
+        JCPR = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTextFieldDato.addActionListener(new java.awt.event.ActionListener() {
+        JDato.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldDatoActionPerformed(evt);
+                JDatoActionPerformed(evt);
             }
         });
 
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        JSvømTid.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                JSvømTidActionPerformed(evt);
             }
         });
 
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        JPlacering.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                JPlaceringActionPerformed(evt);
             }
         });
 
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+        JStævne.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
+                JStævneActionPerformed(evt);
             }
         });
 
-        jCheckBox1.setText("Crawl");
-        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup1.add(JCrawl);
+        JCrawl.setText("Crawl");
+        JCrawl.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox1ActionPerformed(evt);
+                JCrawlActionPerformed(evt);
             }
         });
 
-        jCheckBox2.setText("Brystsvømning");
+        buttonGroup1.add(JBryst);
+        JBryst.setText("Brystsvømning");
 
-        jCheckBox3.setText("Butterfly");
-        jCheckBox3.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup1.add(JButterfly);
+        JButterfly.setText("Butterfly");
+        JButterfly.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox3ActionPerformed(evt);
+                JButterflyActionPerformed(evt);
             }
         });
 
-        jCheckBox4.setText("Rygcrawl");
+        buttonGroup1.add(JRygcrawl);
+        JRygcrawl.setText("Rygcrawl");
 
         jButton1.setText("Registrer resultat");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -101,7 +146,7 @@ public class RegistrerSvømmeResultater extends javax.swing.JFrame {
             }
         });
 
-        jButtonHovedemenu.setText("Hovedemenu");
+        jButtonHovedemenu.setText("Coach view");
         jButtonHovedemenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonHovedemenuActionPerformed(evt);
@@ -116,6 +161,10 @@ public class RegistrerSvømmeResultater extends javax.swing.JFrame {
 
         jLabel4.setText("Placering ved stævnet:");
 
+        jName.setText("Navn");
+
+        JCPR.setText("CPR");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -127,30 +176,33 @@ public class RegistrerSvømmeResultater extends javax.swing.JFrame {
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(JSvømTid, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(JPlacering, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(JDato, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(JStævne, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jTextFieldDato, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jName))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(JCPR)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jCheckBox4)
-                            .addComponent(jCheckBox1))
+                            .addComponent(JRygcrawl)
+                            .addComponent(JCrawl))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jCheckBox3)
-                            .addComponent(jCheckBox2)))
+                            .addComponent(JButterfly)
+                            .addComponent(JBryst)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(12, 12, 12)
                         .addComponent(jButtonSvømmeresultater)
@@ -161,27 +213,30 @@ public class RegistrerSvømmeResultater extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jName)
+                    .addComponent(JCPR))
+                .addGap(5, 5, 5)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldDato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCheckBox1)
-                    .addComponent(jCheckBox3))
+                    .addComponent(JDato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JStævne, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JCrawl)
+                    .addComponent(JButterfly))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jCheckBox2)
+                    .addComponent(JBryst)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jCheckBox4)))
+                        .addComponent(JSvømTid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(JPlacering, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(JRygcrawl)))
                 .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -193,17 +248,17 @@ public class RegistrerSvømmeResultater extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+    private void JCrawlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JCrawlActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox1ActionPerformed
+    }//GEN-LAST:event_JCrawlActionPerformed
 
-    private void jCheckBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox3ActionPerformed
+    private void JButterflyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JButterflyActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox3ActionPerformed
+    }//GEN-LAST:event_JButterflyActionPerformed
 
     private void jButtonHovedemenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonHovedemenuActionPerformed
         this.dispose();
-        Hovedemenu hm = new Hovedemenu();
+        CoachView hm = new CoachView();
         hm.setVisible(true);    }//GEN-LAST:event_jButtonHovedemenuActionPerformed
 
     private void jButtonSvømmeresultaterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSvømmeresultaterActionPerformed
@@ -213,24 +268,49 @@ public class RegistrerSvømmeResultater extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonSvømmeresultaterActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        Konkurrencesvømmer km = c.getKonkurrencesvømmerPåCprnr(CPR);
+
+        try {
+            String stævnenavn = this.JStævne.getText();
+            String dato = this.JDato.getText();
+            int tid = Integer.parseInt(this.JSvømTid.getText());
+            String disc = this.getSelectedButtonText(buttonGroup1);
+            int placering = Integer.parseInt(this.JPlacering.getText());
+            if (this.getSelectedButtonText(buttonGroup1).equals("Crawl")) {
+                c.opretResultat(km, tid, dato, Disciplin.CRAWL, stævnenavn, placering);
+                JOptionPane.showMessageDialog(null,"Crawl resultat Oprettet");
+            } else if (this.getSelectedButtonText(buttonGroup1).equals("Butterfly")) {
+                c.opretResultat(km, tid, dato, Disciplin.BUTTERFLY, stævnenavn, placering);
+                JOptionPane.showMessageDialog(null,"Butterfly resultat Oprettet");
+            } else if (this.getSelectedButtonText(buttonGroup1).equals("Rygcrawl")) {
+                c.opretResultat(km, tid, dato, Disciplin.RYGCRAWL, stævnenavn, placering);
+                JOptionPane.showMessageDialog(null,"Rygcrawl resultat Oprettet");
+            } else if (this.getSelectedButtonText(buttonGroup1).equals("Brystsvømning")) {
+                c.opretResultat(km, tid, dato, Disciplin.BRYSTSVØMNING, stævnenavn, placering);
+                JOptionPane.showMessageDialog(null,"Brystsvømning resultat Oprettet");
+            }
+        } catch (Exception ex) {
+
+        }
+
+        //c.opretResultat(m, SOMEBITS, date, Disciplin.CRAWL, competitionName, HEIGHT);
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jTextFieldDatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldDatoActionPerformed
+    private void JDatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JDatoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldDatoActionPerformed
+    }//GEN-LAST:event_JDatoActionPerformed
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+    private void JStævneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JStævneActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
+    }//GEN-LAST:event_JStævneActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void JSvømTidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JSvømTidActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_JSvømTidActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void JPlaceringActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JPlaceringActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_JPlaceringActionPerformed
 
     /**
      * @param args the command line arguments
@@ -262,26 +342,29 @@ public class RegistrerSvømmeResultater extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new RegistrerSvømmeResultater().setVisible(true);
+                //new RegistrerSvømmeResultater().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JCheckBox JBryst;
+    private javax.swing.JCheckBox JButterfly;
+    private javax.swing.JLabel JCPR;
+    private javax.swing.JCheckBox JCrawl;
+    private javax.swing.JTextField JDato;
+    private javax.swing.JTextField JPlacering;
+    private javax.swing.JCheckBox JRygcrawl;
+    private javax.swing.JTextField JStævne;
+    private javax.swing.JTextField JSvømTid;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonHovedemenu;
     private javax.swing.JButton jButtonSvømmeresultater;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JCheckBox jCheckBox3;
-    private javax.swing.JCheckBox jCheckBox4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextFieldDato;
+    private javax.swing.JLabel jName;
     // End of variables declaration//GEN-END:variables
 }
