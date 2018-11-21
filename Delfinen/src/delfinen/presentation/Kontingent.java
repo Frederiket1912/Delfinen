@@ -5,18 +5,61 @@
  */
 package delfinen.presentation;
 
+import delfinen.data.Betaling;
+import delfinen.data.DataAccessorFile;
+import delfinen.data.Disciplin;
+import delfinen.data.Konkurrencesvømmer;
+import delfinen.data.Medlem;
+import delfinen.logic.BetalingCalculator;
+import delfinen.logic.Controller;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Calendar;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Talha Noory
  */
 public class Kontingent extends javax.swing.JFrame {
-
+    private Controller c;
     /**
      * Creates new form Kontingent
      */
     public Kontingent() {
         initComponents();
+        DataAccessorFile dao = new DataAccessorFile();
+        BetalingCalculator bc = new BetalingCalculator();
+        c = new Controller(dao, bc);
+        c.getMedlemmer();
     }
+     public DefaultTableModel createTable() {
+        DefaultTableModel model = (DefaultTableModel) this.jTable1.getModel();
+        int rowCount = model.getRowCount();
+        int ColumnCount = model.getColumnCount();
+        this.jTable1.isCellEditable(rowCount, ColumnCount - 1);
+        return model;
+    }
+     public void visMedlemmerRestance(){
+          
+        DefaultTableModel model = createTable();
+        model.getDataVector().removeAllElements();
+        model.fireTableDataChanged();
+        int tempCPR = 0;
+        for (Medlem m : c.getMedlemmerIRestance()) {
+                Object rowData[] = new Object[4];
+                rowData[0] = m.getName();
+                rowData[1] = m.getCprnr();
+                rowData[2] = m.getMail();
+                rowData[3] = c.getBetalingByYear(m, Calendar.getInstance().get(Calendar.YEAR)).getBetalingssum();
+                
+                model.addRow(rowData);
+
+            
+
+        }
+     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -28,13 +71,14 @@ public class Kontingent extends javax.swing.JFrame {
     private void initComponents() {
 
         jButtonIndkomst = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        jYear = new javax.swing.JTextField();
+        Jforventet = new javax.swing.JTextField();
         jButtonHovedemenu = new javax.swing.JButton();
         jButtonRestance = new javax.swing.JButton();
-        scrollPane1 = new java.awt.ScrollPane();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -45,10 +89,10 @@ public class Kontingent extends javax.swing.JFrame {
             }
         });
 
-        jTextField1.setText("Indtast årstal");
+        jYear.setText("Indtast årstal");
 
-        jTextField2.setEditable(false);
-        jTextField2.setText("Forventet indkomst fra år xxxx");
+        Jforventet.setEditable(false);
+        Jforventet.setText("Forventet indkomst fra år");
 
         jButtonHovedemenu.setText("Hovedemenu");
         jButtonHovedemenu.addActionListener(new java.awt.event.ActionListener() {
@@ -69,6 +113,16 @@ public class Kontingent extends javax.swing.JFrame {
         jTextArea1.setText("\nPassivt medlemskab:\t500 kr. årligt,\n\nAlder\n\n0 - 17 :\t\t1000 kr. årligt,\n\n18 - 60 :\t\t1600 kr. årligt,\n\n60 eller over :\t\t1200 kr. årligt");
         jScrollPane1.setViewportView(jTextArea1);
 
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Navn", "CPR", "Email", "Beløb"
+            }
+        ));
+        jScrollPane2.setViewportView(jTable1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -77,21 +131,20 @@ public class Kontingent extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jTextField1)
-                            .addComponent(jButtonIndkomst, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jYear)
+                                    .addComponent(jButtonIndkomst, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE))
+                                .addGap(18, 18, 18)
+                                .addComponent(Jforventet, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButtonRestance, javax.swing.GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
-                            .addComponent(scrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonHovedemenu, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonHovedemenu, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jButtonRestance, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -99,18 +152,21 @@ public class Kontingent extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jButtonRestance)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
-                    .addComponent(scrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jYear, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Jforventet, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(36, 36, 36)
                         .addComponent(jButtonIndkomst, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButtonHovedemenu, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addComponent(jButtonHovedemenu, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -118,7 +174,8 @@ public class Kontingent extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonIndkomstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIndkomstActionPerformed
-        // TODO add your handling code here:
+        int indkomst = c.getForventetIndkomstFraKontingenter(Integer.parseInt(this.jYear.getText()));
+        this.Jforventet.setText(""+ indkomst);
     }//GEN-LAST:event_jButtonIndkomstActionPerformed
 
     private void jButtonHovedemenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonHovedemenuActionPerformed
@@ -128,7 +185,7 @@ public class Kontingent extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonHovedemenuActionPerformed
 
     private void jButtonRestanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRestanceActionPerformed
-        // TODO add your handling code here:
+        visMedlemmerRestance();
     }//GEN-LAST:event_jButtonRestanceActionPerformed
 
     /**
@@ -167,13 +224,14 @@ public class Kontingent extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField Jforventet;
     private javax.swing.JButton jButtonHovedemenu;
     private javax.swing.JButton jButtonIndkomst;
     private javax.swing.JButton jButtonRestance;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTable1;
     private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private java.awt.ScrollPane scrollPane1;
+    private javax.swing.JTextField jYear;
     // End of variables declaration//GEN-END:variables
 }
