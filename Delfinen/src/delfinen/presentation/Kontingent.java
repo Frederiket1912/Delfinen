@@ -22,7 +22,9 @@ import javax.swing.table.DefaultTableModel;
  * @author Talha Noory
  */
 public class Kontingent extends javax.swing.JFrame {
+
     private Controller c;
+
     /**
      * Creates new form Kontingent
      */
@@ -33,33 +35,32 @@ public class Kontingent extends javax.swing.JFrame {
         c = new Controller(dao, bc);
         c.getMedlemmer();
     }
-     public DefaultTableModel createTable() {
+
+    public DefaultTableModel createTable() {
         DefaultTableModel model = (DefaultTableModel) this.jTable1.getModel();
         int rowCount = model.getRowCount();
         int ColumnCount = model.getColumnCount();
         this.jTable1.isCellEditable(rowCount, ColumnCount - 1);
         return model;
     }
-     public void visMedlemmerRestance(){
-          
+
+    public void visMedlemmerRestance() {
+
         DefaultTableModel model = createTable();
         model.getDataVector().removeAllElements();
         model.fireTableDataChanged();
         int tempCPR = 0;
         for (Medlem m : c.getMedlemmerIRestance()) {
-                Object rowData[] = new Object[4];
-                rowData[0] = m.getName();
-                rowData[1] = m.getCprnr();
-                rowData[2] = m.getMail();
-                rowData[3] = c.getBetalingByYear(m, Calendar.getInstance().get(Calendar.YEAR)).getBetalingssum();
-                
-                model.addRow(rowData);
+            Object rowData[] = new Object[4];
+            rowData[0] = m.getName();
+            rowData[1] = m.getCprnr();
+            rowData[2] = m.getMail();
+            rowData[3] = c.getBetalingByYear(m, Calendar.getInstance().get(Calendar.YEAR)).getBetalingssum();
 
-            
+            model.addRow(rowData);
 
         }
-     }
-    
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -174,8 +175,13 @@ public class Kontingent extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonIndkomstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIndkomstActionPerformed
-        int indkomst = c.getForventetIndkomstFraKontingenter(Integer.parseInt(this.jYear.getText()));
-        this.Jforventet.setText(""+ indkomst);
+        try {
+            int indkomst = c.getForventetIndkomstFraKontingenter(Integer.parseInt(this.jYear.getText()));
+
+            this.Jforventet.setText("" + indkomst);
+        } catch (Exception ex) {
+
+        }
     }//GEN-LAST:event_jButtonIndkomstActionPerformed
 
     private void jButtonHovedemenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonHovedemenuActionPerformed
