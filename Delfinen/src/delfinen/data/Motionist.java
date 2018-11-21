@@ -31,7 +31,6 @@ public class Motionist implements Serializable, Medlem {
         this.mail = mail;
         this.fødselsår = fødselsår;
         this.betalinger = new ArrayList();
-        //betalinger.add(new Betaling(new Motionist(name, cprnr, fødselsdato, medlemskabsstatus, mail), LocalDate.now().getYear(), true));
     }
 
     public Aktivitetsform getAktivitetsform() {

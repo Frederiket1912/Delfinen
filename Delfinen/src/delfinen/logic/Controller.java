@@ -17,6 +17,7 @@ import static delfinen.logic.BetalingCalculator.JUNIORPRIS;
 import static delfinen.logic.BetalingCalculator.PASSIVPRIS;
 import static delfinen.logic.BetalingCalculator.SENIORPRIS;
 import static delfinen.logic.BetalingCalculator.VOKSENPRIS;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import static jdk.nashorn.internal.runtime.Context.DEBUG;
@@ -50,6 +51,7 @@ public class Controller {
     public void opretMotionist(String name, int cprnr, int fødselsår, boolean medlemskabsstatus, String mail) {
         Medlem m = new Motionist(name, cprnr, fødselsår, medlemskabsstatus, mail);
         alleMedlemmer.add(m);
+        m.getBetalinger().add(new Betaling(m, LocalDate.now().getYear(), true));
         dao.skrivTilFil(alleMedlemmer);
 
     }
@@ -57,6 +59,7 @@ public class Controller {
     public void opretKonkurrencesvømmer(String name, int cprnr, int fødselsår, boolean medlemskabsstatus, String mail) {
         Medlem m = new Konkurrencesvømmer(name, cprnr, fødselsår, medlemskabsstatus, mail);
         alleMedlemmer.add(m);
+        m.getBetalinger().add(new Betaling(m, LocalDate.now().getYear(), true));
         dao.skrivTilFil(alleMedlemmer);
     }
 

@@ -28,21 +28,22 @@ public class Delfinen {
      */
     public static void main(String[] args) throws ClassNotFoundException {
         Controller c = new Controller(new DataAccessorFile(), new BetalingCalculator()); 
-        c.opretKonkurrencesvømmer("Frederik", 1912891867, 0, true, "frederiket@gmail.com");
+        c.opretKonkurrencesvømmer("Frederik", 1912891867, 1989, true, "frederiket@gmail.com");
         //Medlem m = c.søgMedlemPåCprnr(1912891867);
         Konkurrencesvømmer m = c.getKonkurrencesvømmerPåCprnr(1912891867);
         System.out.println(m);
-        c.opretResultat(m, 200, "10/10/1999", Disciplin.CRAWL, null, 0);
-        c.opretResultat(m, 100, "10/10/1999", Disciplin.CRAWL, null, 0);
-        c.opretResultat(m, 100, "10/10/1999", Disciplin.CRAWL, null, 0);
-        c.opretResultat(m, 500, "10/10/1999", Disciplin.CRAWL, null, 0);
-        c.opretResultat(m, 700, "10/10/1999", Disciplin.CRAWL, null, 0);
-        c.opretResultat(m, 300, "10/10/1999", Disciplin.CRAWL, null, 0);
-        c.opretResultat(m, 600, "10/10/1999", Disciplin.CRAWL, null, 0);
-        c.opretResultat(m, 600, "10/10/1999", Disciplin.CRAWL, null, 0);
-        c.opretResultat(m, 600, "10/10/1999", Disciplin.CRAWL, null, 0);
-        c.opretResultat(m, 600, "10/10/1999", Disciplin.CRAWL, null, 0);
-        c.opretResultat(m, 600, "10/10/1999", Disciplin.CRAWL, null, 0);
+        System.out.println(m.getBetalinger());
+//        c.opretResultat(m, 200, "10/10/1999", Disciplin.CRAWL, null, 0);
+//        c.opretResultat(m, 100, "10/10/1999", Disciplin.CRAWL, null, 0);
+//        c.opretResultat(m, 100, "10/10/1999", Disciplin.CRAWL, null, 0);
+//        c.opretResultat(m, 500, "10/10/1999", Disciplin.CRAWL, null, 0);
+//        c.opretResultat(m, 700, "10/10/1999", Disciplin.CRAWL, null, 0);
+//        c.opretResultat(m, 300, "10/10/1999", Disciplin.CRAWL, null, 0);
+//        c.opretResultat(m, 600, "10/10/1999", Disciplin.CRAWL, null, 0);
+//        c.opretResultat(m, 600, "10/10/1999", Disciplin.CRAWL, null, 0);
+//        c.opretResultat(m, 600, "10/10/1999", Disciplin.CRAWL, null, 0);
+//        c.opretResultat(m, 600, "10/10/1999", Disciplin.CRAWL, null, 0);
+//        c.opretResultat(m, 600, "10/10/1999", Disciplin.CRAWL, null, 0);
         //System.out.println(m.getResultater());
         //System.out.println(c.getTop5(Disciplin.CRAWL));
 //        System.out.println("getMedlemmer");
@@ -56,7 +57,7 @@ public class Delfinen {
 //        
 //        int time = 130;
 //        System.out.println(c.timeFormatter(time));
-            System.out.println(LocalDate.now().getYear());
+
     }
     
 }
