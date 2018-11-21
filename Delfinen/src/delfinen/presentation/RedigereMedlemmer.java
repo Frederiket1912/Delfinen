@@ -35,13 +35,18 @@ public class RedigereMedlemmer extends javax.swing.JFrame {
         BetalingCalculator bc = new BetalingCalculator();
         c = new Controller(dao, bc);
         visAlle();
+        System.out.println(c.getMedlemmer());
 
     }
 
     public void editUser() {
-
+        Medlem tempMedlem = c.getMedlemPåCprnr(Integer.parseInt(this.jTable1.getValueAt(this.jTable1.getSelectedRow(), 1).toString()));
+        String medlemsstatus = "P";
         this.jTextField4.setText(this.jTable1.getValueAt(this.jTable1.getSelectedRow(), 0).toString());
-        this.jTextField5.setText(this.jTable1.getValueAt(this.jTable1.getSelectedRow(), 1).toString());
+        if(tempMedlem.isMedlemskabsstatus()){
+            medlemsstatus = "A";
+        }
+        this.jTextField5.setText(medlemsstatus);
         this.jTextField6.setText(this.jTable1.getValueAt(this.jTable1.getSelectedRow(), 2).toString());
         this.jTextField7.setText(this.jTable1.getValueAt(this.jTable1.getSelectedRow(), 3).toString());
 
@@ -55,7 +60,7 @@ public class RedigereMedlemmer extends javax.swing.JFrame {
         int option = JOptionPane.showConfirmDialog(null, message, "Edit User", JOptionPane.OK_CANCEL_OPTION);
         if (option == JOptionPane.OK_OPTION) {
 
-            boolean medlemskabsstatus = true;
+            boolean medlemskabsstatus = false;
             try {
                 model.setValueAt(jTextField4.getText(), this.jTable1.getSelectedRow(), 0);
                 int alder = Integer.parseInt(this.jTable1.getValueAt(this.jTable1.getSelectedRow(), 3).toString());
@@ -65,7 +70,7 @@ public class RedigereMedlemmer extends javax.swing.JFrame {
                     medlemskabsstatus = false;
                 }
 
-                Medlem tempMedlem = c.getMedlemPåCprnr(Integer.parseInt(this.jTable1.getValueAt(this.jTable1.getSelectedRow(), 1).toString()));
+                
                 //vi skal huske at ændre 15 til enten at få en værdi fra et field, 
                 //eller bare at få værdien fra tempMedlem.getFødelsår(), hvis fødselsåret ikke skal kunne redigeres.
                 c.redigerMedlem(tempMedlem, jTextField4.getText(), alder, medlemskabsstatus, jTextField6.getText());
@@ -77,7 +82,7 @@ public class RedigereMedlemmer extends javax.swing.JFrame {
     }
 
     public void visAlle() {
-        ArrayList<Integer> betalingsår = new ArrayList();
+        
         DefaultTableModel model = createTable();
         model.getDataVector().removeAllElements();
         model.fireTableDataChanged();
@@ -95,7 +100,8 @@ public class RedigereMedlemmer extends javax.swing.JFrame {
             rowData[1] = m.getCprnr();
             rowData[2] = m.getMail();
             rowData[3] = m.getFødselsår();
-
+            
+            ArrayList<Integer> betalingsår = new ArrayList();
             for (Betaling b : m.getBetalinger()) {
                 betalingsår.add(b.getBetalingsyear());
             }
@@ -179,7 +185,7 @@ public class RedigereMedlemmer extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Navn", "CPR", "E-mail", "Fødselsdag", "Betalingsår"
+                "Navn", "CPR", "E-mail", "Fødselsår", "Betalingsår"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -331,7 +337,7 @@ public class RedigereMedlemmer extends javax.swing.JFrame {
     }//GEN-LAST:event_CPRfieldActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        ArrayList<Integer> betalingsår = new ArrayList();
+        
         DefaultTableModel model = createTable();
         model.getDataVector().removeAllElements();
         model.fireTableDataChanged();
@@ -344,6 +350,7 @@ public class RedigereMedlemmer extends javax.swing.JFrame {
             } catch (Exception ex) {
             }
             if (m.getCprnr() == tempCPR || m.getMail().toLowerCase().equals(this.MailField.getText().toLowerCase()) || m.getName().toLowerCase().equals(this.NameField.getText().toLowerCase())) {
+                ArrayList<Integer> betalingsår = new ArrayList();
                 Object rowData[] = new Object[5];
                 rowData[0] = m.getName();
                 rowData[1] = m.getCprnr();
@@ -399,29 +406,29 @@ public class RedigereMedlemmer extends javax.swing.JFrame {
     }//GEN-LAST:event_OpretMedlemActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        try{
-        DefaultTableModel model = createTable();
+        try {
+            DefaultTableModel model = createTable();
 
-        Medlem tempMedlem = c.getMedlemPåCprnr(Integer.parseInt(this.jTable1.getValueAt(this.jTable1.getSelectedRow(), 1).toString()));
-        this.jLabel4.setText("CPR: " + tempMedlem.getCprnr());
-        this.jLabel5.setText("Navn: " + tempMedlem.getName());
-        this.jTextField6.setText("");
+            Medlem tempMedlem = c.getMedlemPåCprnr(Integer.parseInt(this.jTable1.getValueAt(this.jTable1.getSelectedRow(), 1).toString()));
+            this.jLabel4.setText("CPR: " + tempMedlem.getCprnr());
+            this.jLabel5.setText("Navn: " + tempMedlem.getName());
+            this.jTextField6.setText("");
 
-        Object[] message = {
-            "", jLabel4,
-            "", jLabel5,
-            "Betalingsår", jTextField6
+            Object[] message = {
+                "", jLabel4,
+                "", jLabel5,
+                "Betalingsår", jTextField6
 
-        };
-        int option = JOptionPane.showConfirmDialog(null, message, "Opret Betaling", JOptionPane.OK_CANCEL_OPTION);
-        if (option == JOptionPane.OK_OPTION) {
-            //jeg har lavet en ny attribut til betaling der er en boolean.
-            //hvis de betaler 0, altså ikke betaler skal den sættes til false, ellers til true
-            c.opretBetaling(tempMedlem, Integer.parseInt(this.jTextField6.getText()), true);
+            };
+            int option = JOptionPane.showConfirmDialog(null, message, "Opret Betaling", JOptionPane.OK_CANCEL_OPTION);
+            if (option == JOptionPane.OK_OPTION) {
+                //jeg har lavet en ny attribut til betaling der er en boolean.
+                //hvis de betaler 0, altså ikke betaler skal den sættes til false, ellers til true
+                c.opretBetaling(tempMedlem, Integer.parseInt(this.jTextField6.getText()), true);
 
-        }
-        }catch(Exception ex){
-            
+            }
+        } catch (Exception ex) {
+
         }
     }//GEN-LAST:event_jButton5ActionPerformed
 
