@@ -480,13 +480,10 @@ public class ControllerTest {
     @Test
     public void testTimeFormatter() {
         System.out.println("timeFormatter");
-        int time = 0;
-        Controller instance = null;
-        String expResult = "";
-        String result = instance.timeFormatter(time);
+        int time = 126;
+        String expResult = "02:06";
+        String result = c.timeFormatter(time);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
