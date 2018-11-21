@@ -226,9 +226,15 @@ public class ControllerTest {
     @Test
     public void testgetCrawlResultater() {
         System.out.println("s\u00f8gCrawlResultater");
-        Controller instance = null;
-        ArrayList<Resultat> expResult = null;
-        ArrayList<Resultat> result = instance.getBrystsvømningResultater();
+        c.opretKonkurrencesvømmer("Frederik", 1912891867, 1989, true, "frederiket@gmail.com");
+        c.opretResultat(c.getKonkurrencesvømmerPåCprnr(1912891867), 200, "10/10/1999", Disciplin.CRAWL, "randerssRegnskov", 0);
+        c.opretResultat(c.getKonkurrencesvømmerPåCprnr(1912891867), 100, "10/10/1999", Disciplin.CRAWL, "randerssRegnskov", 0);
+        c.opretResultat(c.getKonkurrencesvømmerPåCprnr(1912891867), 100, "10/10/1999", Disciplin.RYGCRAWL, "randerssRegnskov", 0);
+        c.opretResultat(c.getKonkurrencesvømmerPåCprnr(1912891867), 500, "10/10/1999", Disciplin.BRYSTSVØMNING, "randerssRegnskov", 0);
+        c.opretResultat(c.getKonkurrencesvømmerPåCprnr(1912891867), 700, "10/10/1999", Disciplin.BUTTERFLY, "randerssRegnskov", 0);
+        c.opretResultat(c.getKonkurrencesvømmerPåCprnr(1912891867), 300, "10/10/1999", Disciplin.BUTTERFLY, "randerssRegnskov", 0);
+        int expResult = 2;
+        int result = c.getCrawlResultater().size();
         assertEquals(expResult, result);
 
     }
