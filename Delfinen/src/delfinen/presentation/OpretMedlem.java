@@ -193,7 +193,7 @@ public class OpretMedlem extends javax.swing.JFrame {
             //men opretMotionist skal have (String name, int cprnr, int fødselsår, boolean medlemskabsstatus, String mail)
             //så cpr og age skal byttes om, og age skal nok omdøbes til fødelsår
             
-            setVisible(false);
+            
         }catch(Exception ex){
             
         }
