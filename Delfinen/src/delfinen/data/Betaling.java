@@ -13,6 +13,8 @@ public class Betaling implements Serializable {
     private int betalingsyear;
     private boolean hasPaid;
     private int id;
+    private String name;
+    private int CPR;
 
     public int getId() {
         return id;
@@ -28,6 +30,8 @@ public class Betaling implements Serializable {
             this.betalingssum = 0;
         }
         this.betalingsyear = betalingsyear;
+        this.name = medlem.getName();
+        this.CPR = medlem.getCprnr();
     }
 
     @Override
@@ -37,6 +41,12 @@ public class Betaling implements Serializable {
 
     public void setId(int id) {
         this.id = id;
+    }
+    public String getName(){
+        return this.name;
+    }
+    public int getCPR(){
+        return this.CPR;
     }
 
     public boolean isHasPaid() {
