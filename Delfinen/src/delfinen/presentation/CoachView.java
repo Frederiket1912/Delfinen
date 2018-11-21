@@ -19,7 +19,9 @@ import javax.swing.table.DefaultTableModel;
  * @author frederik
  */
 public class CoachView extends javax.swing.JFrame {
+
     private Controller c;
+
     /**
      * Creates new form CoachView
      */
@@ -30,13 +32,14 @@ public class CoachView extends javax.swing.JFrame {
         c = new Controller(dao, bc);
         c.getMedlemmer();
         visAlle();
-       // for(Konkurrencesvømmer k : c.getKonkurrencesvømmere()){
-       //     c.opretResultat(k, 66, "75", Disciplin.CRAWL, "Noget", 1);
-       // }
-       
+        // for(Konkurrencesvømmer k : c.getKonkurrencesvømmere()){
+        //     c.opretResultat(k, 66, "75", Disciplin.CRAWL, "Noget", 1);
+        // }
+
     }
-    public void visAlle(){
-             
+
+    public void visAlle() {
+
         DefaultTableModel model = createTable();
         model.getDataVector().removeAllElements();
         model.fireTableDataChanged();
@@ -47,21 +50,19 @@ public class CoachView extends javax.swing.JFrame {
 
             } catch (Exception ex) {
             }
-            
-                Object rowData[] = new Object[6];
-                rowData[0] = m.getName();
-                rowData[1] = m.getCprnr();
-                try{
-                rowData[2] = c.timeFormatter(c.getBestResult((Konkurrencesvømmer)m, Disciplin.CRAWL).getTimeInSeconds());
-                rowData[3] = c.timeFormatter(c.getBestResult((Konkurrencesvømmer)m, Disciplin.BRYSTSVØMNING).getTimeInSeconds());
-                rowData[4] = c.timeFormatter(c.getBestResult((Konkurrencesvømmer)m, Disciplin.RYGCRAWL).getTimeInSeconds());
-                rowData[5] = c.timeFormatter(c.getBestResult((Konkurrencesvømmer)m, Disciplin.BUTTERFLY).getTimeInSeconds());
-                }catch(Exception ex){
-                    
-                }
-                model.addRow(rowData);
 
-            
+            Object rowData[] = new Object[6];
+            rowData[0] = m.getName();
+            rowData[1] = m.getCprnr();
+            try {
+                rowData[2] = c.timeFormatter(c.getBestResult((Konkurrencesvømmer) m, Disciplin.CRAWL).getTimeInSeconds());
+                rowData[3] = c.timeFormatter(c.getBestResult((Konkurrencesvømmer) m, Disciplin.BRYSTSVØMNING).getTimeInSeconds());
+                rowData[4] = c.timeFormatter(c.getBestResult((Konkurrencesvømmer) m, Disciplin.RYGCRAWL).getTimeInSeconds());
+                rowData[5] = c.timeFormatter(c.getBestResult((Konkurrencesvømmer) m, Disciplin.BUTTERFLY).getTimeInSeconds());
+            } catch (Exception ex) {
+
+            }
+            model.addRow(rowData);
 
         }
     }
@@ -226,21 +227,20 @@ public class CoachView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void RegisterTidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegisterTidActionPerformed
-        try{
+        try {
             int k = Integer.parseInt(this.jTable1.getValueAt(this.jTable1.getSelectedRow(), 1).toString());
-            JFrame sv = new RegistrerSvømmeResultater(k); 
+            JFrame sv = new RegistrerSvømmeResultater(k);
             sv.setVisible(true);
             this.dispose();
-        }catch(Exception ex){
-            
+        } catch (Exception ex) {
+
         }
-        
-        
-        
+
+
     }//GEN-LAST:event_RegisterTidActionPerformed
 
     private void søgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_søgActionPerformed
-        
+
         DefaultTableModel model = createTable();
         model.getDataVector().removeAllElements();
         model.fireTableDataChanged();
@@ -255,13 +255,13 @@ public class CoachView extends javax.swing.JFrame {
                 Object rowData[] = new Object[6];
                 rowData[0] = m.getName();
                 rowData[1] = m.getCprnr();
-                try{
-                rowData[2] = c.timeFormatter(c.getBestResult((Konkurrencesvømmer)m, Disciplin.CRAWL).getTimeInSeconds());
-                rowData[3] = c.timeFormatter(c.getBestResult((Konkurrencesvømmer)m, Disciplin.BRYSTSVØMNING).getTimeInSeconds());
-                rowData[4] = c.timeFormatter(c.getBestResult((Konkurrencesvømmer)m, Disciplin.RYGCRAWL).getTimeInSeconds());
-                rowData[5] = c.timeFormatter(c.getBestResult((Konkurrencesvømmer)m, Disciplin.BUTTERFLY).getTimeInSeconds());
-                }catch(Exception ex){
-                    
+                try {
+                    rowData[2] = c.timeFormatter(c.getBestResult((Konkurrencesvømmer) m, Disciplin.CRAWL).getTimeInSeconds());
+                    rowData[3] = c.timeFormatter(c.getBestResult((Konkurrencesvømmer) m, Disciplin.BRYSTSVØMNING).getTimeInSeconds());
+                    rowData[4] = c.timeFormatter(c.getBestResult((Konkurrencesvømmer) m, Disciplin.RYGCRAWL).getTimeInSeconds());
+                    rowData[5] = c.timeFormatter(c.getBestResult((Konkurrencesvømmer) m, Disciplin.BUTTERFLY).getTimeInSeconds());
+                } catch (Exception ex) {
+
                 }
                 model.addRow(rowData);
 
@@ -275,13 +275,13 @@ public class CoachView extends javax.swing.JFrame {
     }//GEN-LAST:event_NameFieldActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
+
         new SvømmeResultater().setVisible(true);
-       
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-     
+
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -297,8 +297,7 @@ public class CoachView extends javax.swing.JFrame {
         this.jTable1.isCellEditable(rowCount, ColumnCount - 1);
         return model;
     }
-    
-    
+
     /**
      * @param args the command line arguments
      */
@@ -325,7 +324,7 @@ public class CoachView extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(CoachView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        
+
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
