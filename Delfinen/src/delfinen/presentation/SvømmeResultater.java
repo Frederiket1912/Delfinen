@@ -5,17 +5,40 @@
  */
 package delfinen.presentation;
 
+import delfinen.data.Betaling;
+import delfinen.data.DataAccessorFile;
+import delfinen.data.Disciplin;
+import delfinen.data.Konkurrencesvømmer;
+import delfinen.data.Medlem;
+import delfinen.data.Resultat;
+import delfinen.logic.BetalingCalculator;
+import delfinen.logic.Controller;
+import java.util.ArrayList;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Talha Noory
  */
 public class SvømmeResultater extends javax.swing.JFrame {
-
+    private Controller c;
     /**
      * Creates new form SvømmeResultater
      */
     public SvømmeResultater() {
         initComponents();
+        DataAccessorFile dao = new DataAccessorFile();
+        BetalingCalculator bc = new BetalingCalculator();
+        c = new Controller(dao, bc);
+        c.getMedlemmer();
+    }
+        public DefaultTableModel createTable(JTable t) {
+        DefaultTableModel model = (DefaultTableModel) t.getModel();
+        int rowCount = model.getRowCount();
+        int ColumnCount = model.getColumnCount();
+        t.isCellEditable(rowCount, ColumnCount - 1);
+        return model;
     }
 
     /**
@@ -27,6 +50,8 @@ public class SvømmeResultater extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
@@ -38,9 +63,22 @@ public class SvømmeResultater extends javax.swing.JFrame {
         jButtonRegistrerSvømmeresultat = new javax.swing.JButton();
         jButtonHovedemenu = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        JTop5 = new javax.swing.JTable();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        JResultater = new javax.swing.JTable();
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane3.setViewportView(jTable2);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -100,7 +138,7 @@ public class SvømmeResultater extends javax.swing.JFrame {
             }
         });
 
-        jButtonRegistrerSvømmeresultat.setText("Registrer svømmeresultat");
+        jButtonRegistrerSvømmeresultat.setText("Coach View");
         jButtonRegistrerSvømmeresultat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonRegistrerSvømmeresultatActionPerformed(evt);
@@ -114,22 +152,25 @@ public class SvømmeResultater extends javax.swing.JFrame {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        JTop5.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(JTop5);
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane2.setViewportView(jTextArea1);
+        JResultater.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Navn", "Disciplin", "Placering", "Tid"
+            }
+        ));
+        jScrollPane4.setViewportView(JResultater);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -144,27 +185,22 @@ public class SvømmeResultater extends javax.swing.JFrame {
                     .addComponent(jButton11, javax.swing.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE)
                     .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE)
                     .addComponent(jButton9, javax.swing.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE)
+                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 211, Short.MAX_VALUE)
                     .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE)
                     .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonHovedemenu, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 806, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane2)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButtonHovedemenu, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 802, Short.MAX_VALUE)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(7, 7, 7)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(7, 7, 7)
                         .addComponent(jButton1)
                         .addGap(18, 18, 18)
                         .addComponent(jButton5)
@@ -172,9 +208,11 @@ public class SvømmeResultater extends javax.swing.JFrame {
                         .addComponent(jButton7)
                         .addGap(18, 18, 18)
                         .addComponent(jButton4))
-                    .addComponent(jScrollPane2))
-                .addGap(52, 52, 52)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton9)
                         .addGap(18, 18, 18)
@@ -183,8 +221,8 @@ public class SvømmeResultater extends javax.swing.JFrame {
                         .addComponent(jButton11)
                         .addGap(18, 18, 18)
                         .addComponent(jButton10))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButtonHovedemenu, javax.swing.GroupLayout.DEFAULT_SIZE, 65, Short.MAX_VALUE)
                     .addComponent(jButtonRegistrerSvømmeresultat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -195,48 +233,184 @@ public class SvømmeResultater extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+
+        DefaultTableModel model = createTable(this.JResultater);
+        model.getDataVector().removeAllElements();
+        model.fireTableDataChanged();
+        for (Resultat t : c.getDisciplinResultater(Disciplin.CRAWL)) {
+                Object rowData[] = new Object[4];
+                rowData[0] = t.getName();
+                rowData[1] = t.getDisciplin();
+                rowData[2] = t.getPlacement();
+                rowData[3] = c.timeFormatter(t.getTimeInSeconds());
+
+
+                
+                model.addRow(rowData);
+
+            
+
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
+        
+        DefaultTableModel model = createTable(this.JResultater);
+        model.getDataVector().removeAllElements();
+        model.fireTableDataChanged();
+        for (Resultat t : c.getDisciplinResultater(Disciplin.RYGCRAWL)) {
+                Object rowData[] = new Object[4];
+                rowData[0] = t.getName();
+                rowData[1] = t.getDisciplin();
+                rowData[2] = t.getPlacement();
+                rowData[3] = c.timeFormatter(t.getTimeInSeconds());
+
+
+                
+                model.addRow(rowData);
+
+            
+
+        }
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
+        
+        DefaultTableModel model = createTable(this.JResultater);
+        model.getDataVector().removeAllElements();
+        model.fireTableDataChanged();
+        for (Resultat t : c.getDisciplinResultater(Disciplin.BUTTERFLY)) {
+                Object rowData[] = new Object[4];
+                rowData[0] = t.getName();
+                rowData[1] = t.getDisciplin();
+                rowData[2] = t.getPlacement();
+                rowData[3] = c.timeFormatter(t.getTimeInSeconds());
+
+
+                
+                model.addRow(rowData);
+
+            
+
+        }
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
+        
+        DefaultTableModel model = createTable(this.JResultater);
+        model.getDataVector().removeAllElements();
+        model.fireTableDataChanged();
+        for (Resultat t : c.getDisciplinResultater(Disciplin.BRYSTSVØMNING)) {
+                Object rowData[] = new Object[4];
+                rowData[0] = t.getName();
+                rowData[1] = t.getDisciplin();
+                rowData[2] = t.getPlacement();
+                rowData[3] = c.timeFormatter(t.getTimeInSeconds());
+
+
+                
+                model.addRow(rowData);
+
+            
+
+        }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        // TODO add your handling code here:
+       
+        DefaultTableModel model = createTable(this.JTop5);
+        model.getDataVector().removeAllElements();
+        model.fireTableDataChanged();
+        for (Resultat t : c.getTop5(Disciplin.CRAWL)) {
+                Object rowData[] = new Object[4];
+                rowData[0] = t.getName();
+                rowData[1] = t.getDisciplin();
+                rowData[2] = t.getPlacement();
+                rowData[3] = c.timeFormatter(t.getTimeInSeconds());
+
+
+                
+                model.addRow(rowData);
+
+            
+
+        }
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        // TODO add your handling code here:
+             
+        DefaultTableModel model = createTable(this.JTop5);
+        model.getDataVector().removeAllElements();
+        model.fireTableDataChanged();
+        for (Resultat t : c.getTop5(Disciplin.RYGCRAWL)) {
+                Object rowData[] = new Object[4];
+                rowData[0] = t.getName();
+                rowData[1] = t.getDisciplin();
+                rowData[2] = t.getPlacement();
+                rowData[3] = c.timeFormatter(t.getTimeInSeconds());
+
+
+                
+                model.addRow(rowData);
+
+            
+
+        }
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-        // TODO add your handling code here:
+                   
+        DefaultTableModel model = createTable(this.JTop5);
+        model.getDataVector().removeAllElements();
+        model.fireTableDataChanged();
+        for (Resultat t : c.getTop5(Disciplin.BUTTERFLY)) {
+                Object rowData[] = new Object[4];
+                rowData[0] = t.getName();
+                rowData[1] = t.getDisciplin();
+                rowData[2] = t.getPlacement();
+                rowData[3] = c.timeFormatter(t.getTimeInSeconds());
+
+
+                
+                model.addRow(rowData);
+
+            
+
+        }
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        // TODO add your handling code here:
+                    
+        DefaultTableModel model = createTable(this.JTop5);
+        model.getDataVector().removeAllElements();
+        model.fireTableDataChanged();
+        for (Resultat t : c.getTop5(Disciplin.BRYSTSVØMNING)) {
+                Object rowData[] = new Object[4];
+                rowData[0] = t.getName();
+                rowData[1] = t.getDisciplin();
+                rowData[2] = t.getPlacement();
+                rowData[3] = c.timeFormatter(t.getTimeInSeconds());
+
+
+                
+                model.addRow(rowData);
+
+            
+
+        }
     }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void jButtonHovedemenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonHovedemenuActionPerformed
+        //this.dispose();
+        //Hovedemenu hm = new Hovedemenu();
+        //hm.setVisible(true);
+    }//GEN-LAST:event_jButtonHovedemenuActionPerformed
 
     private void jButtonRegistrerSvømmeresultatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrerSvømmeresultatActionPerformed
         this.dispose();
-        RegistrerSvømmeResultater rs = new RegistrerSvømmeResultater();
-        rs.setVisible(true);
+        CoachView cw = new CoachView();
+        cw.setVisible(true);
     }//GEN-LAST:event_jButtonRegistrerSvømmeresultatActionPerformed
-
-    private void jButtonHovedemenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonHovedemenuActionPerformed
-        this.dispose();
-        Hovedemenu hm = new Hovedemenu();
-        hm.setVisible(true);
-    }//GEN-LAST:event_jButtonHovedemenuActionPerformed
 
     /**
      * @param args the command line arguments
@@ -274,6 +448,8 @@ public class SvømmeResultater extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable JResultater;
+    private javax.swing.JTable JTop5;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
@@ -285,8 +461,8 @@ public class SvømmeResultater extends javax.swing.JFrame {
     private javax.swing.JButton jButtonHovedemenu;
     private javax.swing.JButton jButtonRegistrerSvømmeresultat;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JTable jTable2;
     // End of variables declaration//GEN-END:variables
 }
