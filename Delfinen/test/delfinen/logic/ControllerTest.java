@@ -198,7 +198,7 @@ public class ControllerTest {
         c.opretKonkurrencesvømmer("Frederik", 1912891867, 1989, true, "frederiket@gmail.com");
         String trænernavn = "Talha";
         c.setTrænernavn(c.getKonkurrencesvømmerPåCprnr(1912891867), trænernavn);
-        assertEquals("Talha", c);
+        assertEquals("Talha", c.getKonkurrencesvømmerPåCprnr(1912891867).getTrænernavn());
 
     }
 
@@ -206,13 +206,18 @@ public class ControllerTest {
      * Test of søgAlleResultater method, of class Controller.
      */
     @Test
-    public void testgetAlleResultater() {
+    public void testGetAlleResultater() {
         System.out.println("s\u00f8gAlleResultater");
-        Controller instance = null;
-        ArrayList<Resultat> expResult = null;
-        ArrayList<Resultat> result = instance.getAlleResultater();
+        c.opretKonkurrencesvømmer("Frederik", 1912891867, 1989, true, "frederiket@gmail.com");
+        c.opretResultat(c.getKonkurrencesvømmerPåCprnr(1912891867), 200, "10/10/1999", Disciplin.CRAWL, "randerssRegnskov", 0);
+        c.opretResultat(c.getKonkurrencesvømmerPåCprnr(1912891867), 100, "10/10/1999", Disciplin.CRAWL, "randerssRegnskov", 0);
+        c.opretResultat(c.getKonkurrencesvømmerPåCprnr(1912891867), 100, "10/10/1999", Disciplin.CRAWL, "randerssRegnskov", 0);
+        c.opretResultat(c.getKonkurrencesvømmerPåCprnr(1912891867), 500, "10/10/1999", Disciplin.CRAWL, "randerssRegnskov", 0);
+        c.opretResultat(c.getKonkurrencesvømmerPåCprnr(1912891867), 700, "10/10/1999", Disciplin.CRAWL, "randerssRegnskov", 0);
+        c.opretResultat(c.getKonkurrencesvømmerPåCprnr(1912891867), 300, "10/10/1999", Disciplin.CRAWL, "randerssRegnskov", 0);
+        int expResult = 6;
+        int result = c.getAlleResultater().size();
         assertEquals(expResult, result);
-
     }
 
     /**
@@ -373,19 +378,6 @@ public class ControllerTest {
         fail("The test case is a prototype.");
     }
 
-    /**
-     * Test of getAlleResultater method, of class Controller.
-     */
-    @Test
-    public void testGetAlleResultater() {
-        System.out.println("getAlleResultater");
-        Controller instance = null;
-        ArrayList<Resultat> expResult = null;
-        ArrayList<Resultat> result = instance.getAlleResultater();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
 
     /**
      * Test of getCrawlResultater method, of class Controller.
