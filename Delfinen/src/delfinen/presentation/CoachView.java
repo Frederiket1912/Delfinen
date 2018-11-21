@@ -226,10 +226,17 @@ public class CoachView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void RegisterTidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegisterTidActionPerformed
-        int k = Integer.parseInt(this.jTable1.getValueAt(this.jTable1.getSelectedRow(), 1).toString());
-        JFrame sv = new RegistrerSvømmeResultater(k); 
-        sv.setVisible(true);
-        this.dispose();
+        try{
+            int k = Integer.parseInt(this.jTable1.getValueAt(this.jTable1.getSelectedRow(), 1).toString());
+            JFrame sv = new RegistrerSvømmeResultater(k); 
+            sv.setVisible(true);
+            this.dispose();
+        }catch(Exception ex){
+            
+        }
+        
+        
+        
     }//GEN-LAST:event_RegisterTidActionPerformed
 
     private void søgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_søgActionPerformed
