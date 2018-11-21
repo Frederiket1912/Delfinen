@@ -67,6 +67,10 @@ public class OpretMedlem extends javax.swing.JFrame {
         CPRLabel = new javax.swing.JLabel();
         EmailLabel = new javax.swing.JLabel();
         OpretButton = new javax.swing.JButton();
+        jRadioButton1 = new javax.swing.JRadioButton();
+        jRadioButton2 = new javax.swing.JRadioButton();
+        jSeparator1 = new javax.swing.JSeparator();
+        jSeparator2 = new javax.swing.JSeparator();
 
         javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
         jDialog1.getContentPane().setLayout(jDialog1Layout);
@@ -83,6 +87,11 @@ public class OpretMedlem extends javax.swing.JFrame {
 
         buttonGroup1.add(Motionist);
         Motionist.setText("Motionist");
+        Motionist.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MotionistActionPerformed(evt);
+            }
+        });
 
         buttonGroup1.add(Koncurrence);
         Koncurrence.setText("Koncurrence");
@@ -101,6 +110,12 @@ public class OpretMedlem extends javax.swing.JFrame {
                 OpretButtonActionPerformed(evt);
             }
         });
+
+        buttonGroup2.add(jRadioButton1);
+        jRadioButton1.setText("Aktiv");
+
+        buttonGroup2.add(jRadioButton2);
+        jRadioButton2.setText("Passiv");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -135,14 +150,28 @@ public class OpretMedlem extends javax.swing.JFrame {
                 .addGap(107, 107, 107))
             .addGroup(layout.createSequentialGroup()
                 .addGap(57, 57, 57)
-                .addComponent(Motionist)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
                 .addComponent(Koncurrence)
-                .addGap(70, 70, 70))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Motionist)
+                .addGap(79, 79, 79))
             .addGroup(layout.createSequentialGroup()
-                .addGap(125, 125, 125)
-                .addComponent(OpretButton)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(61, 61, 61)
+                .addComponent(jRadioButton2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jRadioButton1)
+                .addGap(99, 99, 99))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(18, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(21, 21, 21))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(21, 21, 21))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(OpretButton)
+                        .addGap(142, 142, 142))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -163,13 +192,21 @@ public class OpretMedlem extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(EmailField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(CPRField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Koncurrence, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(Motionist, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(9, 9, 9)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Motionist)
-                    .addComponent(Koncurrence))
-                .addGap(29, 29, 29)
+                    .addComponent(jRadioButton2)
+                    .addComponent(jRadioButton1))
+                .addGap(26, 26, 26)
                 .addComponent(OpretButton)
-                .addGap(26, 26, 26))
+                .addContainerGap())
         );
 
         pack();
@@ -179,13 +216,18 @@ public class OpretMedlem extends javax.swing.JFrame {
 
         //den måde jeg har lavet metoden til at oprette motionister skal de ikke have en boolean om de er motionister eller
         //konkurrencesvømmere, men om de er aktive eller passive medlemmer.
-        boolean motionist = false;
+        boolean aktivPassive = false;
         try{
+            if(this.getSelectedButtonText(buttonGroup2).equals("Aktiv")){
+                aktivPassive = true;
+                
+            }
+            
             if(this.getSelectedButtonText(buttonGroup1).equals("Motionist")){
-            c.opretMotionist(this.NameField.getText(), Integer.parseInt(this.AgeField.getText()), Integer.parseInt(this.CPRField.getText()), motionist, this.EmailField.getText());
+            c.opretMotionist(this.NameField.getText(), Integer.parseInt(this.AgeField.getText()), Integer.parseInt(this.CPRField.getText()), aktivPassive, this.EmailField.getText());
             JOptionPane.showMessageDialog(null,"Motionist Oprettet");
         } else{
-                c.opretKonkurrencesvømmer(this.NameField.getText(), Integer.parseInt(this.AgeField.getText()), Integer.parseInt(this.CPRField.getText()), motionist, this.EmailField.getText());
+                c.opretKonkurrencesvømmer(this.NameField.getText(), Integer.parseInt(this.AgeField.getText()), Integer.parseInt(this.CPRField.getText()), aktivPassive, this.EmailField.getText());
                 JOptionPane.showMessageDialog(null,"Konkurrence svømmer Oprettet");
             }
             
@@ -199,6 +241,10 @@ public class OpretMedlem extends javax.swing.JFrame {
         }
         setVisible(false);
     }//GEN-LAST:event_OpretButtonActionPerformed
+
+    private void MotionistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MotionistActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_MotionistActionPerformed
 
     /**
      * @param args the command line arguments
@@ -251,5 +297,9 @@ public class OpretMedlem extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JOptionPane jOptionPane1;
+    private javax.swing.JRadioButton jRadioButton1;
+    private javax.swing.JRadioButton jRadioButton2;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
     // End of variables declaration//GEN-END:variables
 }
