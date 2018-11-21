@@ -307,7 +307,24 @@ public class ControllerTest {
         //vi opretter resultater af forskellige discipliner og tjekker om antallet af resultater vi får returned stemmer overens med antallet af crawlresultater
         assertEquals(expResult, result);       
     }
-
+    
+    /**
+     * Test of getTop5 method, of class Controller.
+     */
+    @Test
+    public void testGetTop5Resultater5Brystsvømning() {
+        c.opretKonkurrencesvømmer("Frederik", 1912891867, 1989, true, "frederiket@gmail.com");
+        c.opretResultat(c.getKonkurrencesvømmerPåCprnr(1912891867), 200, "10/10/1999", Disciplin.BRYSTSVØMNING, "randerssRegnskov", 0);
+        c.opretResultat(c.getKonkurrencesvømmerPåCprnr(1912891867), 100, "10/10/1999", Disciplin.BRYSTSVØMNING, "randerssRegnskov", 0);
+        c.opretResultat(c.getKonkurrencesvømmerPåCprnr(1912891867), 100, "10/10/1999", Disciplin.BRYSTSVØMNING, "randerssRegnskov", 0);
+        c.opretResultat(c.getKonkurrencesvømmerPåCprnr(1912891867), 500, "10/10/1999", Disciplin.BRYSTSVØMNING, "randerssRegnskov", 0);
+        c.opretResultat(c.getKonkurrencesvømmerPåCprnr(1912891867), 700, "10/10/1999", Disciplin.BRYSTSVØMNING, "randerssRegnskov", 0);
+        c.opretResultat(c.getKonkurrencesvømmerPåCprnr(1912891867), 300, "10/10/1999", Disciplin.BRYSTSVØMNING, "randerssRegnskov", 0);
+        int expResult = 5;
+        int result = c.getTop5(Disciplin.BRYSTSVØMNING).size();
+        //vi opretter resultater og tjekker om antallet af resultater vi får returned holder sig inden inden for en top 5.
+        assertEquals(expResult, result);       
+    }
     /**
      * Test of getRestanceForMedlem method, of class Controller.
      */
