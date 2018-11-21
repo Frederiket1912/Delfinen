@@ -32,6 +32,7 @@ public class RedigereMedlemmer extends javax.swing.JFrame {
         DataAccessorFile dao = new DataAccessorFile();
         BetalingCalculator bc = new BetalingCalculator();
         c = new Controller(dao, bc);
+        visAlle();
         
     }
 
@@ -75,7 +76,39 @@ public class RedigereMedlemmer extends javax.swing.JFrame {
             }
         }
     }
+    
+    public void visAlle(){
+           ArrayList<Integer> betalingsår = new ArrayList();
+        DefaultTableModel model = createTable();
+        model.getDataVector().removeAllElements();
+        model.fireTableDataChanged();
+        int tempCPR = 0;
+        for (Medlem m : c.getMedlemmer()) {
+            try {
+                tempCPR = Integer.parseInt(this.CPRfield.getText());
+                System.out.println(m.getBetalinger());
 
+            } catch (Exception ex) {
+            }
+            
+                Object rowData[] = new Object[5];
+                rowData[0] = m.getName();
+                rowData[1] = m.getCprnr();
+                rowData[2] = m.getMail();
+                rowData[3] = m.getFødselsår();
+
+                for(Betaling b : m.getBetalinger()){
+                    betalingsår.add(b.getBetalingsyear());
+                }
+                rowData[4] = betalingsår;
+
+                
+                model.addRow(rowData);
+
+            
+
+        }
+    }
     public DefaultTableModel createTable() {
         DefaultTableModel model = (DefaultTableModel) this.jTable1.getModel();
         int rowCount = model.getRowCount();
@@ -117,6 +150,7 @@ public class RedigereMedlemmer extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         OpretMedlem = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
 
         jTextField4.setText("jTextField4");
 
@@ -193,42 +227,56 @@ public class RedigereMedlemmer extends javax.swing.JFrame {
             }
         });
 
+        jButton6.setText("Vis Alle");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(43, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(MailField, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton6))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(77, 77, 77))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(71, 71, 71))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addGap(75, 75, 75))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jButton1)
-                                .addGap(61, 61, 61))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(NameField, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(29, 29, 29))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(58, 58, 58)
+                                .addComponent(jLabel2))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(CPRfield, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButton2)
-                                    .addComponent(jButton3)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGap(11, 11, 11)
-                                        .addComponent(jButton5))
-                                    .addComponent(OpretMedlem))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGap(68, 68, 68)
+                                        .addComponent(jLabel1))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(22, 22, 22)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(MailField, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(CPRfield, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(NameField, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(62, 62, 62)
+                                        .addComponent(jLabel3))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(43, 43, 43)
+                                        .addComponent(jButton1)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(56, 56, 56)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jButton3)
+                                            .addComponent(jButton2)
+                                            .addComponent(OpretMedlem)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(71, 71, 71)
+                                        .addComponent(jButton5)))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 584, Short.MAX_VALUE)))
                 .addGap(23, 23, 23))
         );
         layout.setVerticalGroup(
@@ -239,27 +287,29 @@ public class RedigereMedlemmer extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(CPRfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(CPRfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton2))
+                        .addGap(24, 24, 24)
                         .addComponent(jLabel2)
-                        .addGap(1, 1, 1)
-                        .addComponent(MailField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(NameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton3)
-                        .addGap(12, 12, 12)
-                        .addComponent(OpretMedlem)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton5)
-                        .addGap(0, 37, Short.MAX_VALUE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(MailField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton3))
+                        .addGap(25, 25, 25)
+                        .addComponent(jLabel3)
+                        .addGap(25, 25, 25)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(NameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(OpretMedlem))
+                        .addGap(50, 50, 50)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton1)
+                            .addComponent(jButton5))
+                        .addGap(0, 66, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton6)
                 .addContainerGap())
         );
 
@@ -305,6 +355,7 @@ public class RedigereMedlemmer extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         editUser();
+        visAlle();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -313,6 +364,8 @@ public class RedigereMedlemmer extends javax.swing.JFrame {
             if (Integer.parseInt(this.jTable1.getValueAt(this.jTable1.getSelectedRow(), 1).toString()) == m.getCprnr()) {
                 try {
                     c.sletMedlem(m);
+                    visAlle();
+                    
                 } catch (Exception ex) {
                     //skal nok noget ind her :p
                 }
@@ -322,16 +375,18 @@ public class RedigereMedlemmer extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void OpretMedlemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OpretMedlemActionPerformed
+        
         new OpretMedlem().setVisible(true);
     }//GEN-LAST:event_OpretMedlemActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        
+              // betalt elelr ikke betalt
         DefaultTableModel model = createTable();
         
         Medlem tempMedlem = c.getMedlemPåCprnr(Integer.parseInt(this.jTable1.getValueAt(this.jTable1.getSelectedRow(),1).toString()));
            this.jLabel4.setText("CPR: "+tempMedlem.getCprnr());
            this.jLabel5.setText("Navn: "+tempMedlem.getName());
+           this.jTextField6.setText("");
 
 
 
@@ -352,6 +407,10 @@ public class RedigereMedlemmer extends javax.swing.JFrame {
             
         }
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    visAlle();
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -402,6 +461,7 @@ public class RedigereMedlemmer extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
