@@ -354,9 +354,14 @@ public class ControllerTest {
     @Test
     public void testGetRestanceForYear() {
         System.out.println("getRestanceForYear");
-        int year = 100;
-        Controller instance = null;
-        int expResult = 0;
+        c.opretKonkurrencesvømmer("Frederik", 1912891867, 1989, true, "frederiket@gmail.com");
+        c.opretKonkurrencesvømmer("Talha", 1011891867, 1989, true, "frederiket@gmail.com");
+        c.opretMotionist("Sebastian", 1212891867, 1989, true, "frederiket@gmail.com");
+        c.opretBetaling(c.getMedlemPåCprnr(1912891867), 2004, true);
+        c.opretBetaling(c.getMedlemPåCprnr(1011891867), 2004, false);
+        c.opretBetaling(c.getMedlemPåCprnr(1212891867), 2004, false);
+        int year = 2004;
+        int expResult = 2000;
         int result = c.getRestanceForYear(year);
         assertEquals(expResult, result);
 
