@@ -343,4 +343,282 @@ public class ControllerTest {
         assertEquals(expResult, result);
 
     }
+
+    /**
+     * Test of getMedlemmerListe method, of class Controller.
+     */
+    @Test
+    public void testGetMedlemmerListe() {
+        System.out.println("getMedlemmerListe");
+        Controller instance = null;
+        ArrayList<Medlem> expResult = null;
+        ArrayList<Medlem> result = instance.getMedlemmerListe();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getMedlemPåNavn method, of class Controller.
+     */
+    @Test
+    public void testGetMedlemPåNavn() {
+        System.out.println("getMedlemP\u00e5Navn");
+        String name = "";
+        Controller instance = null;
+        ArrayList<Medlem> expResult = null;
+        ArrayList<Medlem> result = instance.getMedlemPåNavn(name);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getMedlemPåCprnr method, of class Controller.
+     */
+    @Test
+    public void testGetMedlemPåCprnr() {
+        System.out.println("getMedlemP\u00e5Cprnr");
+        int cprnr = 0;
+        Controller instance = null;
+        Medlem expResult = null;
+        Medlem result = instance.getMedlemPåCprnr(cprnr);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getKonkurrencesvømmerPåCprnr method, of class Controller.
+     */
+    @Test
+    public void testGetKonkurrencesvømmerPåCprnr() {
+        System.out.println("getKonkurrencesv\u00f8mmerP\u00e5Cprnr");
+        int cprnr = 0;
+        Controller instance = null;
+        Konkurrencesvømmer expResult = null;
+        Konkurrencesvømmer result = instance.getKonkurrencesvømmerPåCprnr(cprnr);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getMedlemPåMail method, of class Controller.
+     */
+    @Test
+    public void testGetMedlemPåMail() {
+        System.out.println("getMedlemP\u00e5Mail");
+        String mail = "";
+        Controller instance = null;
+        Medlem expResult = null;
+        Medlem result = instance.getMedlemPåMail(mail);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of sletResultat method, of class Controller.
+     */
+    @Test
+    public void testSletResultat() {
+        System.out.println("sletResultat");
+        Konkurrencesvømmer konkurrencesvømmer = null;
+        Resultat resultat = null;
+        Controller instance = null;
+        instance.sletResultat(konkurrencesvømmer, resultat);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getAlleResultater method, of class Controller.
+     */
+    @Test
+    public void testGetAlleResultater() {
+        System.out.println("getAlleResultater");
+        Controller instance = null;
+        ArrayList<Resultat> expResult = null;
+        ArrayList<Resultat> result = instance.getAlleResultater();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getCrawlResultater method, of class Controller.
+     */
+    @Test
+    public void testGetCrawlResultater() {
+        System.out.println("getCrawlResultater");
+        Controller instance = null;
+        ArrayList<Resultat> expResult = null;
+        ArrayList<Resultat> result = instance.getCrawlResultater();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getRygrawlResultater method, of class Controller.
+     */
+    @Test
+    public void testGetRygrawlResultater() {
+        System.out.println("getRygrawlResultater");
+        Controller instance = null;
+        ArrayList<Resultat> expResult = null;
+        ArrayList<Resultat> result = instance.getRygrawlResultater();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getButterflyResultater method, of class Controller.
+     */
+    @Test
+    public void testGetButterflyResultater() {
+        System.out.println("getButterflyResultater");
+        Controller instance = null;
+        ArrayList<Resultat> expResult = null;
+        ArrayList<Resultat> result = instance.getButterflyResultater();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getBrystsvømningResultater method, of class Controller.
+     */
+    @Test
+    public void testGetBrystsvømningResultater() {
+        System.out.println("getBrystsv\u00f8mningResultater");
+        Controller instance = null;
+        ArrayList<Resultat> expResult = null;
+        ArrayList<Resultat> result = instance.getBrystsvømningResultater();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getDisciplinResultater method, of class Controller.
+     */
+    @Test
+    public void testGetDisciplinResultater() {
+        System.out.println("getDisciplinResultater");
+        Disciplin disciplin = null;
+        Controller instance = null;
+        ArrayList<Resultat> expResult = null;
+        ArrayList<Resultat> result = instance.getDisciplinResultater(disciplin);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getKonkurrencesvømmere method, of class Controller.
+     */
+    @Test
+    public void testGetKonkurrencesvømmere() {
+        System.out.println("getKonkurrencesv\u00f8mmere");
+        Controller instance = null;
+        ArrayList<Konkurrencesvømmer> expResult = null;
+        ArrayList<Konkurrencesvømmer> result = instance.getKonkurrencesvømmere();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getBestResult method, of class Controller.
+     */
+    @Test
+    public void testGetBestResult() {
+        System.out.println("getBestResult");
+        Konkurrencesvømmer konkurrencesvømmer = null;
+        Disciplin disciplin = null;
+        Controller instance = null;
+        Resultat expResult = null;
+        Resultat result = instance.getBestResult(konkurrencesvømmer, disciplin);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of timeFormatter method, of class Controller.
+     */
+    @Test
+    public void testTimeFormatter() {
+        System.out.println("timeFormatter");
+        int time = 0;
+        Controller instance = null;
+        String expResult = "";
+        String result = instance.timeFormatter(time);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getBetalingByYear method, of class Controller.
+     */
+    @Test
+    public void testGetBetalingByYear() {
+        System.out.println("getBetalingByYear");
+        Medlem medlem = null;
+        int year = 0;
+        Controller instance = null;
+        Betaling expResult = null;
+        Betaling result = instance.getBetalingByYear(medlem, year);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getAlleBetalinger method, of class Controller.
+     */
+    @Test
+    public void testGetAlleBetalinger() {
+        System.out.println("getAlleBetalinger");
+        Controller instance = null;
+        ArrayList<Betaling> expResult = null;
+        ArrayList<Betaling> result = instance.getAlleBetalinger();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of opretBetaling method, of class Controller.
+     */
+    @Test
+    public void testOpretBetaling() {
+        System.out.println("opretBetaling");
+        Medlem medlem = null;
+        int betalingsyear = 0;
+        boolean hasPaid = false;
+        Controller instance = null;
+        instance.opretBetaling(medlem, betalingsyear, hasPaid);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of redigerBetaling method, of class Controller.
+     */
+    @Test
+    public void testRedigerBetaling() {
+        System.out.println("redigerBetaling");
+        Betaling betaling = null;
+        boolean isPaid = false;
+        Controller instance = null;
+        instance.redigerBetaling(betaling, isPaid);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
 }
