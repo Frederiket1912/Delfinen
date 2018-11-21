@@ -321,6 +321,7 @@ public class Kontingent extends javax.swing.JFrame {
         } 
 
         }
+            visAlleBetalinger();
     }//GEN-LAST:event_JOpretActionPerformed
 
     /**
