@@ -28,19 +28,10 @@ public class Betaling implements Serializable {
             this.betalingssum = 0;
         }
         this.betalingsyear = betalingsyear;
-        Controller c = new Controller(new DataAccessorFile(), new BetalingCalculator());
-        int counter = -1;
-        if (c.getAlleResultater().size() == 0){
-            this.id = 0;
-        }
-        else {
-            for (Resultat r : c.getAlleResultater()){
-                if (r.getId() > counter){
-                    counter = r.getId() + 1;
-                }
-            }
-            this.id = counter;
-        }
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public boolean isHasPaid() {

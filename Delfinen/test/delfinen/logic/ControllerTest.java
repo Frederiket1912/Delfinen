@@ -410,12 +410,15 @@ public class ControllerTest {
     @Test
     public void testSletResultat() {
         System.out.println("sletResultat");
-        Konkurrencesvømmer konkurrencesvømmer = null;
-        Resultat resultat = null;
-        Controller instance = null;
-        instance.sletResultat(konkurrencesvømmer, resultat);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        c.opretKonkurrencesvømmer("Frederik", 1912891867, 1989, true, "frederiket@gmail.com");
+        c.opretResultat(c.getKonkurrencesvømmerPåCprnr(1912891867), 200, "hej", Disciplin.CRAWL, "hej", 0);
+        c.opretResultat(c.getKonkurrencesvømmerPåCprnr(1912891867), 100, "10/2/2004", Disciplin.CRAWL, "hej", 0);
+        int resultaterFør = c.getKonkurrencesvømmerPåCprnr(1912891867).getResultater().size();
+        Resultat r = c.getKonkurrencesvømmerPåCprnr(1912891867).getResultater().get(0);
+        c.sletResultat(c.getKonkurrencesvømmerPåCprnr(1912891867), r);
+        int resultaterEfter = c.getKonkurrencesvømmerPåCprnr(1912891867).getResultater().size();
+        System.out.println(resultaterEfter);
+        assertEquals(resultaterFør, resultaterEfter+1);
     }
 
 

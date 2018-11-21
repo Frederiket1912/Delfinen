@@ -32,7 +32,7 @@ public class Delfinen {
         //Medlem m = c.søgMedlemPåCprnr(1912891867);
         Konkurrencesvømmer m = c.getKonkurrencesvømmerPåCprnr(1912891867);
         System.out.println(m);
-        System.out.println(m.getBetalinger());
+        System.out.println(c.getMedlemPåCprnr(1912891867).getBetalinger());
 //        c.opretResultat(m, 200, "10/10/1999", Disciplin.CRAWL, null, 0);
 //        c.opretResultat(m, 100, "10/10/1999", Disciplin.CRAWL, null, 0);
 //        c.opretResultat(m, 100, "10/10/1999", Disciplin.CRAWL, null, 0);

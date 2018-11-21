@@ -21,19 +21,15 @@ public class Resultat implements Comparable<Resultat>{
         this.competitionName = competitionName;
         this.placement = placement;
         this.name = konkurrencesvømmer.getName();
-        Controller c = new Controller(new DataAccessorFile(), new BetalingCalculator());
-        int counter = -1;
-        if (c.getAlleResultater().size() == 0){
-            this.id = 0;
-        }
-        else {
-            for (Resultat r : c.getAlleResultater()){
-                if (r.getId() > counter){
-                    counter = r.getId() + 1;
-                }
-            }
-            this.id = counter;
-        }
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "Resultat{" + "timeInSeconds=" + timeInSeconds + ", date=" + date + ", disciplin=" + disciplin + ", competitionName=" + competitionName + ", placement=" + placement + ", name=" + name + ", id=" + id + '}';
     }
 
     public int getId() {
@@ -44,10 +40,6 @@ public class Resultat implements Comparable<Resultat>{
         return name;
     }
 
-    @Override
-    public String toString() {
-        return "Resultat{" + "timeInSeconds=" + timeInSeconds + ", date=" + date + ", disciplin=" + disciplin + ", competitionName=" + competitionName + ", placement=" + placement + '}';
-    }
 
     public int getTimeInSeconds() {
         return timeInSeconds;

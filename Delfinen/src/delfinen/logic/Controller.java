@@ -130,6 +130,18 @@ public class Controller {
 
     public void opretResultat(Konkurrencesvømmer konkurrencesvømmer, int timeInSeconds, String date, Disciplin disciplin, String competitionName, int placement) {
         Resultat r = new Resultat(timeInSeconds, date, disciplin, competitionName, placement, konkurrencesvømmer);
+        int counter = -1;
+        if (getAlleResultater().isEmpty()){
+            r.setId(0);
+        }
+        else {
+            for (Resultat resultat : getAlleResultater()){
+                if (resultat.getId() > counter){
+                    counter = r.getId() + 1;
+                }
+            }
+            r.setId(counter);
+        }
         konkurrencesvømmer.setResultater(r);
         dao.skrivTilFil(alleMedlemmer);
     }
@@ -330,11 +342,19 @@ public class Controller {
 
     public void opretBetaling(Medlem medlem, int betalingsyear, boolean hasPaid) {
         Betaling b = new Betaling(medlem, betalingsyear, hasPaid);
-        for (Medlem m : alleMedlemmer) {
-            if (m.getCprnr() == medlem.getCprnr()) {
-                m.setBetalinger(b);
-            }
+        int counter = -1;
+        if (getAlleResultater().isEmpty()){
+            b.setId(0);
         }
+        else {
+            for (Betaling betaling : getAlleBetalinger()){
+                if (betaling.getId() > counter){
+                    counter = betaling.getId() + 1;
+                }
+            }
+            b.setId(counter);
+        }
+        medlem.setBetalinger(b);
         dao.skrivTilFil(alleMedlemmer);
     }
 
