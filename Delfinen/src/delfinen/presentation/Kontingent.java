@@ -15,6 +15,8 @@ import delfinen.logic.Controller;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -34,19 +36,20 @@ public class Kontingent extends javax.swing.JFrame {
         BetalingCalculator bc = new BetalingCalculator();
         c = new Controller(dao, bc);
         c.getMedlemmer();
+        visAlleBetalinger();
     }
 
-    public DefaultTableModel createTable() {
-        DefaultTableModel model = (DefaultTableModel) this.jTable1.getModel();
+    public DefaultTableModel createTable(JTable t) {
+        DefaultTableModel model = (DefaultTableModel) t.getModel();
         int rowCount = model.getRowCount();
         int ColumnCount = model.getColumnCount();
-        this.jTable1.isCellEditable(rowCount, ColumnCount - 1);
+        t.isCellEditable(rowCount, ColumnCount - 1);
         return model;
     }
 
     public void visMedlemmerRestance() {
 
-        DefaultTableModel model = createTable();
+        DefaultTableModel model = createTable(this.jTable1);
         model.getDataVector().removeAllElements();
         model.fireTableDataChanged();
         int tempCPR = 0;
@@ -56,6 +59,26 @@ public class Kontingent extends javax.swing.JFrame {
             rowData[1] = m.getCprnr();
             rowData[2] = m.getMail();
             rowData[3] = c.getBetalingByYear(m, Calendar.getInstance().get(Calendar.YEAR)).getBetalingssum();
+
+            model.addRow(rowData);
+
+        }
+    }
+    public void visAlleBetalinger(){
+       
+        DefaultTableModel model = createTable(this.JBetaling);
+        model.getDataVector().removeAllElements();
+        model.fireTableDataChanged();
+        int tempCPR = 0;
+        for (Betaling b : c.getAlleBetalinger()) {
+            Object rowData[] = new Object[6];
+            rowData[0] = b.getName();
+            rowData[1] = b.getCPR();
+            rowData[2] = b.getBetalingsyear();
+            rowData[3] = b.isHasPaid();
+            rowData[4] = b.getBetalingssum();
+            rowData[5] = b.getId();
+            
 
             model.addRow(rowData);
 
@@ -71,6 +94,14 @@ public class Kontingent extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jTextArea2 = new javax.swing.JTextArea();
+        jTextField1 = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
         jButtonIndkomst = new javax.swing.JButton();
         jYear = new javax.swing.JTextField();
         Jforventet = new javax.swing.JTextField();
@@ -80,6 +111,34 @@ public class Kontingent extends javax.swing.JFrame {
         jTextArea1 = new javax.swing.JTextArea();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        JOpret = new javax.swing.JButton();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        JBetaling = new javax.swing.JTable();
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane3.setViewportView(jTable2);
+
+        jLabel1.setText("jLabel1");
+
+        jLabel2.setText("jLabel2");
+
+        jTextArea2.setColumns(20);
+        jTextArea2.setRows(5);
+        jScrollPane5.setViewportView(jTextArea2);
+
+        jTextField1.setText("jTextField1");
+
+        jLabel3.setText("jLabel3");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -124,6 +183,23 @@ public class Kontingent extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(jTable1);
 
+        JOpret.setText("Ret Betaling");
+        JOpret.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JOpretActionPerformed(evt);
+            }
+        });
+
+        JBetaling.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Navn", "CPR", "Betalingsår", "Betalt/Ikke betalt", "Beløb", "ID"
+            }
+        ));
+        jScrollPane4.setViewportView(JBetaling);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -131,20 +207,24 @@ public class Kontingent extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
+                    .addComponent(jButtonRestance, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(jYear)
                                     .addComponent(jButtonIndkomst, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE))
                                 .addGap(18, 18, 18)
-                                .addComponent(Jforventet, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButtonHovedemenu, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jButtonRestance, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(Jforventet, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(JOpret, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(194, 194, 194)
+                                .addComponent(jButtonHovedemenu, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -152,22 +232,26 @@ public class Kontingent extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jButtonRestance)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jYear, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Jforventet, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(36, 36, 36)
-                        .addComponent(jButtonIndkomst, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addComponent(jButtonHovedemenu, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addComponent(jButtonIndkomst, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButtonHovedemenu, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(JOpret, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(14, 14, 14))))
         );
 
         pack();
@@ -192,6 +276,52 @@ public class Kontingent extends javax.swing.JFrame {
     private void jButtonRestanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRestanceActionPerformed
         visMedlemmerRestance();
     }//GEN-LAST:event_jButtonRestanceActionPerformed
+
+    private void JOpretActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JOpretActionPerformed
+         
+        
+           
+
+           Medlem tempMedlem = c.getMedlemPåCprnr(Integer.parseInt(this.JBetaling.getValueAt(this.JBetaling.getSelectedRow(), 1).toString()));
+            this.jLabel1.setText("CPR: " + tempMedlem.getCprnr());
+            this.jLabel2.setText("Navn: " + tempMedlem.getName());
+            this.jLabel3.setText("ID: " + this.JBetaling.getValueAt(this.JBetaling.getSelectedRow(), 5).toString());
+            this.jTextField1.setText("");
+            boolean isPaid = false;
+
+            Object[] message = {
+                "", jLabel1,
+                "", jLabel2,
+                "", jLabel3,
+                "Betalt eller ikke betalt", jTextField1
+
+            };
+            
+            
+            int option = JOptionPane.showConfirmDialog(null, message, "Opret Betaling", JOptionPane.OK_CANCEL_OPTION);
+            if (option == JOptionPane.OK_OPTION) {
+                if(this.jTextField1.getText().toLowerCase().equals("betalt")){
+                    isPaid = true;
+                    
+                }else{
+                    isPaid = false;
+                }
+                //jeg har lavet en ny attribut til betaling der er en boolean.
+                //hvis de betaler 0, altså ikke betaler skal den sættes til false, ellers til true
+                try {
+                    for(Betaling b : c.getAlleBetalinger()){
+                        if(b.getId() == Integer.parseInt(this.JBetaling.getValueAt(this.JBetaling.getSelectedRow(), 5).toString())){
+                            c.redigerBetaling(b, isPaid);
+                            System.out.println("her");
+                        }
+                    }
+                
+
+            }catch (Exception ex) {
+        } 
+
+        }
+    }//GEN-LAST:event_JOpretActionPerformed
 
     /**
      * @param args the command line arguments
@@ -229,14 +359,25 @@ public class Kontingent extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable JBetaling;
+    private javax.swing.JButton JOpret;
     private javax.swing.JTextField Jforventet;
     private javax.swing.JButton jButtonHovedemenu;
     private javax.swing.JButton jButtonIndkomst;
     private javax.swing.JButton jButtonRestance;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable2;
     private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea jTextArea2;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jYear;
     // End of variables declaration//GEN-END:variables
 }
