@@ -506,12 +506,17 @@ public class ControllerTest {
     @Test
     public void testGetAlleBetalinger() {
         System.out.println("getAlleBetalinger");
-        Controller instance = null;
-        ArrayList<Betaling> expResult = null;
-        ArrayList<Betaling> result = instance.getAlleBetalinger();
+        c.opretKonkurrencesvømmer("Frederik", 1912891867, 1989, true, "frederiket@gmail.com");
+        c.opretKonkurrencesvømmer("Talha", 100200, 1989, true, "frederiket@gmail.com");
+        c.opretBetaling(c.getMedlemPåCprnr(1912891867), 2004, true);
+        c.opretBetaling(c.getMedlemPåCprnr(1912891867), 2005, false);
+        c.opretBetaling(c.getMedlemPåCprnr(100200), 2004, true);
+        c.opretBetaling(c.getMedlemPåCprnr(100200), 2005, true);
+        System.out.println(c.getMedlemPåCprnr(1912891867).getBetalinger());
+        System.out.println(c.getMedlemPåCprnr(100200).getBetalinger());
+        int expResult = 6;
+        int result = c.getAlleBetalinger().size();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
