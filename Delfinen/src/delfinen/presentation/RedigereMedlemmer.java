@@ -23,7 +23,9 @@ import javax.swing.table.DefaultTableModel;
  * @author frederik
  */
 public class RedigereMedlemmer extends javax.swing.JFrame {
+
     private Controller c;
+
     /**
      * Creates new form NewJFrame
      */
@@ -33,27 +35,26 @@ public class RedigereMedlemmer extends javax.swing.JFrame {
         BetalingCalculator bc = new BetalingCalculator();
         c = new Controller(dao, bc);
         visAlle();
-        
+
     }
 
     public void editUser() {
-        
-        this.jTextField4.setText(this.jTable1.getValueAt(this.jTable1.getSelectedRow(),0).toString());
-        this.jTextField5.setText(this.jTable1.getValueAt(this.jTable1.getSelectedRow(),1).toString());
-        this.jTextField6.setText(this.jTable1.getValueAt(this.jTable1.getSelectedRow(),2).toString());
-        this.jTextField7.setText(this.jTable1.getValueAt(this.jTable1.getSelectedRow(),3).toString());
-        
+
+        this.jTextField4.setText(this.jTable1.getValueAt(this.jTable1.getSelectedRow(), 0).toString());
+        this.jTextField5.setText(this.jTable1.getValueAt(this.jTable1.getSelectedRow(), 1).toString());
+        this.jTextField6.setText(this.jTable1.getValueAt(this.jTable1.getSelectedRow(), 2).toString());
+        this.jTextField7.setText(this.jTable1.getValueAt(this.jTable1.getSelectedRow(), 3).toString());
+
         DefaultTableModel model = createTable();
         Object[] message = {
             "Navn:", jTextField4,
             "Aktiv eller Passiv A/P:", jTextField5,
-            "Email:", jTextField6, "Fødselsår", jTextField7,
-        //"Motionist/Koncurrence:", jTextField8
+            "Email:", jTextField6, "Fødselsår", jTextField7, //"Motionist/Koncurrence:", jTextField8
         };
 
         int option = JOptionPane.showConfirmDialog(null, message, "Edit User", JOptionPane.OK_CANCEL_OPTION);
         if (option == JOptionPane.OK_OPTION) {
-            
+
             boolean medlemskabsstatus = true;
             try {
                 model.setValueAt(jTextField4.getText(), this.jTable1.getSelectedRow(), 0);
@@ -63,22 +64,20 @@ public class RedigereMedlemmer extends javax.swing.JFrame {
                 } else {
                     medlemskabsstatus = false;
                 }
-                
+
                 Medlem tempMedlem = c.getMedlemPåCprnr(Integer.parseInt(this.jTable1.getValueAt(this.jTable1.getSelectedRow(), 1).toString()));
                 //vi skal huske at ændre 15 til enten at få en værdi fra et field, 
                 //eller bare at få værdien fra tempMedlem.getFødelsår(), hvis fødselsåret ikke skal kunne redigeres.
                 c.redigerMedlem(tempMedlem, jTextField4.getText(), alder, medlemskabsstatus, jTextField6.getText());
-               
-                
 
             } catch (Exception ex) {
 
             }
         }
     }
-    
-    public void visAlle(){
-           ArrayList<Integer> betalingsår = new ArrayList();
+
+    public void visAlle() {
+        ArrayList<Integer> betalingsår = new ArrayList();
         DefaultTableModel model = createTable();
         model.getDataVector().removeAllElements();
         model.fireTableDataChanged();
@@ -90,25 +89,23 @@ public class RedigereMedlemmer extends javax.swing.JFrame {
 
             } catch (Exception ex) {
             }
-            
-                Object rowData[] = new Object[5];
-                rowData[0] = m.getName();
-                rowData[1] = m.getCprnr();
-                rowData[2] = m.getMail();
-                rowData[3] = m.getFødselsår();
 
-                for(Betaling b : m.getBetalinger()){
-                    betalingsår.add(b.getBetalingsyear());
-                }
-                rowData[4] = betalingsår;
+            Object rowData[] = new Object[5];
+            rowData[0] = m.getName();
+            rowData[1] = m.getCprnr();
+            rowData[2] = m.getMail();
+            rowData[3] = m.getFødselsår();
 
-                
-                model.addRow(rowData);
+            for (Betaling b : m.getBetalinger()) {
+                betalingsår.add(b.getBetalingsyear());
+            }
+            rowData[4] = betalingsår;
 
-            
+            model.addRow(rowData);
 
         }
     }
+
     public DefaultTableModel createTable() {
         DefaultTableModel model = (DefaultTableModel) this.jTable1.getModel();
         int rowCount = model.getRowCount();
@@ -353,12 +350,11 @@ public class RedigereMedlemmer extends javax.swing.JFrame {
                 rowData[2] = m.getMail();
                 rowData[3] = m.getFødselsår();
 
-                for(Betaling b : m.getBetalinger()){
+                for (Betaling b : m.getBetalinger()) {
                     betalingsår.add(b.getBetalingsyear());
                 }
                 rowData[4] = betalingsår;
 
-                
                 model.addRow(rowData);
 
             }
@@ -367,47 +363,54 @@ public class RedigereMedlemmer extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        editUser();
-        visAlle();
+        try {
+            editUser();
+            visAlle();
+        } catch (Exception ex) {
+
+        }
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-       
-        for (Medlem m : c.getMedlemmer()) {
-            if (Integer.parseInt(this.jTable1.getValueAt(this.jTable1.getSelectedRow(), 1).toString()) == m.getCprnr()) {
-                try {
-                    c.sletMedlem(m);
-                    visAlle();
-                    
-                } catch (Exception ex) {
-                    //skal nok noget ind her :p
+        try {
+
+            for (Medlem m : c.getMedlemmer()) {
+                if (Integer.parseInt(this.jTable1.getValueAt(this.jTable1.getSelectedRow(), 1).toString()) == m.getCprnr()) {
+                    try {
+                        c.sletMedlem(m);
+                        visAlle();
+
+                    } catch (Exception ex) {
+                        //skal nok noget ind her :p
+                    }
+                    break;
                 }
-                break;
             }
+        } catch (Exception ex) {
+
         }
+
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void OpretMedlemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OpretMedlemActionPerformed
-        
+
         new OpretMedlem().setVisible(true);
     }//GEN-LAST:event_OpretMedlemActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-              // betalt elelr ikke betalt
+        try{
         DefaultTableModel model = createTable();
-        
-        Medlem tempMedlem = c.getMedlemPåCprnr(Integer.parseInt(this.jTable1.getValueAt(this.jTable1.getSelectedRow(),1).toString()));
-           this.jLabel4.setText("CPR: "+tempMedlem.getCprnr());
-           this.jLabel5.setText("Navn: "+tempMedlem.getName());
-           this.jTextField6.setText("");
 
-
-
+        Medlem tempMedlem = c.getMedlemPåCprnr(Integer.parseInt(this.jTable1.getValueAt(this.jTable1.getSelectedRow(), 1).toString()));
+        this.jLabel4.setText("CPR: " + tempMedlem.getCprnr());
+        this.jLabel5.setText("Navn: " + tempMedlem.getName());
+        this.jTextField6.setText("");
 
         Object[] message = {
             "", jLabel4,
             "", jLabel5,
-                "Betalingsår", jTextField6
+            "Betalingsår", jTextField6
 
         };
         int option = JOptionPane.showConfirmDialog(null, message, "Opret Betaling", JOptionPane.OK_CANCEL_OPTION);
@@ -415,14 +418,15 @@ public class RedigereMedlemmer extends javax.swing.JFrame {
             //jeg har lavet en ny attribut til betaling der er en boolean.
             //hvis de betaler 0, altså ikke betaler skal den sættes til false, ellers til true
             c.opretBetaling(tempMedlem, Integer.parseInt(this.jTextField6.getText()), true);
-            
-            
+
+        }
+        }catch(Exception ex){
             
         }
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-    visAlle();
+        visAlle();
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
@@ -463,7 +467,6 @@ public class RedigereMedlemmer extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new RedigereMedlemmer().setVisible(true);
-                
 
             }
         });
