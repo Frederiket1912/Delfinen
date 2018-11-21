@@ -398,8 +398,6 @@ public class ControllerTest {
         int expResult = 3;
         int result = c.getMedlemmerListe().size();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
     }
 
 
@@ -448,12 +446,12 @@ public class ControllerTest {
     @Test
     public void testGetKonkurrencesvømmere() {
         System.out.println("getKonkurrencesv\u00f8mmere");
-        Controller instance = null;
-        ArrayList<Konkurrencesvømmer> expResult = null;
-        ArrayList<Konkurrencesvømmer> result = instance.getKonkurrencesvømmere();
+        c.opretKonkurrencesvømmer("Frederik", 1912891867, 1989, true, "frederiket@gmail.com");
+        c.opretKonkurrencesvømmer("Talha", 1011891867, 1989, true, "frederiket@gmail.com");
+        c.opretMotionist("Sebastian", 1212891867, 1989, true, "frederiket@gmail.com");
+        int expResult = 2;
+        int result = c.getKonkurrencesvømmere().size();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
