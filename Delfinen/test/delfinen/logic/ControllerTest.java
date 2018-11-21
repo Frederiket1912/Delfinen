@@ -171,8 +171,40 @@ public class ControllerTest {
         String newMail = "hans@gmail.com";
         c.redigerMedlem(c.getMedlemPåCprnr(1912891867), newName, newFødselsdato, NewMedlemskabsstatus, newMail);
         int result = c.getMedlemPåCprnr(1912891867).getFødselsår();
-        //vi tjekker om der nu er et medlem med navnet Hans, m hed originalt Frederik
+        //vi tjekker om fødselsdato er ændret
         assertEquals(newFødselsdato, result);
+    }
+    
+    /**
+     * Test of redigerMedlem method, of class Controller.
+     */
+    @Test
+    public void testRedigerMedlemMedlemskabsstatus() {
+        c.opretMotionist("Frederik", 1912891867, 19121989, true, "frederiket@gmail.com");
+        String newName = "Hans";
+        int newFødselsdato = 100200;
+        boolean NewMedlemskabsstatus = false;
+        String newMail = "hans@gmail.com";
+        c.redigerMedlem(c.getMedlemPåCprnr(1912891867), newName, newFødselsdato, NewMedlemskabsstatus, newMail);
+        boolean result = c.getMedlemPåCprnr(1912891867).isMedlemskabsstatus();
+        //vi tjekker om medlemsskabsstatus er ændret
+        assertEquals(NewMedlemskabsstatus, result);
+    }
+    
+    /**
+     * Test of redigerMedlem method, of class Controller.
+     */
+    @Test
+    public void testRedigerMedlemMail() {
+        c.opretMotionist("Frederik", 1912891867, 19121989, true, "frederiket@gmail.com");
+        String newName = "Hans";
+        int newFødselsdato = 100200;
+        boolean NewMedlemskabsstatus = false;
+        String newMail = "hans@gmail.com";
+        c.redigerMedlem(c.getMedlemPåCprnr(1912891867), newName, newFødselsdato, NewMedlemskabsstatus, newMail);
+        String result = c.getMedlemPåCprnr(1912891867).getMail();
+        //vi tjekker om mail er ændret
+        assertEquals(newMail, result);
     }
     
     /**
