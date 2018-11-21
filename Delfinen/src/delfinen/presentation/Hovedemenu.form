@@ -35,8 +35,8 @@
                       <EmptySpace min="-2" pref="89" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <Component id="jTextField1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="154" max="-2" attributes="0"/>
+                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="161" max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -45,11 +45,11 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-              <Component id="jTextField1" pref="55" max="32767" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace pref="63" max="32767" attributes="0"/>
+              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
               <Component id="jButtonMedlemmer" min="-2" pref="60" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
               <Component id="jButtonKontingent" min="-2" pref="60" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jButtonSvømmeresultater" min="-2" pref="60" max="-2" attributes="0"/>
@@ -61,7 +61,7 @@
   <SubComponents>
     <Component class="javax.swing.JButton" name="jButtonMedlemmer">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Medlemmer"/>
+        <Property name="text" type="java.lang.String" value="Medlemsadministration"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonMedlemmerActionPerformed"/>
@@ -77,16 +77,15 @@
     </Component>
     <Component class="javax.swing.JButton" name="jButtonSv&#xf8;mmeresultater">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Sv&#xf8;mmeresultater"/>
+        <Property name="text" type="java.lang.String" value="Tr&#xe6;ner"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonSv&#xf8;mmeresultaterActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField1">
+    <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
-        <Property name="editable" type="boolean" value="false"/>
-        <Property name="text" type="java.lang.String" value="Hovedemenu"/>
+        <Property name="text" type="java.lang.String" value="Hovedmenu"/>
       </Properties>
     </Component>
   </SubComponents>

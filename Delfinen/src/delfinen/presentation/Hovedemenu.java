@@ -31,11 +31,11 @@ public class Hovedemenu extends javax.swing.JFrame {
         jButtonMedlemmer = new javax.swing.JButton();
         jButtonKontingent = new javax.swing.JButton();
         jButtonSvømmeresultater = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButtonMedlemmer.setText("Medlemmer");
+        jButtonMedlemmer.setText("Medlemsadministration");
         jButtonMedlemmer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonMedlemmerActionPerformed(evt);
@@ -49,15 +49,14 @@ public class Hovedemenu extends javax.swing.JFrame {
             }
         });
 
-        jButtonSvømmeresultater.setText("Svømmeresultater");
+        jButtonSvømmeresultater.setText("Træner");
         jButtonSvømmeresultater.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonSvømmeresultaterActionPerformed(evt);
             }
         });
 
-        jTextField1.setEditable(false);
-        jTextField1.setText("Hovedemenu");
+        jLabel1.setText("Hovedmenu");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -73,15 +72,15 @@ public class Hovedemenu extends javax.swing.JFrame {
                             .addComponent(jButtonMedlemmer, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(89, 89, 89))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(154, 154, 154))))
+                        .addComponent(jLabel1)
+                        .addGap(161, 161, 161))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addContainerGap(63, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(30, 30, 30)
                 .addComponent(jButtonMedlemmer, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButtonKontingent, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -107,8 +106,8 @@ public class Hovedemenu extends javax.swing.JFrame {
 
     private void jButtonSvømmeresultaterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSvømmeresultaterActionPerformed
         this.dispose();
-        SvømmeResultater sr = new SvømmeResultater();
-        sr.setVisible(true);
+       CoachView cw = new CoachView();
+        cw.setVisible(true);
     }//GEN-LAST:event_jButtonSvømmeresultaterActionPerformed
 
     /**
@@ -150,6 +149,6 @@ public class Hovedemenu extends javax.swing.JFrame {
     private javax.swing.JButton jButtonKontingent;
     private javax.swing.JButton jButtonMedlemmer;
     private javax.swing.JButton jButtonSvømmeresultater;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
