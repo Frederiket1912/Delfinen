@@ -197,6 +197,7 @@ public class OpretMedlem extends javax.swing.JFrame {
         }catch(Exception ex){
             
         }
+        setVisible(false);
     }//GEN-LAST:event_OpretButtonActionPerformed
 
     /**
