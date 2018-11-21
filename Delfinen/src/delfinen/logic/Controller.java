@@ -343,7 +343,7 @@ public class Controller {
     public void opretBetaling(Medlem medlem, int betalingsyear, boolean hasPaid) {
         Betaling b = new Betaling(medlem, betalingsyear, hasPaid);
         int counter = -1;
-        if (getAlleResultater().isEmpty()){
+        if (getAlleBetalinger().isEmpty()){
             b.setId(0);
         }
         else {

@@ -30,6 +30,11 @@ public class Betaling implements Serializable {
         this.betalingsyear = betalingsyear;
     }
 
+    @Override
+    public String toString() {
+        return "Betaling{" + "year=" + year + ", betalingssum=" + betalingssum + ", betalingsyear=" + betalingsyear + ", hasPaid=" + hasPaid + ", id=" + id + '}';
+    }
+
     public void setId(int id) {
         this.id = id;
     }
@@ -50,7 +55,5 @@ public class Betaling implements Serializable {
         return betalingssum;
     }
     
-    public String toString() {
-        return this.betalingssum + " " + this.betalingsyear + "";
-    }
+
 }
