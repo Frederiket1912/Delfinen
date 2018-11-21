@@ -24,12 +24,12 @@ public class Motionist implements Serializable, Medlem {
 
     
 
-    public Motionist(String name, int cprnr, int fødselsdato, boolean medlemskabsstatus, String mail) {
+    public Motionist(String name, int cprnr, int fødselsår, boolean medlemskabsstatus, String mail) {
         this.name = name;
         this.cprnr = cprnr;
         this.medlemskabsstatus = medlemskabsstatus;
         this.mail = mail;
-        this.fødselsår = fødselsdato;
+        this.fødselsår = fødselsår;
         this.betalinger = new ArrayList();
         //betalinger.add(new Betaling(new Motionist(name, cprnr, fødselsdato, medlemskabsstatus, mail), LocalDate.now().getYear(), true));
     }

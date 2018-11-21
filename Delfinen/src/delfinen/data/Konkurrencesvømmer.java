@@ -23,13 +23,13 @@ public class Konkurrencesvømmer implements Serializable, Medlem{
 
     
 
-    public Konkurrencesvømmer(String name, int cprnr, int fødselsdato, boolean medlemskabsstatus, String mail) {
+    public Konkurrencesvømmer(String name, int cprnr, int fødselsår, boolean medlemskabsstatus, String mail) {
         this.name = name;
         this.cprnr = cprnr;
         this.medlemskabsstatus = medlemskabsstatus;
         this.mail = mail;
         this.betalinger = new ArrayList();
-        this.fødselsår = fødselsdato;
+        this.fødselsår = fødselsår;
         this.resultater = new ArrayList();
         this.trænernavn = null;
 //        betalinger.add(new Betaling(new Konkurrencesvømmer(name, cprnr, fødselsdato, medlemskabsstatus, mail), LocalDate.now().getYear(), true));

@@ -318,10 +318,15 @@ public class ControllerTest {
     @Test
     public void testGetRestanceForMedlem() {
         System.out.println("getRestanceForMedlem");
-        Medlem medlem = null;
-        Controller instance = null;
-        int expResult = 0;
-        int result = instance.getRestanceForMedlem(medlem);
+        c.opretKonkurrencesvømmer("Frederik", 1912891867, 1989, true, "frederiket@gmail.com");
+        c.opretBetaling(c.getKonkurrencesvømmerPåCprnr(1912891867), 2004, true);
+        c.opretBetaling(c.getKonkurrencesvømmerPåCprnr(1912891867), 2005, false);
+        c.opretBetaling(c.getKonkurrencesvømmerPåCprnr(1912891867), 2006, true);
+        c.opretBetaling(c.getKonkurrencesvømmerPåCprnr(1912891867), 2007, false);
+        c.opretBetaling(c.getKonkurrencesvømmerPåCprnr(1912891867), 2008, true);
+        BetalingCalculator bc = new BetalingCalculator();
+        int expResult = 2600;
+        int result = c.getRestanceForMedlem(c.getKonkurrencesvømmerPåCprnr(1912891867));
         assertEquals(expResult, result);
     }
 

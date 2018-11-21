@@ -20,9 +20,14 @@ public class Betaling implements Serializable {
     
     public Betaling(Medlem medlem, int betalingsyear, boolean hasPaid) {
         BetalingCalculator bc = new BetalingCalculator();
-        this.betalingssum = bc.udregnBetaling(medlem, betalingsyear);
-        this.betalingsyear = betalingsyear;
         this.hasPaid = hasPaid;
+        if (hasPaid == true){
+            this.betalingssum = bc.udregnBetaling(medlem, betalingsyear);
+        }
+        else{
+            this.betalingssum = 0;
+        }
+        this.betalingsyear = betalingsyear;
         Controller c = new Controller(new DataAccessorFile(), new BetalingCalculator());
         int counter = -1;
         if (c.getAlleResultater().size() == 0){
