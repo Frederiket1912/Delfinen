@@ -421,76 +421,25 @@ public class ControllerTest {
         assertEquals(resultaterFør, resultaterEfter+1);
     }
 
-
-    /**
-     * Test of getCrawlResultater method, of class Controller.
-     */
-    @Test
-    public void testGetCrawlResultater() {
-        System.out.println("getCrawlResultater");
-        Controller instance = null;
-        ArrayList<Resultat> expResult = null;
-        ArrayList<Resultat> result = instance.getCrawlResultater();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getRygrawlResultater method, of class Controller.
-     */
-    @Test
-    public void testGetRygrawlResultater() {
-        System.out.println("getRygrawlResultater");
-        Controller instance = null;
-        ArrayList<Resultat> expResult = null;
-        ArrayList<Resultat> result = instance.getRygrawlResultater();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getButterflyResultater method, of class Controller.
-     */
-    @Test
-    public void testGetButterflyResultater() {
-        System.out.println("getButterflyResultater");
-        Controller instance = null;
-        ArrayList<Resultat> expResult = null;
-        ArrayList<Resultat> result = instance.getButterflyResultater();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getBrystsvømningResultater method, of class Controller.
-     */
-    @Test
-    public void testGetBrystsvømningResultater() {
-        System.out.println("getBrystsv\u00f8mningResultater");
-        Controller instance = null;
-        ArrayList<Resultat> expResult = null;
-        ArrayList<Resultat> result = instance.getBrystsvømningResultater();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
     /**
      * Test of getDisciplinResultater method, of class Controller.
      */
     @Test
     public void testGetDisciplinResultater() {
         System.out.println("getDisciplinResultater");
+        c.opretKonkurrencesvømmer("Frederik", 1912891867, 1989, true, "frederiket@gmail.com");
+        c.opretResultat(c.getKonkurrencesvømmerPåCprnr(1912891867), 200, "10/10/1999", Disciplin.CRAWL, "randerssRegnskov", 0);
+        c.opretResultat(c.getKonkurrencesvømmerPåCprnr(1912891867), 100, "10/10/1999", Disciplin.CRAWL, "randerssRegnskov", 0);
+        c.opretResultat(c.getKonkurrencesvømmerPåCprnr(1912891867), 100, "10/10/1999", Disciplin.RYGCRAWL, "randerssRegnskov", 0);
+        c.opretResultat(c.getKonkurrencesvømmerPåCprnr(1912891867), 500, "10/10/1999", Disciplin.BRYSTSVØMNING, "randerssRegnskov", 0);
+        c.opretResultat(c.getKonkurrencesvømmerPåCprnr(1912891867), 700, "10/10/1999", Disciplin.BUTTERFLY, "randerssRegnskov", 0);
+        c.opretResultat(c.getKonkurrencesvømmerPåCprnr(1912891867), 300, "10/10/1999", Disciplin.BUTTERFLY, "randerssRegnskov", 0);
         Disciplin disciplin = null;
-        Controller instance = null;
-        ArrayList<Resultat> expResult = null;
-        ArrayList<Resultat> result = instance.getDisciplinResultater(disciplin);
+        disciplin = disciplin.BRYSTSVØMNING;
+        int expResult = 1;
+        int result = c.getDisciplinResultater(disciplin).size();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
