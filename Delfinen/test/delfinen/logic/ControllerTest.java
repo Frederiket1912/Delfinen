@@ -378,7 +378,26 @@ public class ControllerTest {
         assertEquals(expResult, result);
 
     }
+    
+    /**
+     * Test of getRestanceForYear method, of class Controller.
+     */
+    @Test
+    public void testGetZeroRestanceForYear() {
+        c.opretKonkurrencesvømmer("Frederik", 1912891867, 1989, true, "frederiket@gmail.com");
+        c.opretKonkurrencesvømmer("Talha", 1011891867, 1989, true, "frederiket@gmail.com");
+        c.opretMotionist("Sebastian", 1212891867, 1989, true, "frederiket@gmail.com");
+        c.opretBetaling(c.getMedlemPåCprnr(1912891867), 2004, true);
+        c.opretBetaling(c.getMedlemPåCprnr(1011891867), 2004, true);
+        c.opretBetaling(c.getMedlemPåCprnr(1212891867), 2004, true);
+        int year = 2004;
+        int expResult = 0;
+        int result = c.getRestanceForYear(year);
+        //vi 
+        assertEquals(expResult, result);
 
+    }
+    
     /**
      * Test of getForventetIndkomstFraKontingenter method, of class Controller.
      */
