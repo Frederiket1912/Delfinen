@@ -539,12 +539,14 @@ public class ControllerTest {
     @Test
     public void testRedigerBetaling() {
         System.out.println("redigerBetaling");
-        Betaling betaling = null;
-        boolean isPaid = false;
-        Controller instance = null;
-        instance.redigerBetaling(betaling, isPaid);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        c.opretKonkurrencesvømmer("Frederik", 1912891867, 1989, true, "frederiket@gmail.com");
+        c.opretBetaling(c.getMedlemPåCprnr(1912891867), 2004, false);
+        Betaling betaling = c.getMedlemPåCprnr(1912891867).getBetalinger().get(1);
+        boolean betalingFør = betaling.isHasPaid();
+        boolean isPaid = true;
+        c.redigerBetaling(betaling, isPaid);
+        boolean betalingEfter = betaling.isHasPaid();
+        assertNotEquals(betalingFør, betalingEfter);
     }
 
 }
