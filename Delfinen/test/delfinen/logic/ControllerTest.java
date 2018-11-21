@@ -373,7 +373,7 @@ public class ControllerTest {
     @Test
     public void testGetForventetIndkomstFraKontingenter() {
         System.out.println("getForventetIndkomstFraKontingenter");
-       c.opretKonkurrencesvømmer("Frederik", 1912891867, 1989, true, "frederiket@gmail.com");
+        c.opretKonkurrencesvømmer("Frederik", 1912891867, 1989, true, "frederiket@gmail.com");
         c.opretKonkurrencesvømmer("Talha", 1011891867, 1989, true, "frederiket@gmail.com");
         c.opretMotionist("Sebastian", 1212891867, 1989, true, "frederiket@gmail.com");
         c.opretBetaling(c.getMedlemPåCprnr(1912891867), 2004, true);
@@ -392,12 +392,14 @@ public class ControllerTest {
     @Test
     public void testGetMedlemmerListe() {
         System.out.println("getMedlemmerListe");
-        Controller instance = null;
-        ArrayList<Medlem> expResult = null;
-        ArrayList<Medlem> result = instance.getMedlemmerListe();
+        c.opretKonkurrencesvømmer("Frederik", 1912891867, 1989, true, "frederiket@gmail.com");
+        c.opretKonkurrencesvømmer("Talha", 1011891867, 1989, true, "frederiket@gmail.com");
+        c.opretMotionist("Sebastian", 1212891867, 1989, true, "frederiket@gmail.com");
+        int expResult = 3;
+        int result = c.getMedlemmerListe().size();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
     }
 
 
