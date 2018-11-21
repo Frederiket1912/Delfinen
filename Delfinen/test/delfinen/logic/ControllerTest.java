@@ -160,6 +160,22 @@ public class ControllerTest {
     }
     
     /**
+     * Test of redigerMedlem method, of class Controller.
+     */
+    @Test
+    public void testRedigerMedlemFødselsdato() {
+        c.opretMotionist("Frederik", 1912891867, 19121989, true, "frederiket@gmail.com");
+        String newName = "Hans";
+        int newFødselsdato = 100200;
+        boolean NewMedlemskabsstatus = false;
+        String newMail = "hans@gmail.com";
+        c.redigerMedlem(c.getMedlemPåCprnr(1912891867), newName, newFødselsdato, NewMedlemskabsstatus, newMail);
+        int result = c.getMedlemPåCprnr(1912891867).getFødselsår();
+        //vi tjekker om der nu er et medlem med navnet Hans, m hed originalt Frederik
+        assertEquals(newFødselsdato, result);
+    }
+    
+    /**
      * Test of opretResultat method, of class Controller.
      */
     @Test
@@ -393,7 +409,7 @@ public class ControllerTest {
         int year = 2004;
         int expResult = 0;
         int result = c.getRestanceForYear(year);
-        //vi 
+        //vi tester om restancen er 0
         assertEquals(expResult, result);
 
     }
