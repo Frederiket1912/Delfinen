@@ -460,14 +460,18 @@ public class ControllerTest {
     @Test
     public void testGetBestResult() {
         System.out.println("getBestResult");
-        Konkurrencesvømmer konkurrencesvømmer = null;
+        c.opretKonkurrencesvømmer("Frederik", 1912891867, 1989, true, "frederiket@gmail.com");
+        c.opretResultat(c.getKonkurrencesvømmerPåCprnr(1912891867), 200, "10/10/1999", Disciplin.CRAWL, "randerssRegnskov", 0);
+        c.opretResultat(c.getKonkurrencesvømmerPåCprnr(1912891867), 100, "10/10/1999", Disciplin.CRAWL, "randerssRegnskov", 0);
+        c.opretResultat(c.getKonkurrencesvømmerPåCprnr(1912891867), 100, "10/10/1999", Disciplin.RYGCRAWL, "randerssRegnskov", 0);
+        c.opretResultat(c.getKonkurrencesvømmerPåCprnr(1912891867), 500, "10/10/1999", Disciplin.BRYSTSVØMNING, "randerssRegnskov", 0);
+        c.opretResultat(c.getKonkurrencesvømmerPåCprnr(1912891867), 700, "10/10/1999", Disciplin.BUTTERFLY, "randerssRegnskov", 0);
+        c.opretResultat(c.getKonkurrencesvømmerPåCprnr(1912891867), 300, "10/10/1999", Disciplin.BUTTERFLY, "randerssRegnskov", 0);        
         Disciplin disciplin = null;
-        Controller instance = null;
-        Resultat expResult = null;
-        Resultat result = instance.getBestResult(konkurrencesvømmer, disciplin);
+        disciplin = disciplin.BUTTERFLY;
+        int expResult = 300;
+        int result = c.getBestResult(c.getKonkurrencesvømmerPåCprnr(1912891867), disciplin).getTimeInSeconds();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
