@@ -32,7 +32,7 @@ public class Konkurrencesvømmer implements Serializable, Medlem{
         this.fødselsår = fødselsdato;
         this.resultater = new ArrayList();
         this.trænernavn = null;
-        betalinger.add(new Betaling(new Konkurrencesvømmer(name, cprnr, fødselsdato, medlemskabsstatus, mail), LocalDate.now().getYear(), true));
+//        betalinger.add(new Betaling(new Konkurrencesvømmer(name, cprnr, fødselsdato, medlemskabsstatus, mail), LocalDate.now().getYear(), true));
     }
 
     @Override
