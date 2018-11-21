@@ -108,7 +108,7 @@ public class ControllerTest {
      * Test of søgMedlemPåNavn method, of class Controller.
      */
     @Test
-    public void testSøgMedlemPåNavn() throws Exception {
+    public void testGetMedlemPåNavn() throws Exception {
         System.out.println("s\u00f8gMedlemP\u00e5Navn");
         String name = "Frederik";
         c.opretMotionist("Frederik", 1912891867, 19121989, true, "frederiket@gmail.com");
@@ -123,7 +123,7 @@ public class ControllerTest {
      * Test of søgMedlemPåCprnr method, of class Controller.
      */
     @Test
-    public void testSøgMedlemPåCprnr() throws ClassNotFoundException {
+    public void testGetMedlemPåCprnr() throws ClassNotFoundException {
         System.out.println("s\u00f8gMedlemP\u00e5Cprnr");
         int cprnr = 1912891867;
         c.opretMotionist("Frederik", 1912891867, 19121989, true, "frederiket@gmail.com");
@@ -139,7 +139,7 @@ public class ControllerTest {
      * Test of søgMedlemPåMail method, of class Controller.
      */
     @Test
-    public void testSøgMedlemPåMail() throws ClassNotFoundException {
+    public void testGetMedlemPåMail() throws ClassNotFoundException {
         System.out.println("s\u00f8gMedlemP\u00e5Mail");
         String mail = "frederiket@gmail.com";
         c.opretMotionist("Frederik", 1912891867, 19121989, true, "frederiket@gmail.com");
@@ -179,7 +179,7 @@ public class ControllerTest {
      * Test of søgKonkurrencesvømmerPåCprnr method, of class Controller.
      */
     @Test
-    public void testSøgKonkurrencesvømmerPåCprnr() {
+    public void testgetKonkurrencesvømmerPåCprnr() {
         System.out.println("s\u00f8gKonkurrencesv\u00f8mmerP\u00e5Cprnr");
         Medlem m = new Konkurrencesvømmer("Frederik", 1912891867, 19121989, true, "frederiket@gmail.com");
         int cprnr = 1912891867;
@@ -206,7 +206,7 @@ public class ControllerTest {
      * Test of søgAlleResultater method, of class Controller.
      */
     @Test
-    public void testSøgAlleResultater() {
+    public void testgetAlleResultater() {
         System.out.println("s\u00f8gAlleResultater");
         Controller instance = null;
         ArrayList<Resultat> expResult = null;
@@ -219,7 +219,7 @@ public class ControllerTest {
      * Test of søgCrawlResultater method, of class Controller.
      */
     @Test
-    public void testSøgCrawlResultater() {
+    public void testgetCrawlResultater() {
         System.out.println("s\u00f8gCrawlResultater");
         Controller instance = null;
         ArrayList<Resultat> expResult = null;
@@ -232,7 +232,7 @@ public class ControllerTest {
      * Test of søgRygrawlResultater method, of class Controller.
      */
     @Test
-    public void testSøgRygrawlResultater() {
+    public void testgetRygrawlResultater() {
         System.out.println("s\u00f8gRygrawlResultater");
         Controller instance = null;
         ArrayList<Resultat> expResult = null;
@@ -298,7 +298,6 @@ public class ControllerTest {
         int expResult = 0;
         int result = instance.getRestanceForMedlem(medlem);
         assertEquals(expResult, result);
-
     }
 
     /**
@@ -358,65 +357,7 @@ public class ControllerTest {
         fail("The test case is a prototype.");
     }
 
-    /**
-     * Test of getMedlemPåNavn method, of class Controller.
-     */
-    @Test
-    public void testGetMedlemPåNavn() {
-        System.out.println("getMedlemP\u00e5Navn");
-        String name = "";
-        Controller instance = null;
-        ArrayList<Medlem> expResult = null;
-        ArrayList<Medlem> result = instance.getMedlemPåNavn(name);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
 
-    /**
-     * Test of getMedlemPåCprnr method, of class Controller.
-     */
-    @Test
-    public void testGetMedlemPåCprnr() {
-        System.out.println("getMedlemP\u00e5Cprnr");
-        int cprnr = 0;
-        Controller instance = null;
-        Medlem expResult = null;
-        Medlem result = instance.getMedlemPåCprnr(cprnr);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getKonkurrencesvømmerPåCprnr method, of class Controller.
-     */
-    @Test
-    public void testGetKonkurrencesvømmerPåCprnr() {
-        System.out.println("getKonkurrencesv\u00f8mmerP\u00e5Cprnr");
-        int cprnr = 0;
-        Controller instance = null;
-        Konkurrencesvømmer expResult = null;
-        Konkurrencesvømmer result = instance.getKonkurrencesvømmerPåCprnr(cprnr);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getMedlemPåMail method, of class Controller.
-     */
-    @Test
-    public void testGetMedlemPåMail() {
-        System.out.println("getMedlemP\u00e5Mail");
-        String mail = "";
-        Controller instance = null;
-        Medlem expResult = null;
-        Medlem result = instance.getMedlemPåMail(mail);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
 
     /**
      * Test of sletResultat method, of class Controller.
