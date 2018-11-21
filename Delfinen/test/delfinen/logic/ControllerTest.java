@@ -272,7 +272,6 @@ public class ControllerTest {
         int expResult = 2;
         int result = c.getButterflyResultater().size();
         assertEquals(expResult, result);
-
     }
 
     /**
@@ -300,17 +299,16 @@ public class ControllerTest {
     @Test
     public void testGetTop5() {
         System.out.println("getTop5");
-        Konkurrencesvømmer ks = new Konkurrencesvømmer("Ivan", 1912891867, 191289, true, "mail@.com");
-        Konkurrencesvømmer m = c.getKonkurrencesvømmerPåCprnr(1912891867);
-        c.opretResultat(m, 200, "10/10/1999", Disciplin.CRAWL, "randerssRegnskov", 0);
-        c.opretResultat(m, 100, "10/10/1999", Disciplin.CRAWL, "randerssRegnskov", 0);
-        c.opretResultat(m, 100, "10/10/1999", Disciplin.CRAWL, "randerssRegnskov", 0);
-        c.opretResultat(m, 500, "10/10/1999", Disciplin.CRAWL, "randerssRegnskov", 0);
-        c.opretResultat(m, 700, "10/10/1999", Disciplin.CRAWL, "randerssRegnskov", 0);
-        c.opretResultat(m, 300, "10/10/1999", Disciplin.CRAWL, "randerssRegnskov", 0);
-        int expResult = 5;
-        ArrayList<Resultat> result = c.getTop5(Disciplin.CRAWL);
-        assertEquals(expResult, result.size());
+        c.opretKonkurrencesvømmer("Frederik", 1912891867, 1989, true, "frederiket@gmail.com");
+        c.opretResultat(c.getKonkurrencesvømmerPåCprnr(1912891867), 200, "10/10/1999", Disciplin.CRAWL, "randerssRegnskov", 0);
+        c.opretResultat(c.getKonkurrencesvømmerPåCprnr(1912891867), 100, "10/10/1999", Disciplin.CRAWL, "randerssRegnskov", 0);
+        c.opretResultat(c.getKonkurrencesvømmerPåCprnr(1912891867), 100, "10/10/1999", Disciplin.RYGCRAWL, "randerssRegnskov", 0);
+        c.opretResultat(c.getKonkurrencesvømmerPåCprnr(1912891867), 500, "10/10/1999", Disciplin.BRYSTSVØMNING, "randerssRegnskov", 0);
+        c.opretResultat(c.getKonkurrencesvømmerPåCprnr(1912891867), 700, "10/10/1999", Disciplin.BUTTERFLY, "randerssRegnskov", 0);
+        c.opretResultat(c.getKonkurrencesvømmerPåCprnr(1912891867), 300, "10/10/1999", Disciplin.BUTTERFLY, "randerssRegnskov", 0);
+        int expResult = 2;
+        int result = c.getTop5(Disciplin.CRAWL).size();
+        assertEquals(expResult, result);
         
     }
 

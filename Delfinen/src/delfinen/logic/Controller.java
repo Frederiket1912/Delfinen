@@ -130,12 +130,13 @@ public class Controller {
         konkurrencesvømmer.setResultater(r);
         dao.skrivTilFil(alleMedlemmer);
     }
-    
-    public void sletResultat(Konkurrencesvømmer konkurrencesvømmer, Resultat resultat){
+
+    public void sletResultat(Konkurrencesvømmer konkurrencesvømmer, Resultat resultat) {
         ArrayList<Resultat> fjernes = new ArrayList();
-        for (Resultat r : konkurrencesvømmer.getResultater()){
-            if (r.getId() == resultat.getId())
+        for (Resultat r : konkurrencesvømmer.getResultater()) {
+            if (r.getId() == resultat.getId()) {
                 fjernes.add(r);
+            }
         }
         konkurrencesvømmer.getResultater().removeAll(fjernes);
     }
@@ -214,8 +215,14 @@ public class Controller {
             }
         }
         Collections.sort(disciplinResultater);
-        for (int i = 0; i < 5; i++) {
-            top5DisciplinResultater.add(disciplinResultater.get(i));
+        if (disciplinResultater.size() < 5) {
+            for (int i = 0; i < disciplinResultater.size(); i++) {
+                top5DisciplinResultater.add(disciplinResultater.get(i));
+            }
+        } else {
+            for (int i = 0; i < 5; i++) {
+                top5DisciplinResultater.add(disciplinResultater.get(i));
+            }
         }
         return top5DisciplinResultater;
     }
@@ -307,19 +314,19 @@ public class Controller {
         }
         return result;
     }
-    
-    public ArrayList<Betaling> getAlleBetalinger(){
+
+    public ArrayList<Betaling> getAlleBetalinger() {
         ArrayList<Betaling> alleBetalinger = new ArrayList();
-        for (Medlem m : alleMedlemmer){
-             for (Betaling b : m.getBetalinger()){
-                 alleBetalinger.add(b);
-             }
+        for (Medlem m : alleMedlemmer) {
+            for (Betaling b : m.getBetalinger()) {
+                alleBetalinger.add(b);
+            }
         }
         return alleBetalinger;
     }
-    
-    public void opretBetaling(Medlem medlem, int betalingsyear, boolean hasPaid){
-        Betaling b = new Betaling(medlem,betalingsyear,hasPaid);
+
+    public void opretBetaling(Medlem medlem, int betalingsyear, boolean hasPaid) {
+        Betaling b = new Betaling(medlem, betalingsyear, hasPaid);
         for (Medlem m : alleMedlemmer) {
             if (m.getCprnr() == medlem.getCprnr()) {
                 m.setBetalinger(b);
@@ -327,16 +334,16 @@ public class Controller {
         }
         dao.skrivTilFil(alleMedlemmer);
     }
-    
-    public void redigerBetaling(Betaling betaling, boolean isPaid){
-        for (Betaling b : getAlleBetalinger()){
-            if (b.getId() == betaling.getId()){
+
+    public void redigerBetaling(Betaling betaling, boolean isPaid) {
+        for (Betaling b : getAlleBetalinger()) {
+            if (b.getId() == betaling.getId()) {
                 b.setHasPaid(isPaid);
-            }              
+            }
         }
     }
-    
-    public void skrivTilFil(){
+
+    public void skrivTilFil() {
         dao.skrivTilFil(alleMedlemmer);
     }
 }
