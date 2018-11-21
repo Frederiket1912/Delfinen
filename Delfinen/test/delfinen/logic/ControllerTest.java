@@ -492,14 +492,12 @@ public class ControllerTest {
     @Test
     public void testGetBetalingByYear() {
         System.out.println("getBetalingByYear");
-        Medlem medlem = null;
-        int year = 0;
-        Controller instance = null;
-        Betaling expResult = null;
-        Betaling result = instance.getBetalingByYear(medlem, year);
+        c.opretKonkurrencesvømmer("Frederik", 1912891867, 1989, true, "frederiket@gmail.com");
+        c.opretBetaling(c.getMedlemPåCprnr(1912891867), 2004, true);
+        int year = 2004;
+        int expResult = 0;
+        int result = c.getBetalingByYear(c.getMedlemPåCprnr(1912891867), year).getId();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
