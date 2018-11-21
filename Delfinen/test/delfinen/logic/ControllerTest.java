@@ -160,6 +160,54 @@ public class ControllerTest {
     }
     
     /**
+     * Test of redigerMedlem method, of class Controller.
+     */
+    @Test
+    public void testRedigerMedlemFødselsdato() {
+        c.opretMotionist("Frederik", 1912891867, 19121989, true, "frederiket@gmail.com");
+        String newName = "Hans";
+        int newFødselsdato = 100200;
+        boolean NewMedlemskabsstatus = false;
+        String newMail = "hans@gmail.com";
+        c.redigerMedlem(c.getMedlemPåCprnr(1912891867), newName, newFødselsdato, NewMedlemskabsstatus, newMail);
+        int result = c.getMedlemPåCprnr(1912891867).getFødselsår();
+        //vi tjekker om fødselsdato er ændret
+        assertEquals(newFødselsdato, result);
+    }
+    
+    /**
+     * Test of redigerMedlem method, of class Controller.
+     */
+    @Test
+    public void testRedigerMedlemMedlemskabsstatus() {
+        c.opretMotionist("Frederik", 1912891867, 19121989, true, "frederiket@gmail.com");
+        String newName = "Hans";
+        int newFødselsdato = 100200;
+        boolean NewMedlemskabsstatus = false;
+        String newMail = "hans@gmail.com";
+        c.redigerMedlem(c.getMedlemPåCprnr(1912891867), newName, newFødselsdato, NewMedlemskabsstatus, newMail);
+        boolean result = c.getMedlemPåCprnr(1912891867).isMedlemskabsstatus();
+        //vi tjekker om medlemsskabsstatus er ændret
+        assertEquals(NewMedlemskabsstatus, result);
+    }
+    
+    /**
+     * Test of redigerMedlem method, of class Controller.
+     */
+    @Test
+    public void testRedigerMedlemMail() {
+        c.opretMotionist("Frederik", 1912891867, 19121989, true, "frederiket@gmail.com");
+        String newName = "Hans";
+        int newFødselsdato = 100200;
+        boolean NewMedlemskabsstatus = false;
+        String newMail = "hans@gmail.com";
+        c.redigerMedlem(c.getMedlemPåCprnr(1912891867), newName, newFødselsdato, NewMedlemskabsstatus, newMail);
+        String result = c.getMedlemPåCprnr(1912891867).getMail();
+        //vi tjekker om mail er ændret
+        assertEquals(newMail, result);
+    }
+    
+    /**
      * Test of opretResultat method, of class Controller.
      */
     @Test
@@ -307,7 +355,24 @@ public class ControllerTest {
         //vi opretter resultater af forskellige discipliner og tjekker om antallet af resultater vi får returned stemmer overens med antallet af crawlresultater
         assertEquals(expResult, result);       
     }
-
+    
+    /**
+     * Test of getTop5 method, of class Controller.
+     */
+    @Test
+    public void testGetTop5Resultater5Brystsvømning() {
+        c.opretKonkurrencesvømmer("Frederik", 1912891867, 1989, true, "frederiket@gmail.com");
+        c.opretResultat(c.getKonkurrencesvømmerPåCprnr(1912891867), 200, "10/10/1999", Disciplin.BRYSTSVØMNING, "randerssRegnskov", 0);
+        c.opretResultat(c.getKonkurrencesvømmerPåCprnr(1912891867), 100, "10/10/1999", Disciplin.BRYSTSVØMNING, "randerssRegnskov", 0);
+        c.opretResultat(c.getKonkurrencesvømmerPåCprnr(1912891867), 100, "10/10/1999", Disciplin.BRYSTSVØMNING, "randerssRegnskov", 0);
+        c.opretResultat(c.getKonkurrencesvømmerPåCprnr(1912891867), 500, "10/10/1999", Disciplin.BRYSTSVØMNING, "randerssRegnskov", 0);
+        c.opretResultat(c.getKonkurrencesvømmerPåCprnr(1912891867), 700, "10/10/1999", Disciplin.BRYSTSVØMNING, "randerssRegnskov", 0);
+        c.opretResultat(c.getKonkurrencesvømmerPåCprnr(1912891867), 300, "10/10/1999", Disciplin.BRYSTSVØMNING, "randerssRegnskov", 0);
+        int expResult = 5;
+        int result = c.getTop5(Disciplin.BRYSTSVØMNING).size();
+        //vi opretter resultater og tjekker om antallet af resultater vi får returned holder sig inden inden for en top 5.
+        assertEquals(expResult, result);       
+    }
     /**
      * Test of getRestanceForMedlem method, of class Controller.
      */
@@ -361,7 +426,26 @@ public class ControllerTest {
         assertEquals(expResult, result);
 
     }
+    
+    /**
+     * Test of getRestanceForYear method, of class Controller.
+     */
+    @Test
+    public void testGetZeroRestanceForYear() {
+        c.opretKonkurrencesvømmer("Frederik", 1912891867, 1989, true, "frederiket@gmail.com");
+        c.opretKonkurrencesvømmer("Talha", 1011891867, 1989, true, "frederiket@gmail.com");
+        c.opretMotionist("Sebastian", 1212891867, 1989, true, "frederiket@gmail.com");
+        c.opretBetaling(c.getMedlemPåCprnr(1912891867), 2004, true);
+        c.opretBetaling(c.getMedlemPåCprnr(1011891867), 2004, true);
+        c.opretBetaling(c.getMedlemPåCprnr(1212891867), 2004, true);
+        int year = 2004;
+        int expResult = 0;
+        int result = c.getRestanceForYear(year);
+        //vi tester om restancen er 0
+        assertEquals(expResult, result);
 
+    }
+    
     /**
      * Test of getForventetIndkomstFraKontingenter method, of class Controller.
      */
