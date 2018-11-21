@@ -11,6 +11,7 @@ import delfinen.data.Konkurrencesvømmer;
 import delfinen.data.Medlem;
 import delfinen.logic.BetalingCalculator;
 import delfinen.logic.Controller;
+import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -28,10 +29,41 @@ public class CoachView extends javax.swing.JFrame {
         BetalingCalculator bc = new BetalingCalculator();
         c = new Controller(dao, bc);
         c.getMedlemmer();
+        visAlle();
        // for(Konkurrencesvømmer k : c.getKonkurrencesvømmere()){
        //     c.opretResultat(k, 66, "75", Disciplin.CRAWL, "Noget", 1);
        // }
        
+    }
+    public void visAlle(){
+             
+        DefaultTableModel model = createTable();
+        model.getDataVector().removeAllElements();
+        model.fireTableDataChanged();
+        int tempCPR = 0;
+        for (Medlem m : c.getKonkurrencesvømmere()) {
+            try {
+                tempCPR = Integer.parseInt(this.CPRField.getText());
+
+            } catch (Exception ex) {
+            }
+            
+                Object rowData[] = new Object[6];
+                rowData[0] = m.getName();
+                rowData[1] = m.getCprnr();
+                try{
+                rowData[2] = c.timeFormatter(c.getBestResult((Konkurrencesvømmer)m, Disciplin.CRAWL).getTimeInSeconds());
+                rowData[3] = c.timeFormatter(c.getBestResult((Konkurrencesvømmer)m, Disciplin.BRYSTSVØMNING).getTimeInSeconds());
+                rowData[4] = c.timeFormatter(c.getBestResult((Konkurrencesvømmer)m, Disciplin.RYGCRAWL).getTimeInSeconds());
+                rowData[5] = c.timeFormatter(c.getBestResult((Konkurrencesvømmer)m, Disciplin.BUTTERFLY).getTimeInSeconds());
+                }catch(Exception ex){
+                    
+                }
+                model.addRow(rowData);
+
+            
+
+        }
     }
 
     /**
@@ -43,6 +75,7 @@ public class CoachView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButton2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         NameField = new javax.swing.JTextField();
@@ -54,6 +87,9 @@ public class CoachView extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
+
+        jButton2.setText("jButton2");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -100,6 +136,13 @@ public class CoachView extends javax.swing.JFrame {
 
         jLabel3.setText("E-Mail");
 
+        jButton3.setText("Vis Alle");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -131,13 +174,16 @@ public class CoachView extends javax.swing.JFrame {
                 .addGap(64, 64, 64)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 538, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jButton3)
+                .addGap(19, 19, 19))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(8, 8, 8)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -155,15 +201,21 @@ public class CoachView extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(RegisterTid)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton1)))
-                .addContainerGap(25, Short.MAX_VALUE))
+                        .addComponent(jButton1))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton3)
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void RegisterTidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegisterTidActionPerformed
-        new RegistrerSvømmeResultater().setVisible(true);
+        int k = Integer.parseInt(this.jTable1.getValueAt(this.jTable1.getSelectedRow(), 1).toString());
+        JFrame sv = new RegistrerSvømmeResultater(k); 
+        sv.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_RegisterTidActionPerformed
 
     private void søgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_søgActionPerformed
@@ -181,7 +233,7 @@ public class CoachView extends javax.swing.JFrame {
             if (m.getCprnr() == tempCPR || m.getMail().toLowerCase().equals(this.EmailField.getText().toLowerCase()) || m.getName().toLowerCase().equals(this.NameField.getText().toLowerCase())) {
                 Object rowData[] = new Object[6];
                 rowData[0] = m.getName();
-                rowData[1] = m.getFødselsår();
+                rowData[1] = m.getCprnr();
                 try{
                 rowData[2] = c.timeFormatter(c.getBestResult((Konkurrencesvømmer)m, Disciplin.CRAWL).getTimeInSeconds());
                 rowData[3] = c.timeFormatter(c.getBestResult((Konkurrencesvømmer)m, Disciplin.BRYSTSVØMNING).getTimeInSeconds());
@@ -202,8 +254,14 @@ public class CoachView extends javax.swing.JFrame {
     }//GEN-LAST:event_NameFieldActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       new SvømmeResultater().setVisible(true);
+        
+        new SvømmeResultater().setVisible(true);
+       
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+     
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     public DefaultTableModel createTable() {
         DefaultTableModel model = (DefaultTableModel) this.jTable1.getModel();
@@ -256,6 +314,8 @@ public class CoachView extends javax.swing.JFrame {
     private javax.swing.JTextField NameField;
     private javax.swing.JButton RegisterTid;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
