@@ -512,8 +512,6 @@ public class ControllerTest {
         c.opretBetaling(c.getMedlemPåCprnr(1912891867), 2005, false);
         c.opretBetaling(c.getMedlemPåCprnr(100200), 2004, true);
         c.opretBetaling(c.getMedlemPåCprnr(100200), 2005, true);
-        System.out.println(c.getMedlemPåCprnr(1912891867).getBetalinger());
-        System.out.println(c.getMedlemPåCprnr(100200).getBetalinger());
         int expResult = 6;
         int result = c.getAlleBetalinger().size();
         assertEquals(expResult, result);
