@@ -178,7 +178,7 @@ public class Controller {
     public ArrayList<Resultat> getButterflyResultater() {
         ArrayList<Resultat> butterflyResultater = new ArrayList();
         for (Resultat r : getAlleResultater()) {
-            if (r.getDisciplin() == Disciplin.CRAWL) {
+            if (r.getDisciplin() == Disciplin.BUTTERFLY) {
                 butterflyResultater.add(r);
             }
         }
@@ -188,7 +188,7 @@ public class Controller {
     public ArrayList<Resultat> getBrystsvømningResultater() {
         ArrayList<Resultat> brystsvømningResultater = new ArrayList();
         for (Resultat r : getAlleResultater()) {
-            if (r.getDisciplin() == Disciplin.CRAWL) {
+            if (r.getDisciplin() == Disciplin.BRYSTSVØMNING) {
                 brystsvømningResultater.add(r);
             }
         }
