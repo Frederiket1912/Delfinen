@@ -336,9 +336,14 @@ public class ControllerTest {
     @Test
     public void testGetMedlemmerIRestance() {
         System.out.println("getMedlemmerIRestance");
-        Controller instance = null;
-        ArrayList<Medlem> expResult = null;
-        ArrayList<Medlem> result = instance.getMedlemmerIRestance();
+        c.opretKonkurrencesvømmer("Frederik", 1912891867, 1989, true, "frederiket@gmail.com");
+        c.opretKonkurrencesvømmer("Talha", 1011891867, 1989, true, "frederiket@gmail.com");
+        c.opretMotionist("Sebastian", 1212891867, 1989, true, "frederiket@gmail.com");
+        c.opretBetaling(c.getMedlemPåCprnr(1912891867), 2004, true);
+        c.opretBetaling(c.getMedlemPåCprnr(1011891867), 2004, false);
+        c.opretBetaling(c.getMedlemPåCprnr(1212891867), 2004, false);
+        int expResult = 2;
+        int result = c.getMedlemmerIRestance().size();
         assertEquals(expResult, result);
 
     }
