@@ -181,7 +181,7 @@ public class ControllerTest {
     @Test
     public void testgetKonkurrencesvømmerPåCprnr() {
         System.out.println("s\u00f8gKonkurrencesv\u00f8mmerP\u00e5Cprnr");
-        Medlem m = new Konkurrencesvømmer("Frederik", 1912891867, 19121989, true, "frederiket@gmail.com");
+        c.opretKonkurrencesvømmer("Frederik", 1912891867, 1989, true, "frederiket@gmail.com");
         int cprnr = 1912891867;
         Konkurrencesvømmer expResult = new Konkurrencesvømmer("Frederik", 1912891867, 19121989, true, "frederiket@gmail.com");
         Konkurrencesvømmer result = c.getKonkurrencesvømmerPåCprnr(cprnr);
@@ -512,6 +512,7 @@ public class ControllerTest {
         c.opretBetaling(c.getMedlemPåCprnr(1912891867), 2005, false);
         c.opretBetaling(c.getMedlemPåCprnr(100200), 2004, true);
         c.opretBetaling(c.getMedlemPåCprnr(100200), 2005, true);
+        //expResult er 6 fordi medlemmer automatisk får deres første betaling når de bliver oprettet
         int expResult = 6;
         int result = c.getAlleBetalinger().size();
         assertEquals(expResult, result);
@@ -523,13 +524,13 @@ public class ControllerTest {
     @Test
     public void testOpretBetaling() {
         System.out.println("opretBetaling");
-        Medlem medlem = null;
-        int betalingsyear = 0;
-        boolean hasPaid = false;
-        Controller instance = null;
-        instance.opretBetaling(medlem, betalingsyear, hasPaid);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        c.opretKonkurrencesvømmer("Frederik", 1912891867, 1989, true, "frederiket@gmail.com");
+        int betalingerFør = c.getMedlemPåCprnr(1912891867).getBetalinger().size();
+        int betalingsyear = 2004;
+        boolean hasPaid = false;      
+        c.opretBetaling(c.getMedlemPåCprnr(1912891867), betalingsyear, hasPaid);
+        int betalingerEfter = c.getMedlemPåCprnr(1912891867).getBetalinger().size();
+        assertEquals(betalingerFør, betalingerEfter - 1);
     }
 
     /**
