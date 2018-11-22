@@ -11,6 +11,7 @@ public class Resultat implements Comparable<Resultat>, Serializable{
     private int placement;
     private String name;
     private int id;
+    private int CPR;
 
     public Resultat(int timeInSeconds, String date, Disciplin disciplin, String competitionName, int placement, Konkurrencesvømmer konkurrencesvømmer) {
         this.timeInSeconds = timeInSeconds;
@@ -19,6 +20,11 @@ public class Resultat implements Comparable<Resultat>, Serializable{
         this.competitionName = competitionName;
         this.placement = placement;
         this.name = konkurrencesvømmer.getName();
+        this.CPR = konkurrencesvømmer.getCprnr();
+    }
+
+    public int getCPR() {
+        return CPR;
     }
 
     public void setId(int id) {
