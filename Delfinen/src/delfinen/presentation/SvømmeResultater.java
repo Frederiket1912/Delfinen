@@ -33,6 +33,7 @@ public class SvømmeResultater extends javax.swing.JFrame {
         c = new Controller(dao, bc);
         c.getMedlemmer();
         this.setTitle("Svømmeresultater");
+        
     }
         public DefaultTableModel createTable(JTable t) {
         DefaultTableModel model = (DefaultTableModel) t.getModel();
@@ -67,6 +68,7 @@ public class SvømmeResultater extends javax.swing.JFrame {
         JTop5 = new javax.swing.JTable();
         jScrollPane4 = new javax.swing.JScrollPane();
         JResultater = new javax.swing.JTable();
+        JsletResultat = new javax.swing.JButton();
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -158,7 +160,7 @@ public class SvømmeResultater extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Navn", "Disciplin", "Placering", "Tid"
+                "Navn", "Disciplin", "Placering", "Tid", "ID"
             }
         ));
         jScrollPane1.setViewportView(JTop5);
@@ -168,10 +170,17 @@ public class SvømmeResultater extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Navn", "Disciplin", "Placering", "Tid"
+                "Navn", "Disciplin", "Placering", "Tid", "ID"
             }
         ));
         jScrollPane4.setViewportView(JResultater);
+
+        JsletResultat.setText("Slet valgte resultat");
+        JsletResultat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JsletResultatActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -179,16 +188,17 @@ public class SvømmeResultater extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jButtonRegistrerSvømmeresultat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton10, javax.swing.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE)
-                    .addComponent(jButton11, javax.swing.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE)
-                    .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE)
-                    .addComponent(jButton9, javax.swing.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 211, Short.MAX_VALUE)
-                    .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButtonRegistrerSvømmeresultat, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE)
+                    .addComponent(jButton11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE)
+                    .addComponent(jButton8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE)
+                    .addComponent(jButton9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE)
+                    .addComponent(jButton4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 211, Short.MAX_VALUE)
+                    .addComponent(jButton7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE)
+                    .addComponent(jButton5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE)
+                    .addComponent(JsletResultat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButtonHovedemenu, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -199,7 +209,11 @@ public class SvømmeResultater extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(32, 32, 32))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(7, 7, 7)
                         .addComponent(jButton1)
@@ -208,11 +222,10 @@ public class SvømmeResultater extends javax.swing.JFrame {
                         .addGap(19, 19, 19)
                         .addComponent(jButton7)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton4))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
+                        .addComponent(jButton4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(JsletResultat, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton9)
@@ -239,11 +252,12 @@ public class SvømmeResultater extends javax.swing.JFrame {
         model.getDataVector().removeAllElements();
         model.fireTableDataChanged();
         for (Resultat t : c.getDisciplinResultater(Disciplin.CRAWL)) {
-                Object rowData[] = new Object[4];
+                Object rowData[] = new Object[5];
                 rowData[0] = t.getName();
                 rowData[1] = t.getDisciplin();
                 rowData[2] = t.getPlacement();
                 rowData[3] = c.timeFormatter(t.getTimeInSeconds());
+                rowData[4] = t.getId();
 
 
                 
@@ -260,11 +274,12 @@ public class SvømmeResultater extends javax.swing.JFrame {
         model.getDataVector().removeAllElements();
         model.fireTableDataChanged();
         for (Resultat t : c.getDisciplinResultater(Disciplin.RYGCRAWL)) {
-                Object rowData[] = new Object[4];
+                Object rowData[] = new Object[5];
                 rowData[0] = t.getName();
                 rowData[1] = t.getDisciplin();
                 rowData[2] = t.getPlacement();
                 rowData[3] = c.timeFormatter(t.getTimeInSeconds());
+                rowData[4] = t.getId();
 
 
                 
@@ -281,12 +296,12 @@ public class SvømmeResultater extends javax.swing.JFrame {
         model.getDataVector().removeAllElements();
         model.fireTableDataChanged();
         for (Resultat t : c.getDisciplinResultater(Disciplin.BUTTERFLY)) {
-                Object rowData[] = new Object[4];
+                Object rowData[] = new Object[5];
                 rowData[0] = t.getName();
                 rowData[1] = t.getDisciplin();
                 rowData[2] = t.getPlacement();
                 rowData[3] = c.timeFormatter(t.getTimeInSeconds());
-
+                rowData[4] = t.getId();
 
                 
                 model.addRow(rowData);
@@ -302,12 +317,12 @@ public class SvømmeResultater extends javax.swing.JFrame {
         model.getDataVector().removeAllElements();
         model.fireTableDataChanged();
         for (Resultat t : c.getDisciplinResultater(Disciplin.BRYSTSVØMNING)) {
-                Object rowData[] = new Object[4];
+                Object rowData[] = new Object[5];
                 rowData[0] = t.getName();
                 rowData[1] = t.getDisciplin();
                 rowData[2] = t.getPlacement();
                 rowData[3] = c.timeFormatter(t.getTimeInSeconds());
-
+                rowData[4] = t.getId();
 
                 
                 model.addRow(rowData);
@@ -323,11 +338,12 @@ public class SvømmeResultater extends javax.swing.JFrame {
         model.getDataVector().removeAllElements();
         model.fireTableDataChanged();
         for (Resultat t : c.getTop5(Disciplin.CRAWL)) {
-                Object rowData[] = new Object[4];
+                Object rowData[] = new Object[5];
                 rowData[0] = t.getName();
                 rowData[1] = t.getDisciplin();
                 rowData[2] = t.getPlacement();
                 rowData[3] = c.timeFormatter(t.getTimeInSeconds());
+                rowData[4] = t.getId();
 
 
                 
@@ -344,12 +360,12 @@ public class SvømmeResultater extends javax.swing.JFrame {
         model.getDataVector().removeAllElements();
         model.fireTableDataChanged();
         for (Resultat t : c.getTop5(Disciplin.RYGCRAWL)) {
-                Object rowData[] = new Object[4];
+                Object rowData[] = new Object[5];
                 rowData[0] = t.getName();
                 rowData[1] = t.getDisciplin();
                 rowData[2] = t.getPlacement();
                 rowData[3] = c.timeFormatter(t.getTimeInSeconds());
-
+                rowData[4] = t.getId();
 
                 
                 model.addRow(rowData);
@@ -365,11 +381,12 @@ public class SvømmeResultater extends javax.swing.JFrame {
         model.getDataVector().removeAllElements();
         model.fireTableDataChanged();
         for (Resultat t : c.getTop5(Disciplin.BUTTERFLY)) {
-                Object rowData[] = new Object[4];
+                Object rowData[] = new Object[5];
                 rowData[0] = t.getName();
                 rowData[1] = t.getDisciplin();
                 rowData[2] = t.getPlacement();
                 rowData[3] = c.timeFormatter(t.getTimeInSeconds());
+                rowData[4] = t.getId();
 
 
                 
@@ -413,6 +430,18 @@ public class SvømmeResultater extends javax.swing.JFrame {
         cw.setVisible(true);
     }//GEN-LAST:event_jButtonRegistrerSvømmeresultatActionPerformed
 
+    private void JsletResultatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JsletResultatActionPerformed
+        DefaultTableModel model = createTable(this.JResultater);
+        int tempID = Integer.parseInt(this.JResultater.getValueAt(this.JResultater.getSelectedRow(), 4).toString());
+        for(Resultat t : c.getAlleResultater()){
+            if(tempID == t.getId()){
+            Konkurrencesvømmer k = (Konkurrencesvømmer)c.getMedlemPåCprnr(t.getCPR());
+            c.sletResultat((Konkurrencesvømmer) k, t);
+        }
+        }
+        
+    }//GEN-LAST:event_JsletResultatActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -451,6 +480,7 @@ public class SvømmeResultater extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable JResultater;
     private javax.swing.JTable JTop5;
+    private javax.swing.JButton JsletResultat;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
