@@ -531,8 +531,7 @@ public class ControllerTest {
         c.opretResultat(c.getKonkurrencesvømmerPåCprnr(1912891867), 500, "10/10/1999", Disciplin.BRYSTSVØMNING, "randerssRegnskov", 0);
         c.opretResultat(c.getKonkurrencesvømmerPåCprnr(1912891867), 700, "10/10/1999", Disciplin.BUTTERFLY, "randerssRegnskov", 0);
         c.opretResultat(c.getKonkurrencesvømmerPåCprnr(1912891867), 300, "10/10/1999", Disciplin.BUTTERFLY, "randerssRegnskov", 0);        
-        Disciplin disciplin = null;
-        disciplin = disciplin.BUTTERFLY;
+        Disciplin disciplin = Disciplin.BUTTERFLY;
         int expResult = 300;
         int result = c.getBestResult(c.getKonkurrencesvømmerPåCprnr(1912891867), disciplin).getTimeInSeconds();
         //vi opretter forskellige resultater, vi tjekker om vi får det bedste butterfly resultat tilbage,
