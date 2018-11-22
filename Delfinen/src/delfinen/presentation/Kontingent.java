@@ -313,7 +313,7 @@ public class Kontingent extends javax.swing.JFrame {
                     for(Betaling b : c.getAlleBetalinger()){
                         if(b.getId() == Integer.parseInt(this.JBetaling.getValueAt(this.JBetaling.getSelectedRow(), 5).toString())){
                             c.redigerBetaling(b, isPaid);
-                            System.out.println("her");
+                            
                         }
                     }
                 
