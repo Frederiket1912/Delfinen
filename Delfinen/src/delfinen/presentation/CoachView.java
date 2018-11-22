@@ -330,6 +330,7 @@ public class CoachView extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        try{
         Konkurrencesvømmer tempMedlem = (Konkurrencesvømmer) c.getMedlemPåCprnr(Integer.parseInt(this.jTable1.getValueAt(this.jTable1.getSelectedRow(), 1).toString()));
         if(this.jTable1.getValueAt(this.jTable1.getSelectedRow(), 6) != null){
             this.jLabel4.setText(this.jTable1.getValueAt(this.jTable1.getSelectedRow(), 6).toString());
@@ -353,6 +354,9 @@ public class CoachView extends javax.swing.JFrame {
             } catch (Exception ex) {
 
             }
+        }
+        }catch(Exception ex){
+            
         }
         visAlle();
     }//GEN-LAST:event_jButton5ActionPerformed
