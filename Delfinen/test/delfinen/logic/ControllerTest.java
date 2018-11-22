@@ -497,8 +497,7 @@ public class ControllerTest {
         c.opretResultat(c.getKonkurrencesvømmerPåCprnr(1912891867), 500, "10/10/1999", Disciplin.BRYSTSVØMNING, "randerssRegnskov", 0);
         c.opretResultat(c.getKonkurrencesvømmerPåCprnr(1912891867), 700, "10/10/1999", Disciplin.BUTTERFLY, "randerssRegnskov", 0);
         c.opretResultat(c.getKonkurrencesvømmerPåCprnr(1912891867), 300, "10/10/1999", Disciplin.BUTTERFLY, "randerssRegnskov", 0);
-        Disciplin disciplin = null;
-        disciplin = disciplin.BRYSTSVØMNING;
+        Disciplin disciplin = Disciplin.BRYSTSVØMNING;
         int expResult = 1;
         int result = c.getDisciplinResultater(disciplin).size();
         //vi opretter nogle resultater og tjekker om vi kun får dem der er brystsvømning returned
