@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package delfinen.logic;
 
 import delfinen.data.Aktivitetsform;
@@ -13,10 +8,6 @@ import delfinen.data.Konkurrencesvømmer;
 import delfinen.data.Medlem;
 import delfinen.data.Motionist;
 import delfinen.data.Resultat;
-import static delfinen.logic.BetalingCalculator.JUNIORPRIS;
-import static delfinen.logic.BetalingCalculator.PASSIVPRIS;
-import static delfinen.logic.BetalingCalculator.SENIORPRIS;
-import static delfinen.logic.BetalingCalculator.VOKSENPRIS;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;

@@ -2,7 +2,6 @@
 package delfinen.data;
 
 import delfinen.logic.BetalingCalculator;
-import delfinen.logic.Controller;
 import java.io.Serializable;
 
 

@@ -1,9 +1,6 @@
-
 package delfinen.data;
 
-import delfinen.logic.BetalingCalculator;
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 

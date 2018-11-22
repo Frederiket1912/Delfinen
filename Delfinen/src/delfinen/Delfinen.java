@@ -29,8 +29,11 @@ public class Delfinen {
     public static void main(String[] args) throws ClassNotFoundException {
         Controller c = new Controller(new DataAccessorFile(), new BetalingCalculator()); 
         c.opretKonkurrencesvømmer("Frederik", 1912891867, 1989, true, "frederiket@gmail.com");
+        
         //Medlem m = c.søgMedlemPåCprnr(1912891867);
         Konkurrencesvømmer m = c.getKonkurrencesvømmerPåCprnr(1912891867);
+        c.opretBetaling(m, 2000, true);
+        
         System.out.println(m);
         System.out.println(c.getMedlemPåCprnr(1912891867).getBetalinger());
 //        c.opretResultat(m, 200, "10/10/1999", Disciplin.CRAWL, null, 0);

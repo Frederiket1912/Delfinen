@@ -1,7 +1,5 @@
 package delfinen.logic;
 
-import delfinen.data.Motionist;
-import delfinen.data.Betaling;
 import delfinen.data.Medlem;
 
 
