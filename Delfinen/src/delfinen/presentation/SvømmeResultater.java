@@ -13,6 +13,7 @@ import delfinen.data.Medlem;
 import delfinen.data.Resultat;
 import delfinen.logic.BetalingCalculator;
 import delfinen.logic.Controller;
+import static delfinen.presentation.Medlemsadministration.errorMessage;
 import java.util.ArrayList;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -431,6 +432,7 @@ public class SvømmeResultater extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonRegistrerSvømmeresultatActionPerformed
 
     private void JsletResultatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JsletResultatActionPerformed
+        try{
         DefaultTableModel model = createTable(this.JResultater);
         int tempID = Integer.parseInt(this.JResultater.getValueAt(this.JResultater.getSelectedRow(), 4).toString());
         for(Resultat t : c.getAlleResultater()){
@@ -439,7 +441,9 @@ public class SvømmeResultater extends javax.swing.JFrame {
             c.sletResultat((Konkurrencesvømmer) k, t);
         }
         }
-        
+        }catch(Exception ex){
+           errorMessage();
+        }
     }//GEN-LAST:event_JsletResultatActionPerformed
 
     /**
