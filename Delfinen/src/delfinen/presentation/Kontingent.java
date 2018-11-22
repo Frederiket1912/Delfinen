@@ -37,6 +37,7 @@ public class Kontingent extends javax.swing.JFrame {
         c = new Controller(dao, bc);
         c.getMedlemmer();
         visAlleBetalinger();
+        this.setTitle("Kontigent");
     }
 
     public DefaultTableModel createTable(JTable t) {
