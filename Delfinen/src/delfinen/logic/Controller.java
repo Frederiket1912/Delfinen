@@ -127,7 +127,7 @@ public class Controller {
         }
         else {
             for (Resultat resultat : getAlleResultater()){
-                if (resultat.getId() > counter){
+                if (resultat.getId() >= counter){
                     counter = r.getId() + 1;
                 }
             }
@@ -237,7 +237,7 @@ public class Controller {
         int restanceForMedlem = 0;
         BetalingCalculator bc = new BetalingCalculator();
         for (Betaling b : medlem.getBetalinger()) {
-            if (b.getBetalingssum() == 0) {
+            if (b.isHasPaid() == false) {
                 restanceForMedlem += bc.udregnBetaling(medlem, b.getBetalingsyear());
             }
         }
@@ -339,7 +339,7 @@ public class Controller {
         }
         else {
             for (Betaling betaling : getAlleBetalinger()){
-                if (betaling.getId() > counter){
+                if (betaling.getId() >= counter){
                     counter = betaling.getId() + 1;
                 }
             }

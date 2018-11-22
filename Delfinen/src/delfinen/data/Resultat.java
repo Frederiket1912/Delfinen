@@ -27,7 +27,7 @@ public class Resultat implements Comparable<Resultat>, Serializable{
 
     @Override
     public String toString() {
-        return "Resultat{" + "timeInSeconds=" + timeInSeconds + ", date=" + date + ", disciplin=" + disciplin + ", competitionName=" + competitionName + ", placement=" + placement + ", name=" + name + ", id=" + id + '}';
+        return "id=" + id;
     }
 
     public int getId() {

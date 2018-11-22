@@ -39,7 +39,7 @@ public class Betaling implements Serializable {
 
     @Override
     public String toString() {
-        return "Betaling{" + "year=" + year + ", betalingssum=" + betalingssum + ", betalingsyear=" + betalingsyear + ", hasPaid=" + hasPaid + ", id=" + id + '}';
+        return "id=" + id;
     }
 
     public void setId(int id) {
