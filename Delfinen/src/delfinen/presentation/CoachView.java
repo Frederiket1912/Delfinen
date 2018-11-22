@@ -32,9 +32,8 @@ public class CoachView extends javax.swing.JFrame {
         c = new Controller(dao, bc);
         c.getMedlemmer();
         visAlle();
-        // for(Konkurrencesvømmer k : c.getKonkurrencesvømmere()){
-        //     c.opretResultat(k, 66, "75", Disciplin.CRAWL, "Noget", 1);
-        // }
+        this.setTitle("Træner oversigt");
+        
 
     }
 
