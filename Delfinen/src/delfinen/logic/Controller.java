@@ -145,6 +145,7 @@ public class Controller {
             }
         }
         konkurrencesvømmer.getResultater().removeAll(fjernes);
+        dao.skrivTilFil(alleMedlemmer);
     }
 
     public void setTrænernavn(Konkurrencesvømmer konkurrencesvømmer, String trænernavn) {
