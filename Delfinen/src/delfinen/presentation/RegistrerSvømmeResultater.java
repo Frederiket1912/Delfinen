@@ -34,6 +34,7 @@ public class RegistrerSvømmeResultater extends javax.swing.JFrame {
         BetalingCalculator bc = new BetalingCalculator();
         c = new Controller(dao, bc);
         c.getMedlemmer();
+        this.setTitle("Register Svømme Resulater");
         for (Konkurrencesvømmer m : c.getKonkurrencesvømmere()) {
             if (m.getCprnr() == CPR) {
                 this.JCPR.setText("CPR: " + CPR);
