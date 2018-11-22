@@ -38,6 +38,7 @@ public class RedigereMedlemmer extends javax.swing.JFrame {
         BetalingCalculator bc = new BetalingCalculator();
         c = new Controller(dao, bc);
         visAlle();
+        this.setTitle("Redigere Medlemmer");
 
     }
 
