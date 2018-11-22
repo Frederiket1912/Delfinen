@@ -353,8 +353,10 @@ public class Controller {
         for (Betaling b : getAlleBetalinger()) {
             if (b.getId() == betaling.getId()) {
                 b.setHasPaid(isPaid);
+                b.setBetalingssum(bc.udregnBetaling(getMedlemPåCprnr(b.getCPR()), b.getBetalingsyear()));
             }
         }
+        dao.skrivTilFil(alleMedlemmer);
     }
 
     public void skrivTilFil() {

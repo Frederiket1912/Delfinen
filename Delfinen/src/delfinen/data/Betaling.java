@@ -33,6 +33,10 @@ public class Betaling implements Serializable {
         this.CPR = medlem.getCprnr();
     }
 
+    public void setBetalingssum(int betalingssum) {
+        this.betalingssum = betalingssum;
+    }
+
     @Override
     public String toString() {
         return "Betaling{" + "year=" + year + ", betalingssum=" + betalingssum + ", betalingsyear=" + betalingsyear + ", hasPaid=" + hasPaid + ", id=" + id + '}';
