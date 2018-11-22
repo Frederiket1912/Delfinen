@@ -6,7 +6,6 @@
 package delfinen.logic;
 
 import delfinen.data.Motionist;
-import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -18,9 +17,9 @@ import static org.junit.Assert.*;
  *
  * @author SebastianBernthJepse
  */
-public class BetalingTest {
+public class BetalingCalculatorTest {
     
-    public BetalingTest() {
+    public BetalingCalculatorTest() {
     }
     
     @BeforeClass
@@ -40,7 +39,7 @@ public class BetalingTest {
     }
 
     /**
-     * Test of udregnBetaling method, of class Betaling.
+     * Test of udregnBetaling method, of class BetalingCalculator.
      */
     @Test
     public void testUdregnVoksen() {
