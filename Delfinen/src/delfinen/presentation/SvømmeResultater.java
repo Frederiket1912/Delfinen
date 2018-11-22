@@ -157,7 +157,7 @@ public class SvømmeResultater extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Navn", "Disciplin", "Placering", "Tid"
             }
         ));
         jScrollPane1.setViewportView(JTop5);
