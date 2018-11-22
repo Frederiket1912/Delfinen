@@ -12,8 +12,11 @@ import delfinen.data.Motionist;
 import delfinen.logic.BetalingCalculator;
 import delfinen.logic.Controller;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.AbstractButton;
+import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -38,6 +41,18 @@ public class RedigereMedlemmer extends javax.swing.JFrame {
 
     }
 
+    private String getSelectedButtonText(ButtonGroup buttonGroup) {
+        for (Enumeration<AbstractButton> buttons = buttonGroup.getElements(); buttons.hasMoreElements();) {
+            AbstractButton button = buttons.nextElement();
+            
+            if (button.isSelected()) {
+                return button.getText();
+            }
+        }
+        
+        return null;
+    }
+    
     public void editUser() {
         Medlem tempMedlem = c.getMedlemPåCprnr(Integer.parseInt(this.jTable1.getValueAt(this.jTable1.getSelectedRow(), 1).toString()));
         String medlemsstatus = "P";
@@ -139,6 +154,9 @@ public class RedigereMedlemmer extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        jRadioButton1 = new javax.swing.JRadioButton();
+        jRadioButton2 = new javax.swing.JRadioButton();
+        buttonGroup2 = new javax.swing.ButtonGroup();
         CPRfield = new javax.swing.JTextField();
         MailField = new javax.swing.JTextField();
         NameField = new javax.swing.JTextField();
@@ -170,6 +188,10 @@ public class RedigereMedlemmer extends javax.swing.JFrame {
         jLabel4.setText("jLabel4");
 
         jLabel5.setText("jLabel5");
+
+        jRadioButton1.setText("jRadioButton1");
+
+        jRadioButton2.setText("jRadioButton2");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -417,19 +439,30 @@ public class RedigereMedlemmer extends javax.swing.JFrame {
             this.jLabel4.setText("CPR: " + tempMedlem.getCprnr());
             this.jLabel5.setText("Navn: " + tempMedlem.getName());
             this.jTextField6.setText("");
-
+            this.jRadioButton1.setText("");
+            this.jRadioButton2.setText("");
+            this.buttonGroup2.add(this.jRadioButton1);
+            this.buttonGroup2.add(this.jRadioButton2);
+            boolean betalt = false;
             Object[] message = {
                 "", jLabel4,
                 "", jLabel5,
-                "Betalingsår", jTextField6
+                "Betalingsår", jTextField6,
+                "Betalt", jRadioButton1,
+                "Ikke betalt", jRadioButton2
+                    
 
             };
             int option = JOptionPane.showConfirmDialog(null, message, "Opret Betaling", JOptionPane.OK_CANCEL_OPTION);
             if (option == JOptionPane.OK_OPTION) {
-                //jeg har lavet en ny attribut til betaling der er en boolean.
-                //hvis de betaler 0, altså ikke betaler skal den sættes til false, ellers til true
-                c.opretBetaling(tempMedlem, Integer.parseInt(this.jTextField6.getText()), true);
-
+                
+                if(this.getSelectedButtonText(buttonGroup2).equals("Betalt")){
+                    betalt = true;
+                }else{
+                    betalt = false;
+                }
+                c.opretBetaling(tempMedlem, Integer.parseInt(this.jTextField6.getText()), betalt);
+                
             }
         } catch (Exception ex) {
 
@@ -489,6 +522,7 @@ public class RedigereMedlemmer extends javax.swing.JFrame {
     private javax.swing.JTextField NameField;
     private javax.swing.JButton OpretMedlem;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -503,6 +537,8 @@ public class RedigereMedlemmer extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JOptionPane jOptionPane1;
     private javax.swing.JOptionPane jOptionPane2;
+    private javax.swing.JRadioButton jRadioButton1;
+    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField4;
