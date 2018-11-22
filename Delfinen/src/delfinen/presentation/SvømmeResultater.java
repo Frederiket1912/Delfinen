@@ -401,9 +401,9 @@ public class SvømmeResultater extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButtonHovedemenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonHovedemenuActionPerformed
-        //this.dispose();
-        //Hovedemenu hm = new Hovedemenu();
-        //hm.setVisible(true);
+        this.dispose();
+        Hovedemenu hm = new Hovedemenu();
+        hm.setVisible(true);
     }//GEN-LAST:event_jButtonHovedemenuActionPerformed
 
     private void jButtonRegistrerSvømmeresultatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrerSvømmeresultatActionPerformed
