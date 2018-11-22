@@ -32,6 +32,7 @@ public class SvømmeResultater extends javax.swing.JFrame {
         BetalingCalculator bc = new BetalingCalculator();
         c = new Controller(dao, bc);
         c.getMedlemmer();
+        this.setTitle("Svømmeresultater");
     }
         public DefaultTableModel createTable(JTable t) {
         DefaultTableModel model = (DefaultTableModel) t.getModel();
