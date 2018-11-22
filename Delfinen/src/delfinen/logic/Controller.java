@@ -128,7 +128,7 @@ public class Controller {
         else {
             for (Resultat resultat : getAlleResultater()){
                 if (resultat.getId() >= counter){
-                    counter = r.getId() + 1;
+                    counter = resultat.getId() + 1;
                 }
             }
             r.setId(counter);
@@ -136,7 +136,7 @@ public class Controller {
         konkurrencesvømmer.setResultater(r);
         dao.skrivTilFil(alleMedlemmer);
     }
-
+    
     public void sletResultat(Konkurrencesvømmer konkurrencesvømmer, Resultat resultat) {
         ArrayList<Resultat> fjernes = new ArrayList();
         for (Resultat r : konkurrencesvømmer.getResultater()) {
