@@ -29,6 +29,7 @@ public class OpretMedlem extends javax.swing.JFrame {
         BetalingCalculator bc = new BetalingCalculator();
         c = new Controller(dao, bc);
         c.getMedlemmer();
+        this.setTitle("Opret Medlem");
     }
     
     private String getSelectedButtonText(ButtonGroup buttonGroup) {
