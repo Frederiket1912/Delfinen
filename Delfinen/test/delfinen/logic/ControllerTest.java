@@ -14,7 +14,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class ControllerTest {
-
+    
     Controller c = new Controller(new DataAccessorFile(), new BetalingCalculator());
 
     public ControllerTest() {
@@ -572,7 +572,6 @@ public class ControllerTest {
      */
     @Test
     public void testGetAlleBetalinger() {
-        System.out.println("getAlleBetalinger");
         c.opretKonkurrencesvømmer("Frederik", 1912891867, 1989, true, "frederiket@gmail.com");
         c.opretKonkurrencesvømmer("Talha", 100200, 1989, true, "frederiket@gmail.com");
         c.opretBetaling(c.getMedlemPåCprnr(1912891867), 2004, true);
@@ -591,7 +590,6 @@ public class ControllerTest {
      */
     @Test
     public void testOpretBetaling() {
-        System.out.println("opretBetaling");
         c.opretKonkurrencesvømmer("Frederik", 1912891867, 1989, true, "frederiket@gmail.com");
         int betalingerFør = c.getMedlemPåCprnr(1912891867).getBetalinger().size();
         int betalingsyear = 2004;
@@ -607,7 +605,6 @@ public class ControllerTest {
      */
     @Test
     public void testRedigerBetalingFraFalseTilTrue() {
-        System.out.println("redigerBetaling");
         c.opretKonkurrencesvømmer("Frederik", 1912891867, 1989, true, "frederiket@gmail.com");
         c.opretBetaling(c.getMedlemPåCprnr(1912891867), 2004, false);
         Betaling betaling = c.getMedlemPåCprnr(1912891867).getBetalinger().get(1);

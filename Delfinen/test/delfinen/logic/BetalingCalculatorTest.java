@@ -34,7 +34,6 @@ public class BetalingCalculatorTest {
      */
     @Test
     public void testUdregnVoksen() {
-        System.out.println("udregnVoksen");
         Motionist motionist = new Motionist("Bob", 251078, 1978, true, "mail@.com");
         int year = 2008;
         BetalingCalculator instance = new BetalingCalculator();
@@ -46,7 +45,6 @@ public class BetalingCalculatorTest {
     
     @Test
     public void testUdregnJunior() {
-        System.out.println("udregnJunior");
         Motionist motionist = new Motionist("Bob", 251078, 1998, true, "mail@.com");
         int year = 2008;
         BetalingCalculator instance = new BetalingCalculator();
@@ -58,7 +56,6 @@ public class BetalingCalculatorTest {
     
     @Test
     public void testUdregnSenior() {
-        System.out.println("udregnSenior");
         Motionist motionist = new Motionist("Bob", 251078, 1938, true, "mail@.com");
         int year = 2008;
         BetalingCalculator instance = new BetalingCalculator();
@@ -70,7 +67,6 @@ public class BetalingCalculatorTest {
     
     @Test
     public void testUdregnPassiv() {
-        System.out.println("udregnPassiv");
         Motionist motionist = new Motionist("Bob", 251078, 1978, false, "mail@.com");
         int year = 2008;
         BetalingCalculator instance = new BetalingCalculator();

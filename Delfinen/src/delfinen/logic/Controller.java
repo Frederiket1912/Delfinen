@@ -259,8 +259,8 @@ public class Controller {
         int totalRestanceForYear = 0;
         for (Medlem m : getMedlemmerIRestance()) {
             for (Betaling b : m.getBetalinger()) {
-                if (b.getBetalingsyear() == year) {
-                    totalRestanceForYear += getRestanceForMedlem(m);
+                if (b.getBetalingsyear() == year && b.isHasPaid() == false) {
+                    totalRestanceForYear += bc.udregnBetaling(m, b.getBetalingsyear());
                 }
             }
         }
