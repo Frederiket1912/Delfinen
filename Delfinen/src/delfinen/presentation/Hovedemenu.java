@@ -17,6 +17,7 @@ public class Hovedemenu extends javax.swing.JFrame {
      */
     public Hovedemenu() {
         initComponents();
+        this.setTitle("Hovedmenu");
     }
 
     /**
