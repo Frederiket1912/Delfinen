@@ -96,6 +96,16 @@ public class Medlemsadministration extends javax.swing.JFrame {
         }
     }
 
+    public static void errorMessage(){
+            Object[] message = {
+                "Invalid input", 
+                
+                    
+
+            };
+         int option = JOptionPane.showConfirmDialog(null, message, "Fejlmeddelse", JOptionPane.OK_CANCEL_OPTION);
+            
+    }
     public void visAlle() {
         
         DefaultTableModel model = createTable();
@@ -390,7 +400,7 @@ public class Medlemsadministration extends javax.swing.JFrame {
             editUser();
             visAlle();
         } catch (Exception ex) {
-
+            
         }
 
     }//GEN-LAST:event_jButton2ActionPerformed
