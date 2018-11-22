@@ -468,6 +468,7 @@ public class Medlemsadministration extends javax.swing.JFrame {
         } catch (Exception ex) {
 
         }
+        visAlle();
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
