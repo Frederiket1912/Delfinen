@@ -101,7 +101,7 @@ public class Hovedemenu extends javax.swing.JFrame {
 
     private void jButtonMedlemmerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMedlemmerActionPerformed
         this.dispose();
-        RedigereMedlemmer m = new RedigereMedlemmer();
+        Medlemsadministration m = new Medlemsadministration();
         m.setVisible(true);
     }//GEN-LAST:event_jButtonMedlemmerActionPerformed
 
