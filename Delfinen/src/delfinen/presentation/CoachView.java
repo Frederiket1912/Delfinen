@@ -44,7 +44,7 @@ public class CoachView extends javax.swing.JFrame {
         model.getDataVector().removeAllElements();
         model.fireTableDataChanged();
         int tempCPR = 0;
-        for (Medlem m : c.getKonkurrencesvømmere()) {
+        for (Konkurrencesvømmer m : c.getKonkurrencesvømmere()) {
             try {
                 tempCPR = Integer.parseInt(this.CPRField.getText());
 
@@ -56,12 +56,29 @@ public class CoachView extends javax.swing.JFrame {
             rowData[1] = m.getCprnr();
             try {
                 rowData[2] = c.timeFormatter(c.getBestResult((Konkurrencesvømmer) m, Disciplin.CRAWL).getTimeInSeconds());
-                rowData[3] = c.timeFormatter(c.getBestResult((Konkurrencesvømmer) m, Disciplin.BRYSTSVØMNING).getTimeInSeconds());
-                rowData[4] = c.timeFormatter(c.getBestResult((Konkurrencesvømmer) m, Disciplin.RYGCRAWL).getTimeInSeconds());
-                rowData[5] = c.timeFormatter(c.getBestResult((Konkurrencesvømmer) m, Disciplin.BUTTERFLY).getTimeInSeconds());
+
             } catch (Exception ex) {
 
             }
+            try {
+                rowData[3] = c.timeFormatter(c.getBestResult((Konkurrencesvømmer) m, Disciplin.BRYSTSVØMNING).getTimeInSeconds());
+
+            } catch (Exception ex) {
+
+            }
+            try {
+                rowData[4] = c.timeFormatter(c.getBestResult((Konkurrencesvømmer) m, Disciplin.RYGCRAWL).getTimeInSeconds());
+
+            } catch (Exception ex) {
+
+            }
+            try {
+                rowData[5] = c.timeFormatter(c.getBestResult((Konkurrencesvømmer) m, Disciplin.BUTTERFLY).getTimeInSeconds());
+
+            } catch (Exception ex) {
+
+            }
+
             model.addRow(rowData);
 
         }
@@ -245,7 +262,7 @@ public class CoachView extends javax.swing.JFrame {
         model.getDataVector().removeAllElements();
         model.fireTableDataChanged();
         int tempCPR = 0;
-        for (Medlem m : c.getKonkurrencesvømmere()) {
+        for (Konkurrencesvømmer m : c.getKonkurrencesvømmere()) {
             try {
                 tempCPR = Integer.parseInt(this.CPRField.getText());
 
